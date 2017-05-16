@@ -1,0 +1,4 @@
+CoordinateDistanceTest/**
+SARSearchPatternGenerator/**
+!CoordinateDistanceTest/src/
+!SARSearchPatternGenerator/src/

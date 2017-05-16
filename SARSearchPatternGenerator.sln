@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SARSearchPatternGenerator", "SARSearchPatternGenerator\SARSearchPatternGenerator.csproj", "{EEAA8F46-331F-4731-99F8-9B86F0DF55BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoordinateDistanceTest", "CoordinateDistanceTest\CoordinateDistanceTest.csproj", "{4ECC5044-916E-4CBE-A6AC-0F52B5AE9880}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EEAA8F46-331F-4731-99F8-9B86F0DF55BF} = {EEAA8F46-331F-4731-99F8-9B86F0DF55BF}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EEAA8F46-331F-4731-99F8-9B86F0DF55BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEAA8F46-331F-4731-99F8-9B86F0DF55BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEAA8F46-331F-4731-99F8-9B86F0DF55BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEAA8F46-331F-4731-99F8-9B86F0DF55BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4ECC5044-916E-4CBE-A6AC-0F52B5AE9880}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4ECC5044-916E-4CBE-A6AC-0F52B5AE9880}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4ECC5044-916E-4CBE-A6AC-0F52B5AE9880}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4ECC5044-916E-4CBE-A6AC-0F52B5AE9880}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
