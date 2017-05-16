@@ -2,5 +2,5 @@
 SARSearchPatternGenerator.sln
 CoordinateDistanceTest/**
 SARSearchPatternGenerator/**
-!CoordinateDistanceTest/src/
-!SARSearchPatternGenerator/src/
+!CoordinateDistanceTest/src/**
+!SARSearchPatternGenerator/src/**
