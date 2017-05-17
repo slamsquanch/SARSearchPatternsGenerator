@@ -33,7 +33,7 @@ namespace SARSearchPatternGenerator
             {
                 //Add a point that is the legDistance away from the datum in the
                 //direction of the orientation.
-                addPoint(points.ElementAt(i).travel(legDistance, orientation, dI));
+                addPoint(points.ElementAt(i).travel(orientation, legDistance, dI));
 
                 //Turn orientation for next leg
                 orientation += turnDegrees;
