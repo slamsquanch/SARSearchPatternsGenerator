@@ -59,9 +59,35 @@ namespace SARSearchPatternGenerator
             return latDegrees;
         }
 
+        public void setLatDeg(double latDeg)
+        {
+            latDegrees = latDeg;
+
+            if (latDeg > 90 || latDeg < -90
+                || ((latDeg == 90 || latDeg == -90) && latMinutes != 0)
+                || latMinutes > 60 || latMinutes < 0)
+                throw new OutOfBoundsCoordinateException("Latitude (" + latDeg
+                    + ", " + latMinutes + ") is invalid");
+
+            toBase();
+        }
+
         public double getLngDeg()
         {
             return lngDegrees;
+        }
+
+        public void setLngDeg(double lngDeg)
+        {
+            lngDegrees = lngDeg;
+
+            if (lngDeg > 180 || lngDeg < -180
+                || ((lngDeg == 180 || lngDeg == -180) && lngMinutes != 0)
+                || lngMinutes > 60 || lngMinutes < 0)
+                throw new OutOfBoundsCoordinateException("Longitude (" + lngDeg
+                    + ", " + lngMinutes + ") is invalid");
+
+            toBase();
         }
 
         public double getLatMin()
@@ -69,9 +95,35 @@ namespace SARSearchPatternGenerator
             return latMinutes;
         }
 
+        public void setLatMin(double latMin)
+        {
+            latMinutes = latMin;
+
+            if (latDegrees > 90 || latDegrees < -90
+                || ((latDegrees == 90 || latDegrees == -90) && latMin != 0)
+                || latMin > 60 || latMin < 0)
+                throw new OutOfBoundsCoordinateException("Latitude (" + latDegrees
+                    + ", " + latMin + ") is invalid");
+
+            toBase();
+        }
+
         public double getLngMin()
         {
             return lngMinutes;
+        }
+
+        public void setLngMin(double lngMin)
+        {
+            lngMinutes = lngMin;
+
+            if (lngDegrees > 180 || lngDegrees < -180
+                || ((lngDegrees == 180 || lngDegrees == -180) && lngMin != 0)
+                || lngMin > 60 || lngMin < 0)
+                throw new OutOfBoundsCoordinateException("Longitude (" + lngDegrees
+                    + ", " + lngMin + ") is invalid");
+
+            toBase();
         }
 
         public override void fromBase()
