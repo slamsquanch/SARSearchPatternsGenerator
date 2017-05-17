@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace SARSearchPatternGenerator
 {
@@ -28,16 +27,16 @@ namespace SARSearchPatternGenerator
                 turnDegrees = -turnDegrees;
             }
 
-            Coordinate CSP = datum.travel(legDistance / 2, orientation - 180, dI);
+            Coordinate CSP = datum.travel(orientation - 180, legDistance / 2, dI);
             addPoint(CSP);
 
             for (int i = 0; i < numLegs; i++)
             {
-                addPoint(points.ElementAt(i).travel(legDistance, orientation, dI));
+                addPoint(points.ElementAt(i).travel(orientation, legDistance, dI));
 
                 orientation += turnDegrees;
 
-                addPoint(points.ElementAt(i).travel(crossingDistance, orientation, dI));
+                addPoint(points.ElementAt(i).travel(orientation, crossingDistance, dI));
 
                 orientation += turnDegrees;
                 

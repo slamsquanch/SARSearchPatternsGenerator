@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace SARSearchPatternGenerator
 {
@@ -27,8 +26,8 @@ namespace SARSearchPatternGenerator
                 turnDegrees = -90;
             }
 
-            CSP = datum.travel(trackSpacing / 2, orientation + turnDegrees, dI);
-            CSP = CSP.travel(legDistance / 2, orientation + 180, dI);
+            CSP = datum.travel(orientation + turnDegrees, trackSpacing / 2, dI);
+            CSP = CSP.travel(orientation + 180, legDistance / 2, dI);
 
             generatePattern(CSP, numLegs, orientation, legDistance, trackSpacing, firstTurnRight, dI);
 
@@ -49,8 +48,8 @@ namespace SARSearchPatternGenerator
                 turnDegrees = -90;
             }
 
-            CSP = datum.travel(3 * trackSpacing / 2, orientation - turnDegrees, dI);
-            CSP = CSP.travel(legDistance / 2, orientation + 180, dI);
+            CSP = datum.travel(orientation - turnDegrees, 3 * trackSpacing / 2, dI);
+            CSP = CSP.travel(orientation + 180, legDistance / 2, dI);
 
             generatePattern(CSP, numLegs, orientation, legDistance, trackSpacing, firstTurnRight, dI);
 
@@ -77,14 +76,14 @@ namespace SARSearchPatternGenerator
             {
                 //Add a point that is the legDistance away from the current point in the
                 //direction of the orientation. (This is the leg)
-                addPoint(points.ElementAt(i).travel(legDistance, orientation, dI));
+                addPoint(points.ElementAt(i).travel( orientation, legDistance, dI));
 
                 //Turn orientation for crossing
                 orientation += turnDegrees;
 
                 //Add a point that is the trackspacing away from the current point in the
                 //direction of the orientation. (This is a crossing)
-                addPoint(points.ElementAt(i).travel(trackSpacing, orientation, dI));
+                addPoint(points.ElementAt(i).travel(orientation, trackSpacing, dI));
 
                 //Turn orientation for next leg
                 orientation += turnDegrees;
