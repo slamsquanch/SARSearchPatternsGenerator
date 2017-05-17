@@ -13,7 +13,7 @@ namespace SARSearchPatternGenerator
             
         }
 
-        public List<Coordinate> generatePattern(Coordinate datum, int numLegs, double orientation, double firstLegDistance, bool turnRight)
+        public List<Coordinate> generatePattern(Coordinate datum, int numLegs, double orientation, double firstLegDistance, bool turnRight, DistanceUnit dI)
         {
             double turnDegrees, legDistance = firstLegDistance;
             bool secondLeg = false;
