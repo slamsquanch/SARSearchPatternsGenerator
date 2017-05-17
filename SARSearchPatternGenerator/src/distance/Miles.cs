@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SARSearchPatternGenerator
 {
-    class Miles : DistanceUnit
+    public class Miles : DistanceUnit
     {
         private static Miles unit;
 

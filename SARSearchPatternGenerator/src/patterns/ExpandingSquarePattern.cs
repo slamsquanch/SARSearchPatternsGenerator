@@ -13,7 +13,7 @@ namespace SARSearchPatternGenerator
             
         }
 
-        public List<Coordinate> generatePattern(Coordinate datum, int numLegs, double orientation, double firstLegDistance, bool turnRight)
+        public List<Coordinate> generatePattern(Coordinate datum, int numLegs, double orientation, double firstLegDistance, bool turnRight, DistanceUnit dI)
         {
             double turnDegrees, legDistance = firstLegDistance;
             bool secondLeg = false;
@@ -34,7 +34,7 @@ namespace SARSearchPatternGenerator
             {
                 //Add a point that is the legDistance away from the datum in the
                 //direction of the orientation.
-                addPoint(points.ElementAt(i).travel(legDistance, orientation));
+                addPoint(points.ElementAt(i).travel(legDistance, orientation, dI));
 
                 //Turn orientation for next leg
                 orientation += turnDegrees;

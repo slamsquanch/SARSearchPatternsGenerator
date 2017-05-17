@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SARSearchPatternGenerator;
 using System.Collections.Generic;
+using SARSearchPatternGenerator;
 
 namespace CoordinateDistanceTest
 {
