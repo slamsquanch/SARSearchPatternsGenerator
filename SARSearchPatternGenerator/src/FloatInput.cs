@@ -11,9 +11,20 @@ namespace SARSearchPatternGenerator
     [Designer("System.Windows.Forms.Design.ParentControlDesigner, System.Design", typeof(IDesigner))]
     public class FloatInput : TextBox
     {
-        public double value = 0;
+        private double value = 0;
         public FloatInput() : base() {
             this.TextChanged += new System.EventHandler(this.restrict);
+        }
+
+        public void setValue(double v)
+        {
+            value = v;
+            Text = v.ToString();
+        }
+
+        public double getValue()
+        {
+            return value;
         }
 
         private void restrict(object sender, EventArgs e)

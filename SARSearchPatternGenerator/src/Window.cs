@@ -23,6 +23,7 @@ namespace SARSearchPatternGenerator
         public Window()
         {
             InitializeComponent();
+            ModifyComponent();
         }
 
         private void Window_Load(object sender, EventArgs e)
@@ -51,6 +52,16 @@ namespace SARSearchPatternGenerator
             this.Controls.Add(this.display);
             this.ResumeLayout(false);
             this.PerformLayout();
+        }
+
+        private void ModifyComponent()
+        {
+            this.toolStripComboBox1.SelectedIndexChanged -= toolStripComboBox1_selectedIndexChanged;
+            this.toolStripComboBox2.SelectedIndexChanged -= toolStripComboBox2_selectedIndexChanged;
+            this.toolStripComboBox1.SelectedIndex = 0;
+            this.toolStripComboBox2.SelectedIndex = 0;
+            this.toolStripComboBox1.SelectedIndexChanged += toolStripComboBox1_selectedIndexChanged;
+            this.toolStripComboBox2.SelectedIndexChanged += toolStripComboBox2_selectedIndexChanged;
         }
 
         public void setController(WindowController wc)
@@ -195,6 +206,26 @@ namespace SARSearchPatternGenerator
         private void toolStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
+        }
+
+        private void toolStripComboBox1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripComboBox2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripComboBox1_selectedIndexChanged(object sender, EventArgs e)
+        {
+            currentDisplay.onUnitChange(toolStripComboBox1.SelectedIndex);
+        }
+
+        private void toolStripComboBox2_selectedIndexChanged(object sender, EventArgs e)
+        {
+            currentDisplay.onCoordSystemChange(toolStripComboBox2.SelectedIndex);
         }
     }
 }

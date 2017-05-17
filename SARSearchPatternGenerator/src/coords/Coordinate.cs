@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace SARSearchPatternGenerator
 {
@@ -26,12 +25,12 @@ namespace SARSearchPatternGenerator
             return longitude;
         }
 
-        public void setLat(int lat)
+        public void setLat(double lat)
         {
             latitude = lat;
         }
 
-        public void setLng(int lng)
+        public void setLng(double lng)
         {
             longitude = lng;
         }

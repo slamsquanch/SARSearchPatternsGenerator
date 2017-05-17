@@ -18,6 +18,7 @@ namespace SARSearchPatternGenerator
          *           controls. 
          */
         public abstract UserControl getDisplay();
-        
+        public abstract void onUnitChange(int i);
+        public abstract void onCoordSystemChange(int i);
     }
 }

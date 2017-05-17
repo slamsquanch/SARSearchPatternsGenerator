@@ -22,6 +22,7 @@ namespace SARSearchPatternGenerator
         public InputDecimalDegrees()
         {
             InitializeComponent();
+            modifyComponent();
         }
 
         private void InitializeComponent()
@@ -137,9 +138,32 @@ namespace SARSearchPatternGenerator
 
         }
 
+        private void modifyComponent()
+        {
+            this.floatInput1.setValue(0);
+            this.floatInput2.setValue(0);
+            this.floatInput1.TextChanged += onChange;
+            this.floatInput2.TextChanged += onChange;
+        }
+
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        new protected void repopulateFields()
+        {
+            this.floatInput1.TextChanged -= onChange;
+            this.floatInput2.TextChanged -= onChange;
+            floatInput1.setValue(((DecDeg)this.value).getLat());
+            floatInput2.setValue(((DecDeg)this.value).getLng());
+            this.floatInput1.TextChanged += onChange;
+            this.floatInput2.TextChanged += onChange;
+        }
+
+        new protected void updateValue()
+        {
+            this.value = new DecDeg(floatInput1.getValue(), floatInput2.getValue());
         }
     }
 }
