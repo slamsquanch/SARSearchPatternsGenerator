@@ -1,14 +1,17 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
 using SARSearchPatternGenerator;
 
-namespace CoordinateDistanceTest
+namespace SARUnitTesting
 {
+    /// <summary>
+    /// Tests for coordinate systems and finding distance between them.
+    /// </summary>
     [TestClass]
     public class UnitTest1
     {
         Coordinate coords1, coords2;
+        DistanceUnit dI = Kilometers.create();
 
         [TestMethod]
         public void TestMethod1()
@@ -18,7 +21,7 @@ namespace CoordinateDistanceTest
             coords1 = new DegDecMin(73, 4, 55, 55); //=73.0667, 55.9167
             coords2 = new DegMinSec(57, 19, 12, 49, 59, 33); //=57.3200, 49.9925
 
-            double actual = coords1.distance(coords2);
+            double actual = coords1.distance(coords2, dI);
             Assert.AreEqual(expected, actual, 10, "You dun goofed");
         }
 
@@ -30,7 +33,7 @@ namespace CoordinateDistanceTest
             coords1 = new UTMCoord(10, 'U', 481375, 5466221); //=49.3484, -123.2564
             coords2 = new DegMinSec(57, 19, 12, 49, 59, 33); //=57.3200, 49.9925
 
-            double actual = coords1.distance(coords2);
+            double actual = coords1.distance(coords2, dI);
             Assert.AreEqual(expected, actual, 10, "You dun goofed");
         }
 
@@ -44,7 +47,7 @@ namespace CoordinateDistanceTest
             coords1 = new DecDeg(49.3484, -123.2564);
             coords2 = new DegMinSec(57, 19, 12, 49, 59, 33); //=57.3200, 49.9925
 
-            double actual = coords1.distance(coords2);
+            double actual = coords1.distance(coords2, dI);
             Assert.AreEqual(expected, actual, 10, "You dun goofed");
         }
 
@@ -88,35 +91,6 @@ namespace CoordinateDistanceTest
         public void TestMethod9()
         {
             coords2 = new UTMCoord(-1, 'U', 481375, 5466221);
-        }
-
-        [TestMethod]
-        public void TestMethod10()
-        {
-            List<Coordinate> expected = new List<Coordinate>();
-
-            expected.Add(new DegMinSec(49, 12, 36, 122, 54, 15));
-            expected.Add(new DegMinSec(49, 12, 36, 122, 54, 13));
-            expected.Add(new DegMinSec(49, 12, 34, 122, 54, 13));
-            expected.Add(new DegMinSec(49, 12, 34, 122, 54, 18));
-
-            Coordinate datum = expected[0];
-            int numLegs = 3;
-            double orientation = 90;
-            double firstLegDistance = 0.05;
-            bool turnRight = true;
-
-            ExpandingSquarePattern actual = new ExpandingSquarePattern();
-
-            actual.generatePattern(datum, numLegs, orientation, firstLegDistance, turnRight);
-
-            for(int i = 0; i <= numLegs; i++)
-            {
-                if (!expected[i].Equals(actual.getPoint(i)))
-                {
-                    throw new Exception("Point " + i + " was not correct \nActual - " + actual.getPoint(i).ToString() + "\nExpected - " + expected[i].ToString());
-                }
-            }
         }
     }
 }
