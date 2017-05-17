@@ -17,12 +17,38 @@ namespace SARSearchPatternGenerator
          * Constructor for this WindowController class.  It starts running the main Window. 
          */
         public WindowController() {
+            patternTest();
+
             //This is what STARTS the main window.
             mainWindow = new Window();
             mainWindow.setController(this);
             writeSystemText("Program loaded");
 
             Application.Run(mainWindow);
+        }
+
+        private void patternTest()
+        {
+            List<Coordinate> expected = new List<Coordinate>();
+
+            expected.Add(new DegMinSec(49, 12, 36, 122, 54, 15));
+            expected.Add(new DegMinSec(49, 12, 36, 122, 54, 13));
+            expected.Add(new DegMinSec(49, 12, 34, 122, 54, 13));
+            expected.Add(new DegMinSec(49, 12, 34, 122, 54, 18));
+
+            Coordinate datum = expected[0];
+            int numLegs = 3;
+            double orientation = 180;
+            double firstLegDistance = 0.05;
+            bool turnRight = true;
+
+            Coordinate test = datum.travel(orientation, firstLegDistance);
+
+            ExpandingSquarePattern actual = new ExpandingSquarePattern();
+
+            actual.generatePattern(datum, numLegs, orientation, firstLegDistance, turnRight);
+
+
         }
 
         private void writeSystemText(string txt)
