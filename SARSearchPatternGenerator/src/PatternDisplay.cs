@@ -60,7 +60,7 @@ namespace SARSearchPatternGenerator
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(293, 300);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
@@ -144,13 +144,13 @@ namespace SARSearchPatternGenerator
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.inputGroup1.ColumnCount = 2;
-            this.inputGroup1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.inputGroup1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.inputGroup1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.inputGroup1.Location = new System.Drawing.Point(3, 3);
             this.inputGroup1.Name = "inputGroup1";
             this.inputGroup1.RowCount = 1;
             this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.inputGroup1.Size = new System.Drawing.Size(287, 258);
+            this.inputGroup1.Size = new System.Drawing.Size(287, 264);
             this.inputGroup1.TabIndex = 0;
             // 
             // imageDropdown1
@@ -202,29 +202,15 @@ namespace SARSearchPatternGenerator
 
         public void resetInputGroup()
         {
-            System.Drawing.Point oldLoc = inputGroup1.Location;
-            System.Drawing.Size oldSize = inputGroup1.Size;
-            this.inputGroup1 = new SARSearchPatternGenerator.InputGroup();
-            inputGroup1.SuspendLayout();
-            this.tableLayoutPanel2.Controls.Add(this.inputGroup1, 0, 0);
-            this.inputGroup1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.inputGroup1.ColumnCount = 2;
-            this.inputGroup1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.inputGroup1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.inputGroup1.Location = new System.Drawing.Point(3, 3);
-            this.inputGroup1.Name = "inputGroup1";
-            this.inputGroup1.Size = oldSize;
-            this.inputGroup1.TabIndex = 0;
-            inputGroup1.ResumeLayout(false);
+            inputGroup1.Controls.Clear();
         }
 
         public void addInputGroupItem(string label, Control c)
         {
             int curRow = this.inputGroup1.RowCount;
 
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, c.Size.Height));
+            this.inputGroup1.RowStyles[curRow - 1] = (new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, c.Size.Height));
+            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             Label l = new Label();
             l.Anchor = System.Windows.Forms.AnchorStyles.Left;
             l.AutoSize = true;
@@ -233,8 +219,8 @@ namespace SARSearchPatternGenerator
 
             c.Anchor = System.Windows.Forms.AnchorStyles.Left;
 
-            this.inputGroup1.Controls.Add(l, 0, curRow);
-            this.inputGroup1.Controls.Add(c, 1, curRow);
+            this.inputGroup1.Controls.Add(l, 0, curRow - 1);
+            this.inputGroup1.Controls.Add(c, 1, curRow - 1);
 
             this.inputGroup1.RowCount++;
         }

@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 
+
 namespace SARSearchPatternGenerator
 {
-    class Meters : DistanceUnit
+    public class Meters : DistanceUnit
     {
         private static Meters unit;
 

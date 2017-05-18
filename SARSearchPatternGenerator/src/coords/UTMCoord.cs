@@ -54,6 +54,69 @@ namespace SARSearchPatternGenerator
             return new UTMCoord(lat, lng);
         }
 
+        public char getLatZone()
+        {
+            return latZone;
+        }
+
+        public void setLatZone(char lat)
+        {
+            latZone = lat;
+
+            char[] invalidChars = { 'A', 'a', 'B', 'b', 'I', 'i', 'O', 'o', 'Y', 'y', 'Z', 'z' };
+            if (Array.IndexOf(invalidChars, lat) != -1)
+                throw new OutOfBoundsCoordinateException("Latitude zone " + lat
+                    + " is invalid");
+
+            toBase();
+        }
+
+        public int getLngZone()
+        {
+            return lngZone;
+        }
+
+        public void setLngZone(int lng)
+        {
+            lngZone = lng;
+
+            if (lng > 60 || lng < 0)
+                throw new OutOfBoundsCoordinateException("Longitude zone " + lng
+                    + " is invalid");
+
+            toBase();
+        }
+
+        public double getNorthing()
+        {
+            return UTMNorthing;
+        }
+
+        public void setNorthing(double north)
+        {
+            UTMNorthing = north;
+
+            if (north > 10000000 || north < 0)
+                throw new OutOfBoundsCoordinateException("Northing must be between 0 and 10000000");
+
+            toBase();
+        }
+
+        public double getEasting()
+        {
+            return UTMEasting;
+        }
+
+        public void setEasting(double east)
+        {
+            UTMEasting = east;
+
+            if (east > 1000000 || east < 0)
+                throw new OutOfBoundsCoordinateException("Easting must be between 0 and 1000000");
+
+            toBase();
+        }
+
         public override void toBase()
         {
             double UTM_F0 = 0.9996;
