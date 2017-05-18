@@ -2,10 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-<<<<<<< HEAD
-using System.Threading;
-=======
->>>>>>> 8f1ee7e0db690875a8367b4b86fbcb06209faa6a
 
 namespace SARSearchPatternGenerator
 {

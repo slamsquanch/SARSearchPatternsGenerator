@@ -191,20 +191,20 @@ namespace SARSearchPatternGenerator
             "Meters (m)"});
             this.toolStripComboBox1.Name = "toolStripComboBox1";
             this.toolStripComboBox1.Size = new System.Drawing.Size(181, 28);
-            this.toolStripComboBox1.Text = "Nautical Miles (nm)";
+            this.toolStripComboBox1.Click += new System.EventHandler(this.toolStripComboBox1_Click_1);
             // 
             // toolStripComboBox2
             // 
             this.toolStripComboBox2.CausesValidation = false;
             this.toolStripComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.toolStripComboBox2.Items.AddRange(new object[] {
-            "Latitude-Longitude (Decimal Degrees)",
-            "Latitude-Longitude (Degrees Decimal Minutes)",
+            "Latitude-Longitude (Decimal-Degrees)",
+            "Latitude-Longitude (Degrees Decimal-Minutes)",
             "Latitude-Longitude (Degrees Minutes Seconds)",
             "UTM/Zone"});
             this.toolStripComboBox2.Name = "toolStripComboBox2";
             this.toolStripComboBox2.Size = new System.Drawing.Size(361, 28);
-            this.toolStripComboBox2.Text = "Latitude-Longitude (Decimal Degrees)";
+            this.toolStripComboBox2.Click += new System.EventHandler(this.toolStripComboBox2_Click_1);
             // 
             // Window
             // 
@@ -218,7 +218,7 @@ namespace SARSearchPatternGenerator
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Window";
-            this.Text = "SAR Technology: Search Pattern Generator";
+            this.Text = "SAR Technology: Pattern Commander";
             this.Load += new System.EventHandler(this.Window_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();

@@ -24,6 +24,7 @@ namespace SARSearchPatternGenerator
         public InputUnits() : base()
         {
             InitializeComponent();
+            modifyComponent();
         }
 
         private void InitializeComponent()
@@ -63,16 +64,16 @@ namespace SARSearchPatternGenerator
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox1.Location = new System.Drawing.Point(3, 3);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(153, 22);
+            this.textBox1.Size = new System.Drawing.Size(133, 22);
             this.textBox1.TabIndex = 4;
             // 
             // label4
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(162, 0);
+            this.label4.Location = new System.Drawing.Point(142, 6);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(9, 30);
+            this.label4.Size = new System.Drawing.Size(27, 17);
             this.label4.TabIndex = 2;
             this.label4.Text = "nm";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -94,6 +95,11 @@ namespace SARSearchPatternGenerator
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
 
+        }
+
+        private void modifyComponent()
+        {
+            textBox1.TextChanged += textBox1_TextChanged;
         }
 
         private void PatternDisplay_Load(object sender, EventArgs e)
@@ -148,8 +154,15 @@ namespace SARSearchPatternGenerator
 
         }
 
+        public void setValue(double val)
+        {
+            value = val;
+            textBox1.setValue(val);
+        }
+
         protected void onChange(object sender, EventArgs args)
         {
+            value = textBox1.getValue();
             if (changed != null)
             {
                 changed.Invoke(sender, args);

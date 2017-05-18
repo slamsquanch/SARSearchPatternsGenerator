@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
-
 namespace SARSearchPatternGenerator
 {
     public class Miles : DistanceUnit
@@ -25,6 +23,11 @@ namespace SARSearchPatternGenerator
         public override double convertTo(double dist)
         {
             return dist * 0.621371;
+        }
+
+        public override double convertFrom(double dist)
+        {
+            return dist / 0.621371;
         }
     }
 }
