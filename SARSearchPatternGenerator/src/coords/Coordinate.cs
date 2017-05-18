@@ -5,6 +5,12 @@ using System.Text;
 
 namespace SARSearchPatternGenerator
 {
+    /// <summary>
+    /// A base coordinate class to serve as a template for all other types of
+    /// coordinate systems. It uses Decimal Degree as the base system referred
+    /// to by toBase() and fromBase(). The latitude and longitude store the
+    /// converted values of the coordinate in Decimal Degree.
+    /// </summary>
     public abstract class Coordinate
     {
         protected double latitude;

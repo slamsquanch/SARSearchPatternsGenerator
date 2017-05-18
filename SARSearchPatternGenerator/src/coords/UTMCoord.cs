@@ -5,12 +5,23 @@ using System.Text;
 
 namespace SARSearchPatternGenerator
 {
+    /// <summary>
+    /// This coordinate system stores a latitude and a longitude zone that
+    /// describe a particular rectangular zone of the Earth and a northing
+    /// and easting value that describe how far north and east the coordinate
+    /// is in the zone.
+    /// </summary>
     public class UTMCoord : Coordinate
     {
         private int lngZone;
         private char latZone;
         private double UTMEasting, UTMNorthing;
 
+        /*
+         * Takes in a latitude zone between C and X (but not O or I), a longitude
+         * zone between 1 and 60, an easting value, and a northing value.
+         * It then converts to the Decimal Degree Latitude Longitude system.
+         */
         public UTMCoord(int lngZone, char latZone, double UTMEasting, double UTMNorthing)
         {
             char[] invalidChars = { 'A', 'a', 'B', 'b', 'I', 'i', 'O', 'o', 'Y', 'y', 'Z', 'z' };
@@ -153,6 +164,7 @@ namespace SARSearchPatternGenerator
                 / Math.Sqrt(1.0 - eSquared * Math.Sin(phi1Rad) * Math.Sin(phi1Rad));
             double t = Math.Tan(phi1Rad) * Math.Tan(phi1Rad);
             double c = ePrimeSquared * Math.Cos(phi1Rad) * Math.Cos(phi1Rad);
+            //precarious toast
             double r = a * (1.0 - eSquared)
                 / Math.Pow(1.0 - eSquared * Math.Sin(phi1Rad) * Math.Sin(phi1Rad), 1.5);
             double d = x / (n * UTM_F0);

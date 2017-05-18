@@ -5,6 +5,10 @@ using System.Text;
 
 namespace SARSearchPatternGenerator
 {
+    /// <summary>
+    /// This coordinate system stores latitude and longitude as a whole number
+    /// of degrees and a decimal minute value. 60 minutes are in a degree.
+    /// </summary>
     public class DegDecMin : Coordinate
     {
         protected double latDegrees;
@@ -12,6 +16,10 @@ namespace SARSearchPatternGenerator
         protected double latMinutes;
         protected double lngMinutes;
 
+        /*
+         * Takes in degree, minute, and second values for latitude and longitude.
+         * It then converts to the Decimal Degree.
+         */
         public DegDecMin(double latDegrees, double latMinutes, double lngDegrees, double lngMinutes)
         {
             if (latDegrees > 90 || latDegrees < -90
@@ -127,6 +135,7 @@ namespace SARSearchPatternGenerator
 
         public override void fromBase()
         {
+            //precarious toast
             latDegrees = (int)latitude;
             latMinutes = (latitude - latDegrees) * 60;
 

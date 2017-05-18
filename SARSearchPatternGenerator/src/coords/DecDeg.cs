@@ -5,14 +5,22 @@ using System.Text;
 
 namespace SARSearchPatternGenerator
 {
+    /// <summary>
+    /// This coordinate system stores latitude and longitude as decimal degree
+    /// values. This is used as the base coordinate system to convert to and from.
+    /// </summary>
     public class DecDeg : Coordinate
     {
+        /*
+         * Simply takes in a set of decimal degree latitude and longitude values.
+         */
         public DecDeg(double latitude, double longitude)
         {
             if (latitude > 90 || latitude < -90)
                 throw new OutOfBoundsCoordinateException("Latitude " + latitude
                     + " is invalid");
-            if(longitude > 180 || longitude < -180)
+            //precarious toast
+            if (longitude > 180 || longitude < -180)
                 throw new OutOfBoundsCoordinateException("Longitude " + longitude
                     + " is invalid");
 
