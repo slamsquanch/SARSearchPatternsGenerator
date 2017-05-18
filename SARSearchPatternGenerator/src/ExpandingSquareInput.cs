@@ -52,13 +52,13 @@ namespace SARSearchPatternGenerator
         public override List<Coordinate> getPattern()
         {
             ExpandingSquarePattern ptrn = new ExpandingSquarePattern();
-            return ptrn.generatePattern(datum.getValue(), (int)legNum.Value, orientation.value, flg.value, turnDir.SelectedIndex == 0);
+            return ptrn.generatePattern(datum.getValue(), (int)legNum.Value, orientation.value, flg.value, turnDir.SelectedIndex == 0, flg.unit);
         }
         public override List<Coordinate> getFlatPattern()
         {
 
             ExpandingSquarePattern ptrn = new ExpandingSquarePattern();
-            return ptrn.generatePattern(new FlatCoordinate(0, 0), (int)legNum.Value, orientation.value, flg.value, turnDir.SelectedIndex == 0);
+            return ptrn.generatePattern(new FlatCoordinate(0, 0), (int)legNum.Value, orientation.value, flg.value, turnDir.SelectedIndex == 0, flg.unit);
         }
     }
 }
