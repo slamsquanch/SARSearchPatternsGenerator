@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SARSearchPatternGenerator</RootNamespace>
     <AssemblyName>SARSearchPatternGenerator</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,6 +33,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>PatternCommander2_64x64.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -47,9 +51,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="coords\Coordinate.cs" />
+    <Compile Include="coords\CoordSystem.cs" />
     <Compile Include="coords\DecDeg.cs" />
     <Compile Include="coords\DegDecMin.cs" />
     <Compile Include="coords\DegMinSec.cs" />
+    <Compile Include="coords\FlatCoordinate.cs" />
+    <Compile Include="ExpandingSquareInput.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="DisplayController.cs" />
     <Compile Include="distance\DistanceUnit.cs" />
     <Compile Include="Ellipsoid.cs" />
@@ -61,6 +70,7 @@
     <Compile Include="FloatInput.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="GPX.cs" />
     <Compile Include="ImageDropdown.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -70,15 +80,24 @@
     <Compile Include="InputDecimalDegrees.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="InputDistance.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="InputGroup.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="InputUnits.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="ParallelSearchInput.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="PatternController.cs" />
     <Compile Include="PatternDisplay.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PatternInput.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="patterns\ExpandingSquarePattern.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
@@ -86,10 +105,16 @@
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="patterns\ParalellTrackPattern.cs" />
     <Compile Include="patterns\Pattern.cs" />
+    <Compile Include="PointToPointInput.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="coords\UTMCoord.cs" />
     <Compile Include="patterns\SectorSearchPattern.cs" />
+    <Compile Include="SectorSearchInput.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Window.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,6 +143,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Window.resx">
       <DependentUpon>Window.cs</DependentUpon>
@@ -145,6 +171,7 @@
   <ItemGroup>
     <Content Include="bin\Debug\SARSearchPatternGenerator.vshost.exe" />
     <Content Include="obj\Debug\SARSearchPatternGenerator.csproj.FileListAbsolute.txt" />
+    <Content Include="PatternCommander2_64x64.ico" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />

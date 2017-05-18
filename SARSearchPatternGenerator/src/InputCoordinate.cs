@@ -11,26 +11,69 @@ namespace SARSearchPatternGenerator
     [Designer("System.Windows.Forms.Design.ParentControlDesigner, System.Design", typeof(IDesigner))]
     public class InputCoordinate : UserControl
     {
+        protected Coordinate value;
+        public EventHandler changed;
+
+        protected List<InputDistance> distanceInputs;
+
         public InputCoordinate()
         {
+            distanceInputs = new List<InputDistance>();
             InitializeComponent();
         }
         
         private void InitializeComponent()
         {
-
         }
-        // value for coordinate
 
-        public EventHandler changed;
+        public Coordinate getValue()
+        {
+            return value;
+        }
+
+        public void setValue(Coordinate c)
+        {
+            if (value == null)
+            {
+                value = new DecDeg(c.getLat(), c.getLng());
+                repopulateFields();
+                return;
+            }
+            double lat = c.getLat();
+            double lng = c.getLng();
+            value.setLat(lat);
+            value.setLng(lng);
+            value.fromBase();
+            repopulateFields();
+        }
 
         protected void onChange(object sender, EventArgs args)
         {
+            updateValue();
             if (changed != null)
             {
                 changed.Invoke(sender, args);
             }
         }
+        public void changeUnits(string newName, DistanceUnit unit)
+        {
+            foreach (InputDistance i in distanceInputs)
+            {
+                double tmp = i.unit.convertFrom(i.value);
+                i.changeUnitText(newName);
+                i.unit = unit;
+                i.setValue(i.unit.convertTo(tmp));
+            }
+        }
 
+        protected void repopulateFields()
+        {
+
+        }
+
+        protected void updateValue()
+        {
+
+        }
     }
 }

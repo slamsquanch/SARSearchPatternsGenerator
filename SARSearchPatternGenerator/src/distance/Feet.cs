@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 
 namespace SARSearchPatternGenerator
 {
@@ -25,6 +24,11 @@ namespace SARSearchPatternGenerator
         public override double convertTo(double dist)
         {
             return dist * 3280.8399;
+        }
+
+        public override double convertFrom(double dist)
+        {
+            return dist / 3280.8399;
         }
     }
 }

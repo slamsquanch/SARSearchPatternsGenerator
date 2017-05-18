@@ -24,7 +24,7 @@ namespace SARSearchPatternGenerator
             this.ResumeLayout(false);
 
         }
-        private void onUpdate()
+        protected void onUpdate()
         {
             if (valueChanged != null)
             {
