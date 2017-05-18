@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+<<<<<<< HEAD:SARSearchPatternGenerator/src/patterns/ParalellTrackPattern.cs
+using System.Threading;
+=======
+>>>>>>> 8f1ee7e0db690875a8367b4b86fbcb06209faa6a:SARSearchPatternGenerator/src/patterns/ParallelTrackPattern.cs
 
 namespace SARSearchPatternGenerator
 {
