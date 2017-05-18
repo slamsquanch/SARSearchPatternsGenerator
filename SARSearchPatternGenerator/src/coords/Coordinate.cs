@@ -28,16 +28,28 @@ namespace SARSearchPatternGenerator
         public void setLat(double lat)
         {
             latitude = lat;
+
+            if (lat > 90 || lat < -90)
+                throw new OutOfBoundsCoordinateException("Latitude " + lat
+                    + " is invalid");
+
+            fromBase();
         }
 
         public void setLng(double lng)
         {
             longitude = lng;
+
+            if (lng > 180 || lng < -180)
+                throw new OutOfBoundsCoordinateException("Longitude " + lng
+                    + " is invalid");
+
+            fromBase();
         }
 
-        public double distance(Coordinate coord)
+        public double distance(Coordinate coord, DistanceUnit dI)
         {
-            double er = Kilometers.create().convertTo(6366.707);
+            double er = dI.convertTo(6366.707);
 
             double latFrom = toRadians(getLat());
             double latTo = toRadians(coord.getLat());
@@ -51,9 +63,9 @@ namespace SARSearchPatternGenerator
             return d;
         }
 
-        public Coordinate travel(double bearingDegrees, double distance)
+        public Coordinate travel(double bearingDegrees, double distance, DistanceUnit dI)
         {
-            double er = Kilometers.create().convertTo(6366.707);
+            double er = dI.convertTo(6366.707);
 
             double distRatio = distance / er;
             double distRatioSine = Math.Sin(distRatio);
@@ -78,9 +90,11 @@ namespace SARSearchPatternGenerator
             return create(endLatRads / Math.PI * 180, endLonRads / Math.PI * 180);
         }
 
-        public bool Equals(Coordinate other)
+        public bool equals(Coordinate coord)
         {
-            return other.latitude == latitude && other.longitude == longitude;
+            if (getLat() == coord.getLat() && getLng() == coord.getLng())
+                return true;
+            return false;
         }
 
         public override string ToString()

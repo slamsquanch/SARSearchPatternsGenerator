@@ -166,6 +166,7 @@ namespace SARSearchPatternGenerator
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             controller.onFileNew();
+
         }
 
         private void label1_Click(object sender, EventArgs e)

@@ -12,7 +12,7 @@ namespace SARSearchPatternGenerator
 
         }
 
-        public List<Coordinate> generatePattern(Coordinate datum, int numLegs, double orientation, double legDistance, bool turnRight)
+        public List<Coordinate> generatePattern(Coordinate datum, int numLegs, double orientation, double legDistance, bool turnRight, DistanceUnit dI)
         {
             double radius, theta, alpha, crossingDistance, turnDegrees;
 
@@ -27,16 +27,16 @@ namespace SARSearchPatternGenerator
                 turnDegrees = -turnDegrees;
             }
 
-            Coordinate CSP = datum.travel(legDistance / 2, orientation - 180);
+            Coordinate CSP = datum.travel(orientation - 180, legDistance / 2, dI);
             addPoint(CSP);
 
             for (int i = 0; i < numLegs; i++)
             {
-                addPoint(points.ElementAt(i).travel(legDistance, orientation));
+                addPoint(points.ElementAt(i).travel(orientation, legDistance, dI));
 
                 orientation += turnDegrees;
 
-                addPoint(points.ElementAt(i).travel(crossingDistance, orientation));
+                addPoint(points.ElementAt(i).travel(orientation, crossingDistance, dI));
 
                 orientation += turnDegrees;
                 

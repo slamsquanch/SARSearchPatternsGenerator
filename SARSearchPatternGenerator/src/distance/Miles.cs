@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 namespace SARSearchPatternGenerator
 {
-    class Miles : DistanceUnit
+    public class Miles : DistanceUnit
     {
         private static Miles unit;
 

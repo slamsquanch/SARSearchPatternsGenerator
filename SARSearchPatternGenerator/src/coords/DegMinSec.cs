@@ -65,9 +65,37 @@ namespace SARSearchPatternGenerator
             return latDegrees;
         }
 
+        public void setLatDeg(double latDeg)
+        {
+            latDegrees = latDeg;
+
+            if (latDeg > 90 || latDeg < -90
+                || ((latDeg == 90 || latDeg == -90) && latMinutes + latSeconds != 0)
+                || latMinutes > 60 || latMinutes < 0
+                || latSeconds > 60 || latSeconds < 0)
+                throw new OutOfBoundsCoordinateException("Latitude (" + latDeg
+                    + ", " + latMinutes + ", " + latSeconds + ") is invalid");
+
+            toBase();
+        }
+
         public double getLngDeg()
         {
             return lngDegrees;
+        }
+
+        public void setLngDeg(double lngDeg)
+        {
+            lngDegrees = lngDeg;
+
+            if (lngDeg > 180 || lngDeg < -180
+                || ((lngDeg == 180 || lngDeg == -180) && lngMinutes + lngSeconds != 0)
+                || lngMinutes > 60 || lngMinutes < 0
+                || lngSeconds > 60 || lngSeconds < 0)
+                throw new OutOfBoundsCoordinateException("Longitude (" + lngDeg
+                    + ", " + lngMinutes + ", " + lngSeconds + ") is invalid");
+
+            toBase();
         }
 
         public double getLatMin()
@@ -75,9 +103,37 @@ namespace SARSearchPatternGenerator
             return latMinutes;
         }
 
+        public void setLatMin(double latMin)
+        {
+            latMinutes = latMin;
+
+            if (latDegrees > 90 || latDegrees < -90
+                || ((latDegrees == 90 || latDegrees == -90) && latMin + latSeconds != 0)
+                || latMin > 60 || latMin < 0
+                || latSeconds > 60 || latSeconds < 0)
+                throw new OutOfBoundsCoordinateException("Latitude (" + latDegrees
+                    + ", " + latMin + ", " + latSeconds + ") is invalid");
+
+            toBase();
+        }
+
         public double getLngMin()
         {
             return lngMinutes;
+        }
+
+        public void setLngMin(double lngMin)
+        {
+            lngMinutes = lngMin;
+
+            if (lngDegrees > 180 || lngDegrees < -180
+                || ((lngDegrees == 180 || lngDegrees == -180) && lngMin + lngSeconds != 0)
+                || lngMin > 60 || lngMin < 0
+                || lngSeconds > 60 || lngSeconds < 0)
+                throw new OutOfBoundsCoordinateException("Longitude (" + lngDegrees
+                    + ", " + lngMin + ", " + lngSeconds + ") is invalid");
+
+            toBase();
         }
 
         public double getLatSec()
@@ -85,14 +141,37 @@ namespace SARSearchPatternGenerator
             return latSeconds;
         }
 
+        public void setLatSec(double latSec)
+        {
+            latSeconds = latSec;
+
+            if (latDegrees > 90 || latDegrees < -90
+                || ((latDegrees == 90 || latDegrees == -90) && latMinutes + latSec != 0)
+                || latMinutes > 60 || latMinutes < 0
+                || latSec > 60 || latSec < 0)
+                throw new OutOfBoundsCoordinateException("Latitude (" + latDegrees
+                    + ", " + latMinutes + ", " + latSec + ") is invalid");
+
+            toBase();
+        }
+
         public double getLngSec()
         {
             return lngSeconds;
         }
 
-        public override string ToString()
+        public void setLngSec(double lngSec)
         {
-            return "Latitude: " + latDegrees + "° " + latMinutes + "\" " + latSeconds + "' " + "\nLongitude: " + lngDegrees + "° " + lngMinutes + "\"" + lngSeconds + "'"; ;
+            lngSeconds = lngSec;
+
+            if (lngDegrees > 180 || lngDegrees < -180
+                || ((lngDegrees == 180 || lngDegrees == -180) && lngMinutes + lngSec != 0)
+                || lngMinutes > 60 || lngMinutes < 0
+                || lngSec > 60 || lngSec < 0)
+                throw new OutOfBoundsCoordinateException("Longitude (" + lngDegrees
+                    + ", " + lngMinutes + ", " + lngSec + ") is invalid");
+
+            toBase();
         }
 
         public override void fromBase()
