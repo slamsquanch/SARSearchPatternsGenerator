@@ -5,6 +5,10 @@ using System.Text;
 
 namespace SARSearchPatternGenerator
 {
+    /// <summary>
+    /// Defines an ellipsoid that describes the size and shape of the earth
+    /// as defined in WGS84.
+    /// </summary>
     class Ellipsoid
     {
         private double semiMajorAxis;

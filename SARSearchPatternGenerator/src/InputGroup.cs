@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace SARSearchPatternGenerator
 {
+    /// <summary>
+    /// Handles a group of input fields and updates them when they change.
+    /// </summary>
     [Designer("System.Windows.Forms.Design.ParentControlDesigner, System.Design", typeof(IDesigner))]
     public class InputGroup : TableLayoutPanel
     {
@@ -18,12 +21,14 @@ namespace SARSearchPatternGenerator
         {
             InitializeComponent();
         }
+
         private void InitializeComponent()
         {
             this.SuspendLayout();
             this.ResumeLayout(false);
 
         }
+
         protected void onUpdate()
         {
             if (valueChanged != null)
@@ -31,6 +36,7 @@ namespace SARSearchPatternGenerator
                 valueChanged.Invoke(this, new EventArgs());
             }
         }
+
         public void onValueChange(object sender, EventArgs e)
         {
             onUpdate();

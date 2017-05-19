@@ -8,6 +8,10 @@ using System.ComponentModel;
 
 namespace SARSearchPatternGenerator
 {
+    /// <summary>
+    /// An input class that deals with the distance unit being used throughout
+    /// the program.
+    /// </summary>
     [Designer("System.Windows.Forms.Design.ParentControlDesigner, System.Design", typeof(IDesigner))]
     [DefaultEvent("changed")]
     public class InputUnits : UserControl

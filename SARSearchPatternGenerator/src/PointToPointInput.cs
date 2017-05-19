@@ -6,6 +6,10 @@ using System.Windows.Forms;
 
 namespace SARSearchPatternGenerator
 {
+    /// <summary>
+    /// An input class that handles all of the coordinate inputs in the
+    /// point-to-point pattern.
+    /// </summary>
     class PointToPointInput : PatternInput
     {
         private Button add;

@@ -5,13 +5,13 @@ using System.Text;
 
 namespace SARSearchPatternGenerator
 {
-    /*
-     *  This class is a Singleton design pattern.
-     */
     public abstract class FileConverter<T> where T : class, new()
     {
         private static T instance;
 
+        /*
+         * Creates a new FileConverter if one does not exist yet.
+         */
         public static T GetInstance()
         {
             if (instance == null)

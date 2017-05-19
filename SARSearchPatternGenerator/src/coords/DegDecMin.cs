@@ -6,6 +6,14 @@ using System.Text;
 
 namespace SARSearchPatternGenerator
 {
+<<<<<<< HEAD
+=======
+    /// <summary>
+    /// This coordinate system stores latitude and longitude as a whole number
+    /// of degrees and a decimal minute value. 60 minutes are in a degree.
+    /// </summary>
+    [DataContract]
+>>>>>>> 2b1c8a68f82d158c8f06bbbd8d1d080ede77fafd
     public class DegDecMin : Coordinate
     {
         protected double latDegrees;
@@ -13,6 +21,10 @@ namespace SARSearchPatternGenerator
         protected double latMinutes;
         protected double lngMinutes;
 
+        /*
+         * Takes in degree, minute, and second values for latitude and longitude.
+         * It then converts to the Decimal Degree.
+         */
         public DegDecMin(double latDegrees, double latMinutes, double lngDegrees, double lngMinutes)
         {
             if (latDegrees > 90 || latDegrees < -90
@@ -49,6 +61,10 @@ namespace SARSearchPatternGenerator
             fromBase();
         }
 
+        /*
+         * Constructs a new Degree Decimal Minute coordinate from a given
+         * latitude and longitude.
+         */
         public override Coordinate create(double lat, double lng)
         {
             return new DegDecMin(lat, lng);
@@ -126,8 +142,14 @@ namespace SARSearchPatternGenerator
             toBase();
         }
 
+        /*
+         * Converts from the Degree Decimal Minute coordinate system to the base
+         * system, which is Decimal Degree. The results should be stored in the
+         * latitude and longitude variables.
+         */
         public override void fromBase()
         {
+            //precarious toast
             latDegrees = (int)latitude;
             latMinutes = (latitude - latDegrees) * 60;
 
@@ -135,6 +157,12 @@ namespace SARSearchPatternGenerator
             lngMinutes = (longitude - lngDegrees) * 60;
         }
 
+        /*
+         * Converts to the Degree Decimal Minute coordinate system from the base
+         * system, which is Decimal Degree. The results should be stored in
+         * the respective latitude and longitude degree, minute, and second
+         * variables.
+         */
         public override void toBase()
         {
             latitude = latMinutes / 60 + latDegrees;

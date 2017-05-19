@@ -6,6 +6,9 @@ using System.Xml;
 
 namespace SARSearchPatternGenerator
 {
+    /// <summary>
+    /// Takes a pattern and writes it to a file in KML format.
+    /// </summary>
     class KML
     {
         Pattern p;

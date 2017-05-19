@@ -7,6 +7,10 @@ using System.Windows.Forms;
 
 namespace SARSearchPatternGenerator
 {
+    /// <summary>
+    /// An input class that handles all the input for the expanding square
+    /// pattern form.
+    /// </summary>
     class ExpandingSquareInput : PatternInput
     {
         private InputDecimalDegrees datum;
@@ -14,10 +18,12 @@ namespace SARSearchPatternGenerator
         private InputUnits orientation;
         private InputDistance flg;
         private NumericUpDown legNum;
+
         public ExpandingSquareInput(): base()
         {
             InitializeComponent();
         }
+
         private void InitializeComponent()
         {
             datum = new InputDecimalDegrees();
@@ -49,15 +55,22 @@ namespace SARSearchPatternGenerator
             legNum.ValueChanged += onValueChange;
             addInputGroupItem("Number of Legs:", legNum);
         }
+
+        /*
+         * Gets the coordinates for a pattern based on the information in the form.
+         */
         public override Pattern getPattern()
         {
             ExpandingSquarePattern ptrn = new ExpandingSquarePattern();
             ptrn.generatePattern(datum.getValue(), (int)legNum.Value, orientation.value, flg.value, turnDir.SelectedIndex == 0, flg.unit);
             return ptrn;
         }
+        /*
+         * Gets the coordinates for a pattern based on the information in the form
+         * that ignores the curvature of the earth, for display purposes.
+         */
         public override Pattern getFlatPattern()
         {
-
             ExpandingSquarePattern ptrn = new ExpandingSquarePattern();
             ptrn.generatePattern(new FlatCoordinate(0, 0), (int)legNum.Value, orientation.value, flg.value, turnDir.SelectedIndex == 0, flg.unit);
             return ptrn;

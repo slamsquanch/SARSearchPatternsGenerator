@@ -9,6 +9,10 @@ using SARSearchPatternGenerator.coords;
 
 namespace SARSearchPatternGenerator
 {
+    /// <summary>
+    /// Displays the search pattern and its information specified by a drop
+    /// down control.
+    /// </summary>
     [Designer("System.Windows.Forms.Design.ParentControlDesigner, System.Design", typeof(IDesigner))]
     public class PatternDisplay : UserControl
     {
@@ -89,6 +93,7 @@ namespace SARSearchPatternGenerator
             this.inputGroup1.Location = new System.Drawing.Point(3, 3);
             this.inputGroup1.Name = "inputGroup1";
             this.inputGroup1.RowCount = 1;
+
             this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 68F));
             this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
