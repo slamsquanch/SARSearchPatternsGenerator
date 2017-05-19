@@ -15,6 +15,18 @@ namespace SARSearchPatternGenerator
     public class FloatInput : TextBox
     {
         private double value = 0;
+        private int _precision = 3;
+        public int precision
+        {
+            get
+            {
+                return _precision;
+            }
+            set
+            {
+                _precision = value;
+            }
+        }
         public FloatInput() : base() {
             this.TextChanged += new System.EventHandler(this.restrict);
         }
@@ -22,7 +34,7 @@ namespace SARSearchPatternGenerator
         public void setValue(double v)
         {
             value = v;
-            Text = v.ToString();
+            Text = Math.Round(v, precision).ToString();
         }
 
         public double getValue()

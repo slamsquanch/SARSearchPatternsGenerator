@@ -36,8 +36,6 @@ namespace SARSearchPatternGenerator
         {
             if (value == null)
             {
-                value = new DecDeg(c.getLat(), c.getLng());
-                repopulateFields();
                 return;
             }
             double lat = c.getLat();
@@ -68,8 +66,8 @@ namespace SARSearchPatternGenerator
             }
         }
 
-        protected void repopulateFields() {}
+        virtual protected void repopulateFields() {}
 
-        protected void updateValue() {}
+        virtual protected void updateValue() {}
     }
 }
