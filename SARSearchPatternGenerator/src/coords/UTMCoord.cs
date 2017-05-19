@@ -6,13 +6,27 @@ using System.Text;
 
 namespace SARSearchPatternGenerator
 {
+<<<<<<< HEAD
+    /// <summary>
+    /// This coordinate system stores a latitude and a longitude zone that
+    /// describe a particular rectangular zone of the Earth and a northing
+    /// and easting value that describe how far north and east the coordinate
+    /// is in the zone.
+    /// </summary>
+=======
     [DataContract]
+>>>>>>> 27cfb5fa75ea8ab54406bd46696b8fd17c49bd6c
     public class UTMCoord : Coordinate
     {
         private int lngZone;
         private char latZone;
         private double UTMEasting, UTMNorthing;
 
+        /*
+         * Takes in a latitude zone between C and X (but not O or I), a longitude
+         * zone between 1 and 60, an easting value, and a northing value.
+         * It then converts to the Decimal Degree Latitude Longitude system.
+         */
         public UTMCoord(int lngZone, char latZone, double UTMEasting, double UTMNorthing)
         {
             char[] invalidChars = { 'A', 'a', 'B', 'b', 'I', 'i', 'O', 'o', 'Y', 'y', 'Z', 'z' };
@@ -50,11 +64,14 @@ namespace SARSearchPatternGenerator
             fromBase();
         }
 
+        /*
+         * Constructs a new UTM coordinate from a given latitude and longitude.
+         */
         public override Coordinate create(double lat, double lng)
         {
             return new UTMCoord(lat, lng);
         }
-
+        
         public char getLatZone()
         {
             return latZone;
@@ -118,6 +135,11 @@ namespace SARSearchPatternGenerator
             toBase();
         }
 
+        /*
+         * Converts from the UTM coordinate system to the base system,
+         * which is Decimal Degree. The results are stored in the latitude
+         * and longitude variables.
+         */
         public override void toBase()
         {
             double UTM_F0 = 0.9996;
@@ -155,6 +177,7 @@ namespace SARSearchPatternGenerator
                 / Math.Sqrt(1.0 - eSquared * Math.Sin(phi1Rad) * Math.Sin(phi1Rad));
             double t = Math.Tan(phi1Rad) * Math.Tan(phi1Rad);
             double c = ePrimeSquared * Math.Cos(phi1Rad) * Math.Cos(phi1Rad);
+            //precarious toast
             double r = a * (1.0 - eSquared)
                 / Math.Pow(1.0 - eSquared * Math.Sin(phi1Rad) * Math.Sin(phi1Rad), 1.5);
             double d = x / (n * UTM_F0);
@@ -179,6 +202,11 @@ namespace SARSearchPatternGenerator
             this.longitude = longitude;
         }
 
+        /*
+         * Converts to the UTM coordinate system from the base system,
+         * which is Decimal Degree. The results are stored in the latZone,
+         * lngZone, UTMNorthing, and UTMEasting variables.
+         */
         public override void fromBase()
         {
             if (getLat() < -80 || getLat() > 84)
@@ -280,6 +308,9 @@ namespace SARSearchPatternGenerator
             UTMNorthing = UTMNorth;
         }
 
+        /*
+         * Determines which latitude zone a particular latitude falls in.
+         */
         public static char getUTMLatitudeZoneLetter(double lat)
         {
             if ((84 >= lat) && (lat >= 72))

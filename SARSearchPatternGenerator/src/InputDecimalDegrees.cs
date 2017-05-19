@@ -8,6 +8,9 @@ using System.ComponentModel;
 
 namespace SARSearchPatternGenerator
 {
+    /// <summary>
+    /// An input class that handles the input for a Decimal Degree coordinate.
+    /// </summary>
     [Designer("System.Windows.Forms.Design.ParentControlDesigner, System.Design", typeof(IDesigner))]
     public class InputDecimalDegrees : InputCoordinate
     {
@@ -166,7 +169,6 @@ namespace SARSearchPatternGenerator
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
-
         }
 
         private void modifyComponent()
@@ -178,11 +180,11 @@ namespace SARSearchPatternGenerator
             this.floatInput2.TextChanged += onChange;
         }
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e) {}
 
-        }
-
+        /*
+         * Changes the fields to match the values.
+         */
         protected override void repopulateFields()
         {
             double lat = this.value.getLat();
@@ -198,6 +200,9 @@ namespace SARSearchPatternGenerator
             this.floatInput2.TextChanged += onChange;
         }
 
+        /*
+         * Changes the coordinate value to match the new set of inputs.
+         */
         protected override void updateValue()
         {
             try

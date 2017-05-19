@@ -5,6 +5,9 @@ using System.Text;
 
 namespace SARSearchPatternGenerator.coords
 {
+    /// <summary>
+    /// Defines the selected coordinate system in the program.
+    /// </summary>
     public enum CoordSystem
     {
         DecDeg,

@@ -7,6 +7,10 @@ using System.Windows.Forms;
 
 namespace SARSearchPatternGenerator
 {
+    /// <summary>
+    /// An input class that handles all the input fields for a parallel search
+    /// pattern.
+    /// </summary>
     class ParallelSearchInput : PatternInput
     {
         private InputDecimalDegrees datum;

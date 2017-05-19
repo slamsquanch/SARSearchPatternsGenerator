@@ -10,18 +10,24 @@ using System.Windows.Forms;
 
 namespace SARSearchPatternGenerator
 {
+    /// <summary>
+    /// A class that handles a dropdown box for images.
+    /// </summary>
     [Designer("System.Windows.Forms.Design.ParentControlDesigner, System.Design", typeof(IDesigner))]
     public class ImageDropdown : ComboBox
     {
+        public List<Image> images;
+
         public ImageDropdown() : base()
         {
             InitializeComponent();
         }
+
         private void InitializeComponent()
         {
             //DrawMode = DrawMode.OwnerDrawFixed;
         }
-        public List<Image> images;
+        
         protected override void OnDrawItem(DrawItemEventArgs e)
         {
             e.DrawBackground();

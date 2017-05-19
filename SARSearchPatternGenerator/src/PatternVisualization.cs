@@ -7,6 +7,9 @@ using System.Windows.Forms;
 
 namespace SARSearchPatternGenerator
 {
+    /// <summary>
+    /// Handles the drawing of the pattern that the user is working with.
+    /// </summary>
     public class PatternVisualization : Control
     {
         List<Coordinate> pattern;

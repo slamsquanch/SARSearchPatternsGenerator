@@ -6,16 +6,26 @@ using System.Text;
 
 namespace SARSearchPatternGenerator
 {
+    /// <summary>
+    /// This coordinate system stores latitude and longitude as a number of
+    /// degrees, minutes, and seconds. 60 minutes are in a degree and 60 seconds
+    /// are in a minute.
+    /// </summary>
     [DataContract]
     public class DegMinSec : Coordinate
     {
         protected double latDegrees;
         protected double lngDegrees;
+        //precarious toast
         protected double latMinutes;
         protected double lngMinutes;
         protected double latSeconds;
         protected double lngSeconds;
 
+        /*
+         * Takes in degree, minute, and second values for latitude and longitude.
+         * It then converts to the Decimal Degree.
+         */
         public DegMinSec(double latDegrees, double latMinutes, double latSeconds,
             double lngDegrees, double lngMinutes, double lngSeconds)
         {
@@ -57,6 +67,10 @@ namespace SARSearchPatternGenerator
             fromBase();
         }
 
+        /*
+         * Constructs a new Degree Minute Second coordinate from a given
+         * latitude and longitude.
+         */
         public override Coordinate create(double lat, double lng)
         {
             return new DegMinSec(lat, lng);
@@ -176,6 +190,11 @@ namespace SARSearchPatternGenerator
             toBase();
         }
 
+        /*
+         * Converts from the Deg coordinate system to the base system, which
+         * is Decimal Degree. The results should be stored in the latitude
+         * and longitude variables.
+         */
         public override void fromBase()
         {
             latDegrees = (int)latitude;
@@ -191,6 +210,12 @@ namespace SARSearchPatternGenerator
             lngSeconds = (lngSeconds - lngMinutes) * 60;
         }
 
+        /*
+         * Converts to the Degree Minute Second coordinate system from the base
+         * system, which is Decimal Degree. The results should be stored in
+         * the respective latitude and longitude degree, minute, and second
+         * variables.
+         */
         public override void toBase()
         {
             latitude = (latSeconds / 60 + latMinutes) / 60 + latDegrees;

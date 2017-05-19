@@ -7,6 +7,10 @@ using System.Windows.Forms;
 
 namespace SARSearchPatternGenerator
 {
+    /// <summary>
+    /// An input class that handles all of the input classes and other fields
+    /// required for a particular pattern.
+    /// </summary>
     public abstract class PatternInput : InputGroup
     {
         protected List<InputDistance> distanceInputs;
@@ -18,6 +22,10 @@ namespace SARSearchPatternGenerator
             distanceInputs = new List<InputDistance>();
             coordinateInputs = new List<InputCoordinate>();
         }
+
+        /*
+         * Converts the units used to the distance unit selected by the user.
+         */
         public void changeUnits(string newName, DistanceUnit unit)
         {
             foreach(InputDistance i in distanceInputs)
@@ -36,6 +44,10 @@ namespace SARSearchPatternGenerator
                 i.changeUnits(newName, unit);
             }
         }
+
+        /*
+         * Changes the form to fit the layout that the user has selected.
+         */
         public void changeCoordinateSystem(CoordSystem system)
         {
             SuspendLayout();
