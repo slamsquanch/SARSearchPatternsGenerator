@@ -7,6 +7,9 @@ namespace SARSearchPatternGenerator
 {
     public class ParallelTrackPattern : Pattern
     {
+        private double crossingDistance, parallelTrackSize;
+        private int numCrossings;
+
         public ParallelTrackPattern() : base()
         {
 
@@ -93,6 +96,12 @@ namespace SARSearchPatternGenerator
                 turnDegrees = -90;
             }
 
+            this.legDistance = legDistance;
+            this.numLegs = numLegs;
+            this.turnRight = firstTurnRight;
+            crossingDistance = trackSpacing;
+            numCrossings = numLegs - 1;
+
             for (int i = 0; i < numLegs; i++)
             {
                 //Add a point that is the legDistance away from the current point in the
@@ -119,6 +128,17 @@ namespace SARSearchPatternGenerator
             }
 
             return points;
+        }
+
+        public override void calculatePatternInfo(double searchSpeed, double sweepWidth)
+        {
+            totalTrackLength = crossingDistance * numCrossings + legDistance * numLegs;
+            parallelTrackSize = legDistance + crossingDistance * numCrossings;
+            searchedArea = (legDistance + crossingDistance / 2 + crossingDistance / 2) * (numCrossings + crossingDistance / 2 + crossingDistance / 2);
+            searchTime = totalTrackLength / searchSpeed;
+            areaEffectivelySwept = totalTrackLength / sweepWidth;
+            areaCoverage = areaEffectivelySwept / searchedArea;
+            probabilityOfDetection = (1 - Math.Exp(-areaCoverage)) * 100;
         }
     }
 }
