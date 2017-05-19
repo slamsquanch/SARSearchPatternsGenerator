@@ -11,7 +11,7 @@ namespace SARUnitTesting
     [TestClass]
     public class UnitTest2
     {
-        DistanceUnit dI = Kilometers.create();
+        DistanceUnit dUnit = Kilometers.create();
 
         [TestMethod]
         public void TestMethod10()
@@ -20,7 +20,7 @@ namespace SARUnitTesting
 
             Coordinate coord = new DecDeg(49.3484, -123.2564);
 
-            Coordinate actual = coord.travel(90, 8, dI);
+            Coordinate actual = coord.travel(90, 8, dUnit);
             Assert.AreEqual(expected.getLat(), actual.getLat(), 2, "You dun goofed");
             Assert.AreEqual(expected.getLng(), actual.getLng(), 2, "You dun goofed");
         }
@@ -32,7 +32,7 @@ namespace SARUnitTesting
 
             Coordinate coord = new DecDeg(49.3484, -123.2564);
 
-            Coordinate actual = coord.travel(180, 900, dI);
+            Coordinate actual = coord.travel(180, 900, dUnit);
             Assert.AreEqual(expected.getLat(), actual.getLat(), 2, "You dun goofed");
             Assert.AreEqual(expected.getLng(), actual.getLng(), 2, "You dun goofed");
         }
@@ -44,7 +44,7 @@ namespace SARUnitTesting
 
             Coordinate coord = new DecDeg(49.3484, -123.2564);
 
-            Coordinate actual = coord.travel(-270, 700, dI);
+            Coordinate actual = coord.travel(-270, 700, dUnit);
             Assert.AreEqual(expected.getLat(), actual.getLat(), 2, "You dun goofed");
             Assert.AreEqual(expected.getLng(), actual.getLng(), 2, "You dun goofed");
         }
@@ -56,7 +56,7 @@ namespace SARUnitTesting
 
             Coordinate coord = new DecDeg(49.3484, -123.2564);
 
-            Coordinate actual = coord.travel(500, 69, dI);
+            Coordinate actual = coord.travel(500, 69, dUnit);
             Assert.AreEqual(expected.getLat(), actual.getLat(), 2, "You dun goofed");
             Assert.AreEqual(expected.getLng(), actual.getLng(), 2, "You dun goofed");
         }
@@ -68,7 +68,7 @@ namespace SARUnitTesting
 
             Coordinate coord = new DecDeg(49.3484, -123.2564);
 
-            Coordinate actual = coord.travel(500, 69, dI);
+            Coordinate actual = coord.travel(500, 69, dUnit);
 
             UTMCoord actualUTM = new UTMCoord(actual.getLat(), actual.getLng());
 
@@ -96,13 +96,13 @@ namespace SARUnitTesting
 
             ExpandingSquarePattern actual = new ExpandingSquarePattern();
 
-            actual.generatePattern(datum, numLegs, orientation, firstLegDistance, turnRight, dI);
+            actual.generatePattern(datum, numLegs, orientation, firstLegDistance, turnRight, dUnit);
 
             for (int i = 0; i <= numLegs; i++)
             {
-                Assert.AreEqual(expected[i].getLat(), actual.getPoint(i).getLat(), 10,
+                Assert.AreEqual(expected[i].getLat(), actual.getPoint(i).getLat(), 1,
                     "Point " + i + " was not correct \nActual - " + actual.getPoint(i).ToString() + "\nExpected - " + expected[i].ToString());
-                Assert.AreEqual(expected[i].getLng(), actual.getPoint(i).getLng(), 10,
+                Assert.AreEqual(expected[i].getLng(), actual.getPoint(i).getLng(), 1,
                     "Point " + i + " was not correct \nActual - " + actual.getPoint(i).ToString() + "\nExpected - " + expected[i].ToString());
             }
         }
