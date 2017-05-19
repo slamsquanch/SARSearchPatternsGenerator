@@ -13,11 +13,11 @@ namespace SARSearchPatternsGenerator.Properties {
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
-    internal sealed partial class PattermCommander : global::System.Configuration.ApplicationSettingsBase {
+    internal sealed partial class PatternCommander : global::System.Configuration.ApplicationSettingsBase {
         
-        private static PattermCommander defaultInstance = ((PattermCommander)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new PattermCommander())));
+        private static PatternCommander defaultInstance = ((PatternCommander)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new PatternCommander())));
         
-        public static PattermCommander Default {
+        public static PatternCommander Default {
             get {
                 return defaultInstance;
             }
