@@ -221,12 +221,28 @@ namespace SARSearchPatternGenerator
 
         private void toolStripComboBox1_selectedIndexChanged(object sender, EventArgs e)
         {
-            currentDisplay.onUnitChange(toolStripComboBox1.SelectedIndex);
+            unitChange();
         }
 
         private void toolStripComboBox2_selectedIndexChanged(object sender, EventArgs e)
         {
-            currentDisplay.onCoordSystemChange(toolStripComboBox2.SelectedIndex);
+            coordSystemChange();
+        }
+
+        public void unitChange()
+        {
+            if (currentDisplay != null)
+            {
+                currentDisplay.onUnitChange(toolStripComboBox1.SelectedIndex);
+            }
+        }
+
+        public void coordSystemChange()
+        {
+            if (currentDisplay != null)
+            {
+                currentDisplay.onCoordSystemChange(toolStripComboBox2.SelectedIndex);
+            }
         }
     }
 }
