@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using SARSearchPatternGenerator.coords;
 
 namespace SARSearchPatternGenerator
 {
@@ -115,12 +116,16 @@ namespace SARSearchPatternGenerator
             switch(index)
             {
                 case 0:
+                    display.changeCoordinateSystem(CoordSystem.DecDeg);
                     break;
                 case 1:
+                    display.changeCoordinateSystem(CoordSystem.DegDecMin);
                     break;
                 case 2:
+                    display.changeCoordinateSystem(CoordSystem.DegMinSec);
                     break;
                 case 3:
+                    display.changeCoordinateSystem(CoordSystem.UTMCoord);
                     break;
             }
         }
