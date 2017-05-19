@@ -14,7 +14,6 @@ namespace SARSearchPatternGenerator
             this.p = p;
         }
 
-        String xmlDeclare = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?>";
 
         public void writeFile(String name) {
             XmlWriterSettings settings = new XmlWriterSettings();
