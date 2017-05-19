@@ -55,15 +55,17 @@ namespace SARSearchPatternGenerator
             legNum.ValueChanged += onValueChange;
             addInputGroupItem("Number of Legs:", legNum);
         }
-        public override List<Coordinate> getPattern()
+        public override Pattern getPattern()
         {
-            ParalellTrackPattern ptrn = new ParalellTrackPattern();
-            return ptrn.generatePattern(datum.getValue(), (int)legNum.Value, orientation.value, flg.value, trk.value, turnDir.SelectedIndex == 0, flg.unit);
+            ParallelTrackPattern ptrn = new ParallelTrackPattern();
+            ptrn.generatePattern(datum.getValue(), (int)legNum.Value, orientation.value, flg.value, trk.value, turnDir.SelectedIndex == 0, flg.unit);
+            return ptrn;
         }
-        public override List<Coordinate> getFlatPattern()
+        public override Pattern getFlatPattern()
         {
-            ParalellTrackPattern ptrn = new ParalellTrackPattern();
-            return ptrn.generatePattern(new FlatCoordinate(0, 0), (int)legNum.Value, orientation.value, flg.value, trk.value, turnDir.SelectedIndex == 0, flg.unit);
+            ParallelTrackPattern ptrn = new ParallelTrackPattern();
+            ptrn.generatePattern(new FlatCoordinate(0, 0), (int)legNum.Value, orientation.value, flg.value, trk.value, turnDir.SelectedIndex == 0, flg.unit);
+            return ptrn;
         }
     }
 }

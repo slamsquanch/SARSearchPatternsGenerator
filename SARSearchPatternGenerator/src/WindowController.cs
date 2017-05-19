@@ -35,6 +35,8 @@ namespace SARSearchPatternGenerator
             PatternController pc = new PatternController();
             mainWindow.setDisplay(pc);
             pc.updateSettings();
+            mainWindow.unitChange();
+            mainWindow.coordSystemChange();
             writeSystemText("New pattern created");
         }
     }

@@ -6,7 +6,6 @@ using System.Text;
 
 namespace SARSearchPatternGenerator
 {
-    [DataContract]
     public class UTMCoord : Coordinate
     {
         private int lngZone;

@@ -6,12 +6,9 @@ using System.Text;
 
 namespace SARSearchPatternGenerator
 {
-    [DataContract]
     public abstract class Coordinate
     {
-        [DataMember]
         protected double latitude;
-        [DataMember]
         protected double longitude;
 
         protected double toRadians(double deg)

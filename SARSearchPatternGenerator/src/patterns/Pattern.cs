@@ -7,11 +7,6 @@ using System.Text;
 
 namespace SARSearchPatternGenerator
 {
-    [DataContract]
-    [KnownType(typeof(DecDeg))]
-    [KnownType(typeof(DegDecMin))]
-    [KnownType(typeof(DegMinSec))]
-    [KnownType(typeof(UTMCoord))]
     public class Pattern
     {
         public static List<Color> legColors = new List<Color>(new Color[]
@@ -24,8 +19,7 @@ namespace SARSearchPatternGenerator
             Color.Orange,
             Color.Cyan
         });
-
-        [DataMember]
+        
         protected List<Coordinate> points;
 
         protected double legDistance, totalTrackLength, areaEffectivelySwept, areaCoverage, searchedArea, searchTime, probabilityOfDetection;
