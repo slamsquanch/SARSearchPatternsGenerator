@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace SARSearchPatternGenerator
@@ -10,6 +11,7 @@ namespace SARSearchPatternGenerator
     /// degrees, minutes, and seconds. 60 minutes are in a degree and 60 seconds
     /// are in a minute.
     /// </summary>
+    [DataContract]
     public class DegMinSec : Coordinate
     {
         protected double latDegrees;

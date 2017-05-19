@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace SARSearchPatternGenerator
@@ -9,6 +10,7 @@ namespace SARSearchPatternGenerator
     /// This coordinate system stores latitude and longitude as decimal degree
     /// values. This is used as the base coordinate system to convert to and from.
     /// </summary>
+    [DataContract]
     public class DecDeg : Coordinate
     {
         /*

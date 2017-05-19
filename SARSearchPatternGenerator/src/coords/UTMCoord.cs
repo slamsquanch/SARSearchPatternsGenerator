@@ -1,16 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace SARSearchPatternGenerator
 {
+<<<<<<< HEAD
     /// <summary>
     /// This coordinate system stores a latitude and a longitude zone that
     /// describe a particular rectangular zone of the Earth and a northing
     /// and easting value that describe how far north and east the coordinate
     /// is in the zone.
     /// </summary>
+=======
+    [DataContract]
+>>>>>>> 27cfb5fa75ea8ab54406bd46696b8fd17c49bd6c
     public class UTMCoord : Coordinate
     {
         private int lngZone;

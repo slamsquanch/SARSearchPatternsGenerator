@@ -11,6 +11,9 @@ namespace SARSearchPatternGenerator
     /// </summary>
     public class SectorSearchPattern : Pattern
     {
+        private double crossingDistance, radius;
+        private int numCrossings;
+
         public SectorSearchPattern() :base() {}
 
         /*
@@ -28,6 +31,13 @@ namespace SARSearchPatternGenerator
             alpha = (180 - theta) / 2;
             turnDegrees = 180 - alpha;
             crossingDistance = 2 * (radius * Math.Sin(theta * Math.PI / 180 / 2));
+
+            this.legDistance = legDistance;
+            this.numLegs = numLegs;
+            this.turnRight = turnRight;
+            this.crossingDistance = crossingDistance;
+            this.radius = radius;
+            numCrossings = numLegs - 1;
 
             if(!turnRight)
             {
@@ -50,6 +60,16 @@ namespace SARSearchPatternGenerator
             }
 
             return points;
+        }
+
+        public override void calculatePatternInfo(double searchSpeed, double sweepWidth)
+        {
+            totalTrackLength = crossingDistance * numCrossings + legDistance * numLegs;
+            searchedArea = Math.PI * radius * radius;
+            searchTime = totalTrackLength / searchSpeed;
+            areaEffectivelySwept = totalTrackLength / sweepWidth;
+            areaCoverage = areaEffectivelySwept / searchedArea;
+            probabilityOfDetection = (1 - Math.Exp(-areaCoverage)) * 100;
         }
     }
 }

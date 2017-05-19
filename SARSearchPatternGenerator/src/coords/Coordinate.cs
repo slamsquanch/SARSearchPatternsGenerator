@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace SARSearchPatternGenerator
@@ -11,9 +12,12 @@ namespace SARSearchPatternGenerator
     /// to by toBase() and fromBase(). The latitude and longitude store the
     /// converted values of the coordinate in Decimal Degree.
     /// </summary>
+    [DataContract]
     public abstract class Coordinate
     {
+        [DataMember]
         protected double latitude;
+        [DataMember]
         protected double longitude;
 
         protected double toRadians(double deg)
@@ -156,7 +160,5 @@ namespace SARSearchPatternGenerator
 /// </summary>
 public class OutOfBoundsCoordinateException : Exception
 {
-    public OutOfBoundsCoordinateException(string message) : base(message)
-    {
-    }
+    public OutOfBoundsCoordinateException(string message) : base(message) {}
 }
