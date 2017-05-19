@@ -56,6 +56,10 @@ namespace SARSearchPatternGenerator
             fromBase();
         }
 
+        /*
+         * Constructs a new Degree Decimal Minute coordinate from a given
+         * latitude and longitude.
+         */
         public override Coordinate create(double lat, double lng)
         {
             return new DegDecMin(lat, lng);
@@ -133,6 +137,11 @@ namespace SARSearchPatternGenerator
             toBase();
         }
 
+        /*
+         * Converts from the Degree Decimal Minute coordinate system to the base
+         * system, which is Decimal Degree. The results should be stored in the
+         * latitude and longitude variables.
+         */
         public override void fromBase()
         {
             //precarious toast
@@ -143,6 +152,12 @@ namespace SARSearchPatternGenerator
             lngMinutes = (longitude - lngDegrees) * 60;
         }
 
+        /*
+         * Converts to the Degree Decimal Minute coordinate system from the base
+         * system, which is Decimal Degree. The results should be stored in
+         * the respective latitude and longitude degree, minute, and second
+         * variables.
+         */
         public override void toBase()
         {
             latitude = latMinutes / 60 + latDegrees;

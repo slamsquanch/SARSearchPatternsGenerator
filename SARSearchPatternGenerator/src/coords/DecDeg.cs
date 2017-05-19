@@ -28,13 +28,23 @@ namespace SARSearchPatternGenerator
             this.longitude = longitude;
         }
 
+        /*
+         * Constructs a new Decimal Degree coordinate from a given latitude and
+         * longitude.
+         */
         public override Coordinate create(double lat, double lng)
         {
             return new DecDeg(lat, lng);
         }
 
+        /*
+         * Does nothing because this system is the base system.
+         */
         public override void toBase(){}
 
+        /*
+         * Does nothing because this system is the base system.
+         */
         public override void fromBase(){}
     }
 }

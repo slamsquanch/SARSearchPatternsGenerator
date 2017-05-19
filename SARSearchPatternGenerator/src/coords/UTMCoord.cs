@@ -59,11 +59,14 @@ namespace SARSearchPatternGenerator
             fromBase();
         }
 
+        /*
+         * Constructs a new UTM coordinate from a given latitude and longitude.
+         */
         public override Coordinate create(double lat, double lng)
         {
             return new UTMCoord(lat, lng);
         }
-
+        
         public char getLatZone()
         {
             return latZone;
@@ -127,6 +130,11 @@ namespace SARSearchPatternGenerator
             toBase();
         }
 
+        /*
+         * Converts from the UTM coordinate system to the base system,
+         * which is Decimal Degree. The results are stored in the latitude
+         * and longitude variables.
+         */
         public override void toBase()
         {
             double UTM_F0 = 0.9996;
@@ -189,6 +197,11 @@ namespace SARSearchPatternGenerator
             this.longitude = longitude;
         }
 
+        /*
+         * Converts to the UTM coordinate system from the base system,
+         * which is Decimal Degree. The results are stored in the latZone,
+         * lngZone, UTMNorthing, and UTMEasting variables.
+         */
         public override void fromBase()
         {
             if (getLat() < -80 || getLat() > 84)
@@ -290,6 +303,9 @@ namespace SARSearchPatternGenerator
             UTMNorthing = UTMNorth;
         }
 
+        /*
+         * Determines which latitude zone a particular latitude falls in.
+         */
         public static char getUTMLatitudeZoneLetter(double lat)
         {
             if ((84 >= lat) && (lat >= 72))

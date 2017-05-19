@@ -5,13 +5,20 @@ using System.Text;
 
 namespace SARSearchPatternGenerator
 {
+    /// <summary>
+    /// Contains methods that generate a parallel track pattern and stores
+    /// the coordinates in the points variable.
+    /// </summary>
     public class ParallelTrackPattern : Pattern
     {
-        public ParallelTrackPattern() : base()
-        {
+        public ParallelTrackPattern() : base() {}
 
-        }
-
+        /*
+         * Generates a parallel track search starting at a point on the same line
+         * as the datum with the given number of legs of the given size. The first
+         * leg will go in the bearing specified by orientation, and then you will
+         * turn right or left depending on the value of turnRight for the first turn.
+         */
         public List<Coordinate> generateFromCreepingLine(Coordinate datum, int numLegs, double orientation, double legDistance, double trackSpacing, bool firstTurnRight, DistanceUnit dI)
         {
             Coordinate CSP;
@@ -34,6 +41,12 @@ namespace SARSearchPatternGenerator
             return points;
         }
 
+        /*
+         * Generates a parallel track search with the datum at the middle with the
+         * given number of legs of the given size. The first leg will go in the
+         * bearing specified by orientation, and then you will turn right or left
+         * depending on the value of turnRight for the first turn.
+         */
         public List<Coordinate> generateFromParallelTrackDatum(Coordinate datum, int numLegs, double orientation, double legDistance, double trackSpacing, bool firstTurnRight, DistanceUnit dI)
         {
             Coordinate CSP;

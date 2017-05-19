@@ -5,44 +5,61 @@ using System.Text;
 
 namespace SARSearchPatternGenerator
 {
+    /// <summary>
+    /// The base class for all types of search patterns. Stores a list of points
+    /// that guide the pattern.
+    /// </summary>
     public class Pattern
     {
         protected List<Coordinate> points;
-
 
         public Pattern()
         {
             points = new List<Coordinate>();
         }
 
+        /*
+         * Adds a coordinate to the search pattern.
+         */
         public void addPoint(Coordinate point)
         {
             points.Add(point);
         }
 
+        /*
+         * Returns a particular point in the search pattern.
+         */
         public Coordinate getPoint(int index)
         {
             return points[index];
         }
 
+        /*
+         * Returns the list of coordinates in the pattern.
+         */
         public List<Coordinate> getPattern()
         {
             return points;
         }
 
+        /*
+         * Removes a coordinate from the pattern.
+         */
         public void removePoint(Coordinate point)
         {
             points.Remove(point);
         }
 
+        /*
+         * Clears all coordinates from the pattern.
+         */
         public void clearPoints()
         {
             points = new List<Coordinate>();
         }
 
-
         /*
-         *  Finds and returns the max latitude value of a pattern.
+         * Finds and returns the max latitude value of a pattern.
          */
         public double maxLat()
         {
@@ -54,9 +71,8 @@ namespace SARSearchPatternGenerator
             return max;
         }
 
-
         /*
-         *  Finds and returns the max longitude value of a pattern.
+         * Finds and returns the max longitude value of a pattern.
          */
         public double maxLong()
         {
@@ -68,9 +84,8 @@ namespace SARSearchPatternGenerator
             return max;
         }
 
-
         /*
-         *  Finds and returns the minimum latitude value of a pattern.
+         * Finds and returns the minimum latitude value of a pattern.
          */
         public double minLat()
         {
@@ -82,9 +97,8 @@ namespace SARSearchPatternGenerator
             return min;
         }
 
-
         /*
-         *  Finds and returns the minimum longitude value of a pattern.
+         * Finds and returns the minimum longitude value of a pattern.
          */
         public double minLong()
         {
@@ -95,6 +109,5 @@ namespace SARSearchPatternGenerator
             }
             return min;
         }
-
     }
 }
