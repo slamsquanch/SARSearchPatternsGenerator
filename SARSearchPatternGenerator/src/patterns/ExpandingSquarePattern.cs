@@ -14,8 +14,16 @@ namespace SARSearchPatternGenerator
 
         public List<Coordinate> generatePattern(Coordinate datum, int numLegs, double orientation, double firstLegDistance, bool turnRight, DistanceUnit dI)
         {
-            double turnDegrees, legDistance = firstLegDistance;
+            double turnDegrees, legDistance;
             bool secondLeg = false;
+
+            legDistance = firstLegDistance;
+            this.legDistance = firstLegDistance;
+            this.numLegs = numLegs;
+            this.turnRight = turnRight;
+            totalTrackLength = 0;
+            searchedArea = 1;
+
             addPoint(datum);
 
             if(turnRight)
@@ -45,9 +53,23 @@ namespace SARSearchPatternGenerator
                 }
 
                 secondLeg = !secondLeg;
+                totalTrackLength += legDistance;
+
+                if(i >= numLegs - 2)
+                {
+                    searchedArea *= legDistance;
+                }
             }
 
             return points;
+        }
+
+        public override void calculatePatternInfo(double searchSpeed, double sweepWidth)
+        {
+            searchTime = totalTrackLength / searchSpeed;
+            areaEffectivelySwept = totalTrackLength / sweepWidth;
+            areaCoverage = areaEffectivelySwept / searchedArea;
+            probabilityOfDetection = (1 - Math.Exp(-areaCoverage)) * 100;
         }
     }
 }
