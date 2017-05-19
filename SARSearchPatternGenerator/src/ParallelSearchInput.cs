@@ -7,6 +7,10 @@ using System.Windows.Forms;
 
 namespace SARSearchPatternGenerator
 {
+    /// <summary>
+    /// An input class that handles all the input fields for a parallel search
+    /// pattern.
+    /// </summary>
     class ParallelSearchInput : PatternInput
     {
         private InputDecimalDegrees datum;
@@ -57,12 +61,12 @@ namespace SARSearchPatternGenerator
         }
         public override List<Coordinate> getPattern()
         {
-            ParalellTrackPattern ptrn = new ParalellTrackPattern();
+            ParallelTrackPattern ptrn = new ParallelTrackPattern();
             return ptrn.generatePattern(datum.getValue(), (int)legNum.Value, orientation.value, flg.value, trk.value, turnDir.SelectedIndex == 0, flg.unit);
         }
         public override List<Coordinate> getFlatPattern()
         {
-            ParalellTrackPattern ptrn = new ParalellTrackPattern();
+            ParallelTrackPattern ptrn = new ParallelTrackPattern();
             return ptrn.generatePattern(new FlatCoordinate(0, 0), (int)legNum.Value, orientation.value, flg.value, trk.value, turnDir.SelectedIndex == 0, flg.unit);
         }
     }
