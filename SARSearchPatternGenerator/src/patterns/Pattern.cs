@@ -1,13 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace SARSearchPatternGenerator
 {
+    [DataContract]
+    [KnownType(typeof(DecDeg))]
+    [KnownType(typeof(DegDecMin))]
+    [KnownType(typeof(DegMinSec))]
+    [KnownType(typeof(UTMCoord))]
     public class Pattern
     {
+        public static List<Color> legColors = new List<Color>(new Color[]
+        {
+            Color.Red,
+            Color.Blue,
+            Color.Yellow,
+            Color.Purple,
+            Color.Green,
+            Color.Orange,
+            Color.Cyan
+        });
+
+        [DataMember]
         protected List<Coordinate> points;
+
+        protected double legDistance, totalTrackLength, areaEffectivelySwept, areaCoverage, searchedArea, searchTime, probabilityOfDetection;
+        protected int numLegs;
+        protected bool turnRight;
 
 
         public Pattern()
@@ -96,5 +119,9 @@ namespace SARSearchPatternGenerator
             return min;
         }
 
+        public virtual void calculatePatternInfo(double searchSpeed, double sweepWidth)
+        {
+
+        }
     }
 }
