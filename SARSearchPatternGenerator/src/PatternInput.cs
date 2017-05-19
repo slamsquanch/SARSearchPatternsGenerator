@@ -15,8 +15,8 @@ namespace SARSearchPatternGenerator
     {
         protected List<InputDistance> distanceInputs;
         protected List<InputCoordinate> coordinateInputs;
-        public abstract List<Coordinate> getPattern();
-        public abstract List<Coordinate> getFlatPattern();
+        public abstract Pattern getPattern();
+        public abstract Pattern getFlatPattern();
         public PatternInput(): base()
         {
             distanceInputs = new List<InputDistance>();

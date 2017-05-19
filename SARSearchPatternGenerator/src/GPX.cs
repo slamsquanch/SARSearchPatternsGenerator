@@ -32,7 +32,7 @@ namespace SARSearchPatternGenerator
             settings.IndentChars = "\t";
             List<Coordinate> points = p.getPattern();
             //CREATE THE FILE
-            XmlWriter xmlWriter = XmlWriter.Create(name + ".gpx", settings);  //Makes file and formats indentation
+            XmlWriter xmlWriter = XmlWriter.Create(name, settings);  //Makes file and formats indentation
             xmlWriter.WriteStartDocument();
 
             //open gpx tag

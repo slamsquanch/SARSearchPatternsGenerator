@@ -56,6 +56,7 @@
     <Compile Include="coords\DegDecMin.cs" />
     <Compile Include="coords\DegMinSec.cs" />
     <Compile Include="coords\FlatCoordinate.cs" />
+    <Compile Include="FileConverter.cs" />
     <Compile Include="InputDegreeDecimalMinutes.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -101,6 +102,7 @@
     <Compile Include="InputUTMZoneCoord.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="KML.cs" />
     <Compile Include="ParallelSearchInput.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -117,6 +119,9 @@
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="patterns\ParallelTrackPattern.cs" />
     <Compile Include="patterns\Pattern.cs" />
+    <Compile Include="PatternVisualization.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="PointToPointInput.cs">
       <SubType>Component</SubType>
     </Compile>

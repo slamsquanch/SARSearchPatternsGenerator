@@ -59,22 +59,21 @@ namespace SARSearchPatternGenerator
         /*
          * Gets the coordinates for a pattern based on the information in the form.
          */
-        public override List<Coordinate> getPattern()
+        public override Pattern getPattern()
         {
             ExpandingSquarePattern ptrn = new ExpandingSquarePattern();
-            return ptrn.generatePattern(datum.getValue(), (int)legNum.Value,
-                orientation.value, flg.value, turnDir.SelectedIndex == 0, flg.unit);
+            ptrn.generatePattern(datum.getValue(), (int)legNum.Value, orientation.value, flg.value, turnDir.SelectedIndex == 0, flg.unit);
+            return ptrn;
         }
-
         /*
          * Gets the coordinates for a pattern based on the information in the form
          * that ignores the curvature of the earth, for display purposes.
          */
-        public override List<Coordinate> getFlatPattern()
+        public override Pattern getFlatPattern()
         {
             ExpandingSquarePattern ptrn = new ExpandingSquarePattern();
-            return ptrn.generatePattern(new FlatCoordinate(0, 0), (int)legNum.Value,
-                orientation.value, flg.value, turnDir.SelectedIndex == 0, flg.unit);
+            ptrn.generatePattern(new FlatCoordinate(0, 0), (int)legNum.Value, orientation.value, flg.value, turnDir.SelectedIndex == 0, flg.unit);
+            return ptrn;
         }
     }
 }

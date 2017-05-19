@@ -28,8 +28,7 @@ namespace SARSearchPatternGenerator
             Color.Orange,
             Color.Cyan
         });
-
-        [DataMember]
+        
         protected List<Coordinate> points;
         protected double legDistance, totalTrackLength, areaEffectivelySwept, areaCoverage, searchedArea, searchTime, probabilityOfDetection;
         protected int numLegs;
