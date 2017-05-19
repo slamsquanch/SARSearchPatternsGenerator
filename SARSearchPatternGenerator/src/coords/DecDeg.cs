@@ -6,14 +6,11 @@ using System.Text;
 
 namespace SARSearchPatternGenerator
 {
-<<<<<<< HEAD
-=======
     /// <summary>
     /// This coordinate system stores latitude and longitude as decimal degree
     /// values. This is used as the base coordinate system to convert to and from.
     /// </summary>
     [DataContract]
->>>>>>> 2b1c8a68f82d158c8f06bbbd8d1d080ede77fafd
     public class DecDeg : Coordinate
     {
         /*

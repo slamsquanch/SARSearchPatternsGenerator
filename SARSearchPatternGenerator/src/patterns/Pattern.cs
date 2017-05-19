@@ -7,8 +7,6 @@ using System.Text;
 
 namespace SARSearchPatternGenerator
 {
-<<<<<<< HEAD
-=======
     /// <summary>
     /// The base class for all types of search patterns. Stores a list of points
     /// that guide the pattern.
@@ -18,7 +16,6 @@ namespace SARSearchPatternGenerator
     [KnownType(typeof(DegDecMin))]
     [KnownType(typeof(DegMinSec))]
     [KnownType(typeof(UTMCoord))]
->>>>>>> 2b1c8a68f82d158c8f06bbbd8d1d080ede77fafd
     public class Pattern
     {
         public static List<Color> legColors = new List<Color>(new Color[]

@@ -6,14 +6,11 @@ using System.Text;
 
 namespace SARSearchPatternGenerator
 {
-<<<<<<< HEAD
-=======
     /// <summary>
     /// This coordinate system stores latitude and longitude as a whole number
     /// of degrees and a decimal minute value. 60 minutes are in a degree.
     /// </summary>
     [DataContract]
->>>>>>> 2b1c8a68f82d158c8f06bbbd8d1d080ede77fafd
     public class DegDecMin : Coordinate
     {
         protected double latDegrees;
