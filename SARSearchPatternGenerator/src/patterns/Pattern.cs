@@ -1,12 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace SARSearchPatternGenerator
 {
+    [DataContract]
+    [KnownType(typeof(DecDeg))]
+    [KnownType(typeof(DegDecMin))]
+    [KnownType(typeof(DegMinSec))]
+    [KnownType(typeof(UTMCoord))]
     public class Pattern
     {
+        [DataMember]
         protected List<Coordinate> points;
 
 

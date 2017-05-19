@@ -48,8 +48,29 @@ namespace SARSearchPatternGenerator
                 turnDegrees = -90;
             }
 
-            CSP = datum.travel(orientation - turnDegrees, 3 * trackSpacing / 2, dI);
+            CSP = datum.travel(orientation - turnDegrees, (numLegs - 1) * trackSpacing / 2, dI);
             CSP = CSP.travel(orientation + 180, legDistance / 2, dI);
+
+            generatePattern(CSP, numLegs, orientation, legDistance, trackSpacing, firstTurnRight, dI);
+
+            return points;
+        }
+
+        public List<Coordinate> generateFromBaseline(Coordinate datum, int numLegs, double orientation, double legDistance, double trackSpacing, bool firstTurnRight, DistanceUnit dI)
+        {
+            Coordinate CSP;
+            double turnDegrees;
+
+            if (firstTurnRight)
+            {
+                turnDegrees = 90;
+            }
+            else
+            {
+                turnDegrees = -90;
+            }
+
+            CSP = datum.travel(orientation - turnDegrees, (numLegs - 1) * trackSpacing / 2, dI);
 
             generatePattern(CSP, numLegs, orientation, legDistance, trackSpacing, firstTurnRight, dI);
 

@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace SARSearchPatternGenerator
 {
+    [DataContract]
     public abstract class Coordinate
     {
+        [DataMember]
         protected double latitude;
+        [DataMember]
         protected double longitude;
 
         protected double toRadians(double deg)
