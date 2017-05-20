@@ -8,10 +8,25 @@ using System.Windows.Forms;
 
 namespace SARSearchPatternGenerator
 {
+    /// <summary>
+    /// A textbox class that only accepts number values.
+    /// </summary>
     [Designer("System.Windows.Forms.Design.ParentControlDesigner, System.Design", typeof(IDesigner))]
     public class FloatInput : TextBox
     {
         private double value = 0;
+        private int _precision = 3;
+        public int precision
+        {
+            get
+            {
+                return _precision;
+            }
+            set
+            {
+                _precision = value;
+            }
+        }
         public FloatInput() : base() {
             this.TextChanged += new System.EventHandler(this.restrict);
         }
@@ -19,7 +34,7 @@ namespace SARSearchPatternGenerator
         public void setValue(double v)
         {
             value = v;
-            Text = v.ToString();
+            Text = Math.Round(v, precision).ToString();
         }
 
         public double getValue()
@@ -27,6 +42,9 @@ namespace SARSearchPatternGenerator
             return value;
         }
 
+        /*
+         * Used to restricted the value of the textbox.
+         */
         private void restrict(object sender, EventArgs e)
         {
             double parsedValue;

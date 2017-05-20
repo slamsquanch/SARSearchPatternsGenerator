@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using SARSearchPatternGenerator.coords;
 
 namespace SARSearchPatternGenerator
 {
@@ -16,6 +17,7 @@ namespace SARSearchPatternGenerator
         private PatternDisplay display;
         private string unitName;
         private DistanceUnit unit;
+        private WindowController winController;
 
         public PatternController()
         {
@@ -115,12 +117,16 @@ namespace SARSearchPatternGenerator
             switch(index)
             {
                 case 0:
+                    display.changeCoordinateSystem(CoordSystem.DecDeg);
                     break;
                 case 1:
+                    display.changeCoordinateSystem(CoordSystem.DegDecMin);
                     break;
                 case 2:
+                    display.changeCoordinateSystem(CoordSystem.DegMinSec);
                     break;
                 case 3:
+                    display.changeCoordinateSystem(CoordSystem.UTMCoord);
                     break;
             }
         }
@@ -128,6 +134,29 @@ namespace SARSearchPatternGenerator
         public override UserControl getDisplay()
         {
             return display;
+        }
+
+        public void exportGPX(Pattern p)
+        {
+            SaveFileDialog sf = new SaveFileDialog();
+            sf.Filter = "GPX files(*.gpx)|*.gpx";
+
+            if (sf.ShowDialog() == DialogResult.OK)
+            {
+                GPX gpx = new GPX(p);
+                gpx.writeFile(sf.FileName);
+            }
+        }
+        public void exportKML(Pattern p)
+        {
+            SaveFileDialog sf = new SaveFileDialog();
+            sf.Filter = "KML files(*.kml)|*.kml";
+
+            if (sf.ShowDialog() == DialogResult.OK)
+            {
+                KML kml = new KML(p);
+                kml.writeFile(sf.FileName);
+            }
         }
     }
 }

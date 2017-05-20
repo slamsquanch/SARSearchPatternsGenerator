@@ -6,12 +6,16 @@ using System.Text;
 
 namespace SARSearchPatternGenerator
 {
+    /// <summary>
+    /// A base coordinate class to serve as a template for all other types of
+    /// coordinate systems. It uses Decimal Degree as the base system referred
+    /// to by toBase() and fromBase(). The latitude and longitude store the
+    /// converted values of the coordinate in Decimal Degree.
+    /// </summary>
     [DataContract]
     public abstract class Coordinate
     {
-        [DataMember]
         protected double latitude;
-        [DataMember]
         protected double longitude;
 
         protected double toRadians(double deg)
@@ -29,6 +33,9 @@ namespace SARSearchPatternGenerator
             return longitude;
         }
 
+        /*
+         * Latitude must be between -90 and 90
+         */
         public void setLat(double lat)
         {
             latitude = lat;
@@ -40,6 +47,9 @@ namespace SARSearchPatternGenerator
             fromBase();
         }
 
+        /*
+         * Longitudes must be between -180 and 180
+         */
         public void setLng(double lng)
         {
             longitude = lng;
@@ -51,9 +61,13 @@ namespace SARSearchPatternGenerator
             fromBase();
         }
 
-        public double distance(Coordinate coord, DistanceUnit dI)
+        /*
+         * Calulates the distance from this coordinate to coord, in the distance
+         * unit specified by dUnit.
+         */
+        public double distance(Coordinate coord, DistanceUnit dUnit)
         {
-            double er = dI.convertTo(6366.707);
+            double er = dUnit.convertTo(6366.707);
 
             double latFrom = toRadians(getLat());
             double latTo = toRadians(coord.getLat());
@@ -67,9 +81,14 @@ namespace SARSearchPatternGenerator
             return d;
         }
 
-        public Coordinate travel(double bearingDegrees, double distance, DistanceUnit dI)
+        /*
+         * Moves a specified distance at a certain bearing from this Coordinate
+         * to find a new Coordinate. DUnit specifies the unit of distance that
+         * you are inputting.
+         */
+        public Coordinate travel(double bearingDegrees, double distance, DistanceUnit dUnit)
         {
-            double er = dI.convertTo(6366.707);
+            double er = dUnit.convertTo(6366.707);
 
             double distRatio = distance / er;
             double distRatioSine = Math.Sin(distRatio);
@@ -94,6 +113,10 @@ namespace SARSearchPatternGenerator
             return create(endLatRads / Math.PI * 180, endLonRads / Math.PI * 180);
         }
 
+        /*
+         * If the latitude and longitude are equal, then this coordinate is equal
+         * to coord.
+         */
         public bool equals(Coordinate coord)
         {
             if (getLat() == coord.getLat() && getLng() == coord.getLng())
@@ -101,22 +124,39 @@ namespace SARSearchPatternGenerator
             return false;
         }
 
+        /*
+         * Prints the latitude and longitude of this coordinate.
+         */
         public override string ToString()
         {
             return "Latitude: " + latitude + " Longitude: " + longitude;
         }
 
+        /*
+         * Creates a new coordinate of the extended coordinate system type.
+         */
         public abstract Coordinate create(double lat, double lng);
 
+        /*
+         * Converts from the extended coordinate system to the base system,
+         * which is Decimal Degree. The results should be stored in
+         * the latitude and longitude variables.
+         */
         public abstract void toBase();
 
+        /*
+         * Converts to the extended coordinate system from the base system,
+         * which is Decimal Degree. The results should be stored in
+         * the appropriate variables in the extended class.
+         */
         public abstract void fromBase();
     }
 }
 
+/// <summary>
+/// Thrown when an coordinate value is input that is out of bounds/invalid.
+/// </summary>
 public class OutOfBoundsCoordinateException : Exception
 {
-    public OutOfBoundsCoordinateException(string message) : base(message)
-    {
-    }
+    public OutOfBoundsCoordinateException(string message) : base(message) {}
 }

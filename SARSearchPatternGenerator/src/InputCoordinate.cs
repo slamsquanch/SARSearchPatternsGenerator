@@ -8,6 +8,9 @@ using System.ComponentModel;
 
 namespace SARSearchPatternGenerator
 {
+    /// <summary>
+    /// A form that takes in coordinate data.
+    /// </summary>
     [Designer("System.Windows.Forms.Design.ParentControlDesigner, System.Design", typeof(IDesigner))]
     public class InputCoordinate : UserControl
     {
@@ -22,9 +25,7 @@ namespace SARSearchPatternGenerator
             InitializeComponent();
         }
         
-        private void InitializeComponent()
-        {
-        }
+        private void InitializeComponent() {}
 
         public Coordinate getValue()
         {
@@ -35,8 +36,6 @@ namespace SARSearchPatternGenerator
         {
             if (value == null)
             {
-                value = new DecDeg(c.getLat(), c.getLng());
-                repopulateFields();
                 return;
             }
             double lat = c.getLat();
@@ -55,6 +54,7 @@ namespace SARSearchPatternGenerator
                 changed.Invoke(sender, args);
             }
         }
+
         public void changeUnits(string newName, DistanceUnit unit)
         {
             foreach (InputDistance i in distanceInputs)
@@ -66,14 +66,8 @@ namespace SARSearchPatternGenerator
             }
         }
 
-        protected void repopulateFields()
-        {
+        virtual protected void repopulateFields() {}
 
-        }
-
-        protected void updateValue()
-        {
-
-        }
+        virtual protected void updateValue() {}
     }
 }

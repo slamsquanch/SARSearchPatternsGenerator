@@ -56,6 +56,10 @@
     <Compile Include="coords\DegDecMin.cs" />
     <Compile Include="coords\DegMinSec.cs" />
     <Compile Include="coords\FlatCoordinate.cs" />
+    <Compile Include="FileConverter.cs" />
+    <Compile Include="InputDegreeDecimalMinutes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ExpandingSquareInput.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -80,6 +84,9 @@
     <Compile Include="InputDecimalDegrees.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="InputDegreeMinutesSeconds.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="InputDistance.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -89,6 +96,13 @@
     <Compile Include="InputUnits.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="ButtonToggle.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="InputUTMZoneCoord.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="KML.cs" />
     <Compile Include="ParallelSearchInput.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -103,8 +117,11 @@
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
-    <Compile Include="patterns\ParalellTrackPattern.cs" />
+    <Compile Include="patterns\ParallelTrackPattern.cs" />
     <Compile Include="patterns\Pattern.cs" />
+    <Compile Include="PatternVisualization.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="PointToPointInput.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -122,14 +139,23 @@
       <DependentUpon>Window.cs</DependentUpon>
     </Compile>
     <Compile Include="WindowController.cs" />
+    <EmbeddedResource Include="InputDegreeDecimalMinutes.resx">
+      <DependentUpon>InputDegreeDecimalMinutes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InputDecimalDegrees.resx">
       <DependentUpon>InputDecimalDegrees.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputDegreeMinutesSeconds.resx">
+      <DependentUpon>InputDegreeMinutesSeconds.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InputGroup.resx">
       <DependentUpon>InputGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InputUnits.resx">
       <DependentUpon>InputUnits.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputUTMZoneCoord.resx">
+      <DependentUpon>InputUTMZoneCoord.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="obj\Debug\SARSearchPatternGenerator.Properties.Resources.resources" />
     <EmbeddedResource Include="PatternDisplay.resx">

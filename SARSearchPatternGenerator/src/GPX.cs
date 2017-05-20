@@ -6,23 +6,33 @@ using System.Xml;
 
 namespace SARSearchPatternGenerator
 {
+    /// <summary>
+    /// Takes a pattern and writes it to a file in GPX format.
+    /// </summary>
     class GPX
     {
         Pattern p;
-        //Constructor takes in a pattern instance.
-        public GPX(Pattern p) {
+        static String xmlDeclare = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?>";
+
+        /*
+         * Takes a pattern to be stored in the file.
+         */
+        public GPX(Pattern p)
+        {
             this.p = p;
         }
 
-        String xmlDeclare = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?>";
-
-        public void writeFile(String name) {
+        /*
+         * Writes the pattern to a file path specified by name.
+         */
+        public void writeFile(String name)
+        {
             XmlWriterSettings settings = new XmlWriterSettings();
             settings.Indent = true;
             settings.IndentChars = "\t";
             List<Coordinate> points = p.getPattern();
             //CREATE THE FILE
-            XmlWriter xmlWriter = XmlWriter.Create(name + ".gpx", settings);  //Makes file and formats indentation
+            XmlWriter xmlWriter = XmlWriter.Create(name, settings);  //Makes file and formats indentation
             xmlWriter.WriteStartDocument();
 
             //open gpx tag
