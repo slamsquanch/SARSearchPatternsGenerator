@@ -96,7 +96,6 @@ namespace SARSearchPatternGenerator
         public List<Coordinate> generatePattern(Coordinate CSP, int numLegs, double orientation, double legDistance, double trackSpacing, bool firstTurnRight, DistanceUnit dI)
         {
             double turnDegrees;
-            bool secondLeg = false;
 
             addPoint(CSP);
 
@@ -115,7 +114,7 @@ namespace SARSearchPatternGenerator
             crossingDistance = trackSpacing;
             numCrossings = numLegs - 1;
 
-            for (int i = 0; i < numLegs; i++)
+            for (int i = 0; i < numLegs * 2; i += 2)
             {
                 //Add a point that is the legDistance away from the current point in the
                 //direction of the orientation. (This is the leg)
@@ -126,19 +125,15 @@ namespace SARSearchPatternGenerator
 
                 //Add a point that is the trackspacing away from the current point in the
                 //direction of the orientation. (This is a crossing)
-                addPoint(points.ElementAt(i).travel(orientation, trackSpacing, dI));
+                addPoint(points.ElementAt(i + 1).travel(orientation, trackSpacing, dI));
 
                 //Turn orientation for next leg
                 orientation += turnDegrees;
 
-                if (secondLeg)
-                {
-                    //Flip turn direction
-                    turnDegrees = -turnDegrees;
-                }
-
-                secondLeg = !secondLeg;
+                turnDegrees = -turnDegrees;
             }
+
+            removePoint(points[numLegs * 2]);
 
             return points;
         }
