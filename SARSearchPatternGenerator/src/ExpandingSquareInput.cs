@@ -63,6 +63,7 @@ namespace SARSearchPatternGenerator
         {
             ExpandingSquarePattern ptrn = new ExpandingSquarePattern();
             ptrn.generatePattern(datum.getValue(), (int)legNum.Value, orientation.value, flg.value, turnDir.SelectedIndex == 0, flg.unit);
+            ptrn.setDatum(datum.getValue());
             return ptrn;
         }
         /*
@@ -73,6 +74,7 @@ namespace SARSearchPatternGenerator
         {
             ExpandingSquarePattern ptrn = new ExpandingSquarePattern();
             ptrn.generatePattern(new FlatCoordinate(0, 0), (int)legNum.Value, orientation.value, flg.value, turnDir.SelectedIndex == 0, flg.unit);
+            ptrn.setDatum(new FlatCoordinate(0, 0));
             return ptrn;
         }
     }

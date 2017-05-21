@@ -53,6 +53,7 @@ namespace SARSearchPatternGenerator
         {
             SectorSearchPattern ptrn = new SectorSearchPattern();
             ptrn.generatePattern(datum.getValue(), (int)legNum.Value, orientation.value, flg.value, turnDir.SelectedIndex == 0, flg.unit);
+            ptrn.setDatum(datum.getValue());
             return ptrn;
         }
         public override Pattern getFlatPattern()
@@ -60,6 +61,7 @@ namespace SARSearchPatternGenerator
 
             SectorSearchPattern ptrn = new SectorSearchPattern();
             ptrn.generatePattern(new FlatCoordinate(0, 0), (int)legNum.Value, orientation.value, flg.value, turnDir.SelectedIndex == 0, flg.unit);
+            ptrn.setDatum(new FlatCoordinate(0, 0));
             return ptrn;
         }
     }
