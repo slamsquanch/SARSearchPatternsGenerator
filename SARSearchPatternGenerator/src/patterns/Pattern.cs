@@ -31,6 +31,7 @@ namespace SARSearchPatternGenerator
         
         protected List<Coordinate> points;
         protected double legDistance, totalTrackLength, areaEffectivelySwept, areaCoverage, searchedArea, searchTime, probabilityOfDetection;
+        protected Coordinate datum;
         protected int numLegs;
         protected bool turnRight;
 
@@ -129,6 +130,23 @@ namespace SARSearchPatternGenerator
                 min = Math.Min(min, points[i].getLng());
             }
             return min;
+        }
+
+        /*
+         *  Sets the datum point of a pattern.
+         */
+        public void setDatum(Coordinate d)
+        {
+            this.datum = d;
+        }
+
+
+        /*
+         *  Gets the datum point of a pattern.
+         */
+        public Coordinate getDatum()
+        {
+            return this.datum;
         }
 
         public virtual void calculatePatternInfo(double searchSpeed, double sweepWidth) {}

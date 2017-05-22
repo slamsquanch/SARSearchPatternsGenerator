@@ -5,19 +5,30 @@ using System.Text;
 
 namespace SARSearchPatternGenerator
 {
-    public abstract class FileConverter<T> where T : class, new()
+    public class FileConverter
     {
-        private static T instance;
 
         /*
          * Creates a new FileConverter if one does not exist yet.
          */
-        public static T GetInstance()
+        public FileConverter()
         {
-            if (instance == null)
-                instance = new T();
-            return instance;
+        }
 
+
+        /*
+         *  Extracts just the name of the file without the extension or directory.
+         */
+        protected String extractName(String filePath)
+        {
+            //Get just the name without the file path or file extension.
+            Char delimiter = '\\';
+            String[] substring = filePath.Split(delimiter);
+            int index = substring.Length - 1;
+            String name = substring[index];
+            delimiter = '.';
+            substring = name.Split(delimiter);
+            return substring[0];
         }
     }
 }

@@ -33,13 +33,13 @@ namespace SARSearchPatternGenerator
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.buttonToggle2 = new SARSearchPatternGenerator.ButtonToggle();
             this.label4 = new System.Windows.Forms.Label();
+            this.floatInput1 = new SARSearchPatternGenerator.FloatInput();
+            this.floatInput2 = new SARSearchPatternGenerator.FloatInput();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.buttonToggle2 = new SARSearchPatternGenerator.ButtonToggle();
-            this.floatInput1 = new SARSearchPatternGenerator.FloatInput();
-            this.floatInput2 = new SARSearchPatternGenerator.FloatInput();
             this.buttonToggle1 = new SARSearchPatternGenerator.ButtonToggle();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -71,6 +71,17 @@ namespace SARSearchPatternGenerator
             this.tableLayoutPanel1.TabIndex = 0;
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
+            // buttonToggle2
+            // 
+            this.buttonToggle2.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.buttonToggle2.Location = new System.Drawing.Point(257, 34);
+            this.buttonToggle2.Name = "buttonToggle2";
+            this.buttonToggle2.offText = "N";
+            this.buttonToggle2.onText = "S";
+            this.buttonToggle2.Size = new System.Drawing.Size(20, 25);
+            this.buttonToggle2.TabIndex = 6;
+            this.buttonToggle2.Text = "N";
+            // 
             // label4
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -81,6 +92,30 @@ namespace SARSearchPatternGenerator
             this.label4.TabIndex = 4;
             this.label4.Text = "°";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // floatInput1
+            // 
+            this.floatInput1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.floatInput1.Location = new System.Drawing.Point(78, 3);
+            this.floatInput1.Name = "floatInput1";
+            this.floatInput1.precision = 8;
+            this.floatInput1.Size = new System.Drawing.Size(156, 22);
+            this.floatInput1.TabIndex = 0;
+            this.floatInput1.Text = "0";
+            // 
+            // floatInput2
+            // 
+            this.floatInput2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.floatInput2.Location = new System.Drawing.Point(78, 34);
+            this.floatInput2.Name = "floatInput2";
+            this.floatInput2.precision = 8;
+            this.floatInput2.Size = new System.Drawing.Size(156, 22);
+            this.floatInput2.TabIndex = 0;
+            this.floatInput2.Text = "0";
             // 
             // label1
             // 
@@ -115,41 +150,6 @@ namespace SARSearchPatternGenerator
             this.label3.Text = "°";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // buttonToggle2
-            // 
-            this.buttonToggle2.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.buttonToggle2.Location = new System.Drawing.Point(257, 34);
-            this.buttonToggle2.Name = "buttonToggle2";
-            this.buttonToggle2.offText = "N";
-            this.buttonToggle2.onText = "S";
-            this.buttonToggle2.Size = new System.Drawing.Size(20, 25);
-            this.buttonToggle2.TabIndex = 6;
-            this.buttonToggle2.Text = "N";
-            // 
-            // floatInput1
-            // 
-            this.floatInput1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.floatInput1.Location = new System.Drawing.Point(78, 3);
-            this.floatInput1.Name = "floatInput1";
-            this.floatInput1.precision = 8;
-            this.floatInput1.Size = new System.Drawing.Size(156, 22);
-            this.floatInput1.TabIndex = 0;
-            this.floatInput1.Text = "0";
-            // 
-            // floatInput2
-            // 
-            this.floatInput2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.floatInput2.Location = new System.Drawing.Point(78, 34);
-            this.floatInput2.Name = "floatInput2";
-            this.floatInput2.precision = 8;
-            this.floatInput2.Size = new System.Drawing.Size(156, 22);
-            this.floatInput2.TabIndex = 0;
-            this.floatInput2.Text = "0";
-            // 
             // buttonToggle1
             // 
             this.buttonToggle1.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -169,6 +169,7 @@ namespace SARSearchPatternGenerator
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
+
         }
 
         private void modifyComponent()
