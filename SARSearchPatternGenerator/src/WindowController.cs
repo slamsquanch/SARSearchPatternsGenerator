@@ -13,9 +13,10 @@ namespace SARSearchPatternGenerator
     public class WindowController
     {
         Window mainWindow;
+
         /*
-         * Constructor for this WindowController class.  It starts running the main Window. 
-         */
+* Constructor for this WindowController class.  It starts running the main Window. 
+*/
         public WindowController() {
             //This is what STARTS the main window.
             mainWindow = new Window();
@@ -24,7 +25,7 @@ namespace SARSearchPatternGenerator
 
             Application.Run(mainWindow);
         }
-
+        
         private void writeSystemText(string txt)
         {
             mainWindow.setSystemLabel(txt);

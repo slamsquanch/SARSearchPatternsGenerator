@@ -27,7 +27,7 @@ namespace SARSearchPatternGenerator
             double radius, theta, alpha, crossingDistance, turnDegrees;
 
             radius = legDistance / 2;
-            theta = 360 / numLegs;
+            theta = 360.0 / numLegs / 2.0;
             alpha = (180 - theta) / 2;
             turnDegrees = 180 - alpha;
             crossingDistance = 2 * (radius * Math.Sin(theta * Math.PI / 180 / 2));
@@ -47,17 +47,19 @@ namespace SARSearchPatternGenerator
             Coordinate CSP = datum.travel(orientation - 180, legDistance / 2, dI);
             addPoint(CSP);
 
-            for (int i = 0; i < numLegs; i++)
+            for (int i = 0; i < numLegs * 2; i += 2)
             {
                 addPoint(points.ElementAt(i).travel(orientation, legDistance, dI));
 
                 orientation += turnDegrees;
 
-                addPoint(points.ElementAt(i).travel(orientation, crossingDistance, dI));
+                addPoint(points.ElementAt(i + 1).travel(orientation, crossingDistance, dI));
 
                 orientation += turnDegrees;
                 
             }
+
+            removePoint(points[numLegs * 2]);
 
             return points;
         }
