@@ -13,7 +13,7 @@ namespace SARSearchPatternGenerator
     {
         private Pattern p;
         private Boolean airMode = false;  //Flag for using "absolute" with a set altitude of 10,000m.  Off by default.  
-        private Boolean boundingBox = false; //Flag for drawing "bounding box" around pattern.  Off by default. 
+        private Boolean boundingBox = true; //Flag for drawing "bounding box" around pattern.  Off by default. 
         private double altitude = 300.0;  //default elevation for ground search mode.
 
         //Constructor takes in a pattern instance.
@@ -86,6 +86,10 @@ namespace SARSearchPatternGenerator
 
             //Create the "waypoint" file
             writeWptFile(filePath, points);
+
+            //Create the "bounding box" file if option selected.
+            if (boundingBox)  
+                writeBoundingBoxFile(filePath, points);
 
 
             //Styles: colours of lines etc.
@@ -235,6 +239,81 @@ namespace SARSearchPatternGenerator
             endKMLfile(xmlWriter);
 
         }
+
+
+        /*
+         * Saves the KML bounding box file to a file path specified by name.
+         */
+        private void writeBoundingBoxFile(String filePath, List<Coordinate> points)
+        {
+            XmlWriter xmlWriter = startKMLFile(filePath + "_bbox.kml", points);
+            Coordinate datum = p.getDatum();
+            //Get only the name of the file that the user chose and not the directory path.
+            String name = extractName(filePath);
+
+            //Styles: colours of lines etc.
+            setupStyles(xmlWriter);
+
+            //Open Placemark
+            xmlWriter.WriteStartElement("Placemark");
+                //Open name
+            xmlWriter.WriteStartElement("name");
+            xmlWriter.WriteString("bounding box");
+                //Close name
+            xmlWriter.WriteEndElement();
+                //open stylUrl
+            xmlWriter.WriteStartElement("styleUrl");
+            xmlWriter.WriteString("#styleyy");
+                //Close stylUrl
+            xmlWriter.WriteEndElement();
+                //Open Polygon
+            xmlWriter.WriteStartElement("Polygon");
+                    //Open outerBoundaryIs
+            xmlWriter.WriteStartElement("outerBoundaryIs");
+                        //Open LinearRing
+            xmlWriter.WriteStartElement("LinearRing");
+                            //Open coordinates
+            xmlWriter.WriteStartElement("coordinates");
+            xmlWriter.WriteString( "\n\t\t\t\t" +
+                System.Convert.ToString(p.minLong()) + "," + 
+                System.Convert.ToString(p.maxLat()) + "," +
+                System.Convert.ToString(altitude) + "\n\t\t\t\t" +
+                System.Convert.ToString(p.maxLong()) + "," +
+                System.Convert.ToString(p.maxLat()) + "," +
+                System.Convert.ToString(altitude) + "\n\t\t\t\t" +
+                System.Convert.ToString(p.maxLong()) + "," +
+                System.Convert.ToString(p.minLat()) + "," +
+                System.Convert.ToString(altitude) + "\n\t\t\t\t" +
+                System.Convert.ToString(p.minLong()) + "," +
+                System.Convert.ToString(p.minLat()) + "," +
+                System.Convert.ToString(altitude) + "\n\t\t\t\t"
+                );
+                            //Close coordinates
+            xmlWriter.WriteEndElement();
+                            //Open altitudeMode
+            xmlWriter.WriteStartElement("altitudeMode");
+            xmlWriter.WriteString("absolute");
+                            //Close altitudeMode
+            xmlWriter.WriteEndElement();
+                            //Open extrude
+            xmlWriter.WriteStartElement("extrude");
+            xmlWriter.WriteString("1");
+                            //Close extrude
+            xmlWriter.WriteEndElement();
+                        //Close LinearRing
+            xmlWriter.WriteEndElement();
+                    //Close outerBoundaryIs
+            xmlWriter.WriteEndElement();
+                //Close Polygon
+            xmlWriter.WriteEndElement();
+            //Close Placemark
+            xmlWriter.WriteEndElement();
+
+            //Close off the outer tags and file.
+            endKMLfile(xmlWriter);
+
+        }
+
 
 
 
