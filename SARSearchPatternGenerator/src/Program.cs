@@ -60,12 +60,12 @@ namespace SARSearchPatternGenerator
             Application.SetCompatibleTextRenderingDefault(false);
             new WindowController();
             //Test GPX export.
-            Pattern p = new Pattern();
+            /*Pattern p = new Pattern();
             for (int i = 0; i < 16; i++) {
                 p.addPoint(new DecDeg(lat[i], lon[i]));
             }
             KML kml = new KML(p);
-            kml.writeFile("BCMC");
+            kml.writeFile("BCMC");*/
 
             //Test GPX export 2.
             /*Pattern p = new Pattern();

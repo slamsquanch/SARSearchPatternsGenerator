@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,7 +30,7 @@ namespace SARSearchPatternGenerator
          */
         public void writeFile(String filePath)
         {
-            
+            Color[] colours = p.getColours();
             List<Coordinate> points = p.getPattern();
             Char delimiter = '.';
             String[] fileName = filePath.Split(delimiter);
@@ -70,9 +71,22 @@ namespace SARSearchPatternGenerator
 
                      String dateTime = DateTime.Now.ToString("hh:mm dd-MMM-yy");  //Formatting the dateTime for <cmt></cmt> and <desc></desc>
 
-                    //LOOP TIME!! yay
-                    for (int i = 0; i < points.Count; i++)
-                    {
+                //LOOP TIME!! yay
+                for (int i = 0; i < points.Count; i++)
+                {
+                    //open extensions tag
+                    xmlWriter.WriteStartElement("extensions");
+                        //open gpxx:RouteExtension tag
+                        xmlWriter.WriteStartElement("gpxx", "RouteExtension", "http://www.garmin.com/xmlschemas/GpxExtensions/v3");
+                        //open gpxx:DisplayColor
+                        xmlWriter.WriteStartElement("gpxx", "DisplayColor", null);
+                                    xmlWriter.WriteString(selectColour(colours[(i) % colours.Length]));
+                                    //close gpxx:DisplayColor
+                                    xmlWriter.WriteEndElement();
+                        //close gpxx:RouteExtension tag
+                        xmlWriter.WriteEndElement();
+                    //close extensions tag
+                    xmlWriter.WriteEndElement();
                         //open rtept tag
                         xmlWriter.WriteStartElement("rtept");
                         xmlWriter.WriteAttributeString("lat", System.Convert.ToString(points[i].getLat()));
@@ -116,7 +130,10 @@ namespace SARSearchPatternGenerator
                             xmlWriter.WriteEndElement();
                         //close rtept tag
                         xmlWriter.WriteEndElement();
-                    } 
+                        
+
+                }   //end loop
+
                 //close rte tag
                 xmlWriter.WriteEndElement();
 
@@ -218,7 +235,7 @@ namespace SARSearchPatternGenerator
             xmlWriter.WriteAttributeString("creator", "MapSource 6.14.1");
             xmlWriter.WriteAttributeString("version", "1.1");
             xmlWriter.WriteAttributeString("xmlns", "xsi", null, "http://www.w3.org/2001/XMLSchema-instance");
-            xmlWriter.WriteAttributeString("xmlns", "schemaLocation", null, "http://www.garmin.com/xmlschemas/GpxExtensions/v3" +
+            xmlWriter.WriteAttributeString("xsi", "schemaLocation", null, "http://www.garmin.com/xmlschemas/GpxExtensions/v3" +
                 " http://www.garmin.com/xmlschemas/GpxExtensionsv3.xsd http://www.topografix.com/GPX/1/1" +
                 " http://www.topografix.com/GPX/1/1/gpx.xsd");
             //open metadata tag
