@@ -43,6 +43,7 @@ namespace SARSearchPatternGenerator
             ExpandingSquareInput eei = new ExpandingSquareInput();
             display.setInputGroup(eei);
             display.setPatternImage("img\\ExpandingSquare_SearchPattern2.jpg");
+            display.setPatternText("Expanding Square");
         }
 
         private void sectorSearchSetup()
@@ -50,6 +51,7 @@ namespace SARSearchPatternGenerator
             SectorSearchInput ssi = new SectorSearchInput();
             display.setInputGroup(ssi);
             display.setPatternImage("img\\SectorSearchPattern_3LegAircraft2.jpg");
+            display.setPatternText("Sector Search");
         }
 
         private void parallelSearchSetup()
@@ -57,6 +59,7 @@ namespace SARSearchPatternGenerator
             ParallelSearchInput pss = new ParallelSearchInput();
             display.setInputGroup(pss);
             display.setPatternImage("img\\ParallelTrack_SearchPattern2.jpg");
+            display.setPatternText("Parallel Search");
         }
 
         private void pointToPointSetup()
@@ -64,6 +67,7 @@ namespace SARSearchPatternGenerator
             PointToPointInput ptpi = new PointToPointInput();
             display.setInputGroup(ptpi);
             display.setPatternImage("img\\TracklineSearch2.png");
+            display.setPatternText("Point-to-Point");
         }
 
         public void changePattern(int index)
