@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -71,11 +72,14 @@ namespace SARSearchPatternGenerator
         }
 
 
+
+
         /*
          * Saves the pattern KML route file to a file path specified by name.
          */
         public void writeFile(String filePath)
         {
+            Color[] colours = p.getColours();
             List<Coordinate> points = p.getPattern();
             Char delimiter = '.';
             String[] fileName = filePath.Split(delimiter);
@@ -87,14 +91,18 @@ namespace SARSearchPatternGenerator
             //Create the "waypoint" file
             writeWptFile(filePath, points);
 
+            //Create the "bounding box" file if option selected.
+            if (boundingBox)  
+                writeBoundingBoxFile(filePath, points);
+
 
             //Styles: colours of lines etc.
             setupStyles(xmlWriter);
            
 
-            for (int i = 1; i < points.Count; i++)
+            for (int i = 1; i < points.Count;  i++)
             {
-
+   
                 //open Placemark
                 xmlWriter.WriteStartElement("Placemark");
                     //open name
@@ -104,10 +112,7 @@ namespace SARSearchPatternGenerator
                 xmlWriter.WriteEndElement();
                     //open stylUrl
                 xmlWriter.WriteStartElement("styleUrl");
-                if (i % 2 == 0)
-                    xmlWriter.WriteString("#styleyy");
-                else
-                    xmlWriter.WriteString("#style");
+                    xmlWriter.WriteString(selectColour(colours[(i - 1) % colours.Length]));
                     //close stylUrl
                 xmlWriter.WriteEndElement();
                     //open LineString
@@ -148,6 +153,7 @@ namespace SARSearchPatternGenerator
                 xmlWriter.WriteEndElement();
                 //close Placemark
                 xmlWriter.WriteEndElement();
+
             }
             //end of for loop.
 
@@ -237,6 +243,84 @@ namespace SARSearchPatternGenerator
         }
 
 
+        /*
+         * Saves the KML bounding box file to a file path specified by name.
+         */
+        private void writeBoundingBoxFile(String filePath, List<Coordinate> points)
+        {
+            XmlWriter xmlWriter = startKMLFile(filePath + "_bbox.kml", points);
+            Coordinate datum = p.getDatum();
+            //Get only the name of the file that the user chose and not the directory path.
+            String name = extractName(filePath);
+
+            //Styles: colours of lines etc.
+            setupStyles(xmlWriter);
+
+            //Open Placemark
+            xmlWriter.WriteStartElement("Placemark");
+                //Open name
+            xmlWriter.WriteStartElement("name");
+            xmlWriter.WriteString("bounding box");
+                //Close name
+            xmlWriter.WriteEndElement();
+                //open stylUrl
+            xmlWriter.WriteStartElement("styleUrl");
+            xmlWriter.WriteString("#boundingBoxStyle");
+                //Close stylUrl
+            xmlWriter.WriteEndElement();
+                //Open Polygon
+            xmlWriter.WriteStartElement("Polygon");
+                    //Open altitudeMode
+            xmlWriter.WriteStartElement("altitudeMode");
+            xmlWriter.WriteString("relativeToGround");
+                    //Close altitudeMode
+            xmlWriter.WriteEndElement();
+                    //Open extrude
+            xmlWriter.WriteStartElement("extrude");
+            xmlWriter.WriteString("1");
+                    //Close extrude
+            xmlWriter.WriteEndElement();
+            //Open outerBoundaryIs
+            xmlWriter.WriteStartElement("outerBoundaryIs");
+                        //Open LinearRing
+            xmlWriter.WriteStartElement("LinearRing");
+                            //Open coordinates
+            xmlWriter.WriteStartElement("coordinates");
+            xmlWriter.WriteString( "\n\t\t\t\t" +
+                System.Convert.ToString(p.minLong()) + "," + 
+                System.Convert.ToString(p.maxLat()) + "," +
+                System.Convert.ToString(altitude) + "\n\t\t\t\t" +
+                System.Convert.ToString(p.maxLong()) + "," +
+                System.Convert.ToString(p.maxLat()) + "," +
+                System.Convert.ToString(altitude) + "\n\t\t\t\t" +
+                System.Convert.ToString(p.maxLong()) + "," +
+                System.Convert.ToString(p.minLat()) + "," +
+                System.Convert.ToString(altitude) + "\n\t\t\t\t" +
+                System.Convert.ToString(p.minLong()) + "," +
+                System.Convert.ToString(p.minLat()) + "," +
+                System.Convert.ToString(altitude) + "\n\t\t\t\t" +
+                System.Convert.ToString(p.minLong()) + "," +
+                System.Convert.ToString(p.maxLat()) + "," +
+                System.Convert.ToString(altitude) + "\n\t\t\t\t"
+                );
+                            //Close coordinates
+            xmlWriter.WriteEndElement();
+                        //Close LinearRing
+            xmlWriter.WriteEndElement();
+                    //Close outerBoundaryIs
+            xmlWriter.WriteEndElement();
+                //Close Polygon
+            xmlWriter.WriteEndElement();
+            //Close Placemark
+            xmlWriter.WriteEndElement();
+
+            //Close off the outer tags and file.
+            endKMLfile(xmlWriter);
+
+        }
+
+
+
 
         /*
          * Creates the KML file. sets up indented formatting, names and description.
@@ -258,7 +342,6 @@ namespace SARSearchPatternGenerator
 
             //open KML tag
             xmlWriter.WriteStartElement("kml", "http://www.opengis.net/kml/2.2");
-            //xmlWriter.WriteAttributeString("xmlns", "", null, "http://earth.google.com/kml/2.1");
                 //open Document tag
             xmlWriter.WriteStartElement("Document");
                     //open name tag
@@ -301,12 +384,12 @@ namespace SARSearchPatternGenerator
         {
             //open Style tag
             xmlWriter.WriteStartElement("Style");
-            xmlWriter.WriteAttributeString("id", "styleyy");
+            xmlWriter.WriteAttributeString("id", "boundingBoxStyle");
                 //open LineStyle tag
             xmlWriter.WriteStartElement("LineStyle");
                     //open color
             xmlWriter.WriteStartElement("color");
-            xmlWriter.WriteString("7f00ffff");
+            xmlWriter.WriteString("5a140096");
                     //close color
             xmlWriter.WriteEndElement();
                     //open width
@@ -320,7 +403,7 @@ namespace SARSearchPatternGenerator
             xmlWriter.WriteStartElement("PolyStyle");
                     //open color
             xmlWriter.WriteStartElement("color");
-            xmlWriter.WriteString("501400D2");
+            xmlWriter.WriteString("3c787878");
                     //close color
             xmlWriter.WriteEndElement();
                 //close PolyStyle
@@ -331,12 +414,12 @@ namespace SARSearchPatternGenerator
 
             //open Style tag
             xmlWriter.WriteStartElement("Style");
-            xmlWriter.WriteAttributeString("id", "style");
+            xmlWriter.WriteAttributeString("id", "Red");
                 //open LineStyle tag
             xmlWriter.WriteStartElement("LineStyle");
                     //open color
             xmlWriter.WriteStartElement("color");
-            xmlWriter.WriteString("501400D2");
+            xmlWriter.WriteString("641400E6");
                     //close color
             xmlWriter.WriteEndElement();
                     //open width
@@ -350,10 +433,159 @@ namespace SARSearchPatternGenerator
             xmlWriter.WriteStartElement("PolyStyle");
                     //open color
             xmlWriter.WriteStartElement("color");
-            xmlWriter.WriteString("501400D2");
+            xmlWriter.WriteString("4b1400E6");
                     //close color
             xmlWriter.WriteEndElement();
                 //close PolyStyle
+            xmlWriter.WriteEndElement();
+            //close style tag
+            xmlWriter.WriteEndElement();
+
+
+            //open Style tag
+            xmlWriter.WriteStartElement("Style");
+            xmlWriter.WriteAttributeString("id", "Blue");
+            //open LineStyle tag
+            xmlWriter.WriteStartElement("LineStyle");
+            //open color
+            xmlWriter.WriteStartElement("color");
+            xmlWriter.WriteString("64F00014");
+            //close color
+            xmlWriter.WriteEndElement();
+            //open width
+            xmlWriter.WriteStartElement("width");
+            xmlWriter.WriteString("7");
+            //close width
+            xmlWriter.WriteEndElement();
+            //close LineStyle tag
+            xmlWriter.WriteEndElement();
+            //open PolyStyle
+            xmlWriter.WriteStartElement("PolyStyle");
+            //open color
+            xmlWriter.WriteStartElement("color");
+            xmlWriter.WriteString("4bF00014");
+            //close color
+            xmlWriter.WriteEndElement();
+            //close PolyStyle
+            xmlWriter.WriteEndElement();
+            //close style tag
+            xmlWriter.WriteEndElement();
+
+
+            //open Style tag
+            xmlWriter.WriteStartElement("Style");
+            xmlWriter.WriteAttributeString("id", "Yellow");
+            //open LineStyle tag
+            xmlWriter.WriteStartElement("LineStyle");
+            //open color
+            xmlWriter.WriteStartElement("color");
+            xmlWriter.WriteString("6414E7FF");
+            //close color
+            xmlWriter.WriteEndElement();
+            //open width
+            xmlWriter.WriteStartElement("width");
+            xmlWriter.WriteString("7");
+            //close width
+            xmlWriter.WriteEndElement();
+            //close LineStyle tag
+            xmlWriter.WriteEndElement();
+            //open PolyStyle
+            xmlWriter.WriteStartElement("PolyStyle");
+            //open color
+            xmlWriter.WriteStartElement("color");
+            xmlWriter.WriteString("4b14E7FF");
+            //close color
+            xmlWriter.WriteEndElement();
+            //close PolyStyle
+            xmlWriter.WriteEndElement();
+            //close style tag
+            xmlWriter.WriteEndElement();
+
+
+            //open Style tag
+            xmlWriter.WriteStartElement("Style");
+            xmlWriter.WriteAttributeString("id", "Magenta");
+            //open LineStyle tag
+            xmlWriter.WriteStartElement("LineStyle");
+            //open color
+            xmlWriter.WriteStartElement("color");
+            xmlWriter.WriteString("64FF78B4");
+            //close color
+            xmlWriter.WriteEndElement();
+            //open width
+            xmlWriter.WriteStartElement("width");
+            xmlWriter.WriteString("7");
+            //close width
+            xmlWriter.WriteEndElement();
+            //close LineStyle tag
+            xmlWriter.WriteEndElement();
+            //open PolyStyle
+            xmlWriter.WriteStartElement("PolyStyle");
+            //open color
+            xmlWriter.WriteStartElement("color");
+            xmlWriter.WriteString("4bFF78B4");
+            //close color
+            xmlWriter.WriteEndElement();
+            //close PolyStyle
+            xmlWriter.WriteEndElement();
+            //close style tag
+            xmlWriter.WriteEndElement();
+
+            //open Style tag
+            xmlWriter.WriteStartElement("Style");
+            xmlWriter.WriteAttributeString("id", "Green");
+            //open LineStyle tag
+            xmlWriter.WriteStartElement("LineStyle");
+            //open color
+            xmlWriter.WriteStartElement("color");
+            xmlWriter.WriteString("64009614");
+            //close color
+            xmlWriter.WriteEndElement();
+            //open width
+            xmlWriter.WriteStartElement("width");
+            xmlWriter.WriteString("7");
+            //close width
+            xmlWriter.WriteEndElement();
+            //close LineStyle tag
+            xmlWriter.WriteEndElement();
+            //open PolyStyle
+            xmlWriter.WriteStartElement("PolyStyle");
+            //open color
+            xmlWriter.WriteStartElement("color");
+            xmlWriter.WriteString("4b009614");
+            //close color
+            xmlWriter.WriteEndElement();
+            //close PolyStyle
+            xmlWriter.WriteEndElement();
+            //close style tag
+            xmlWriter.WriteEndElement();
+
+
+            //open Style tag
+            xmlWriter.WriteStartElement("Style");
+            xmlWriter.WriteAttributeString("id", "Cyan");
+            //open LineStyle tag
+            xmlWriter.WriteStartElement("LineStyle");
+            //open color
+            xmlWriter.WriteStartElement("color");
+            xmlWriter.WriteString("64F0DC14");
+            //close color
+            xmlWriter.WriteEndElement();
+            //open width
+            xmlWriter.WriteStartElement("width");
+            xmlWriter.WriteString("7");
+            //close width
+            xmlWriter.WriteEndElement();
+            //close LineStyle tag
+            xmlWriter.WriteEndElement();
+            //open PolyStyle
+            xmlWriter.WriteStartElement("PolyStyle");
+            //open color
+            xmlWriter.WriteStartElement("color");
+            xmlWriter.WriteString("4bF0DC14");
+            //close color
+            xmlWriter.WriteEndElement();
+            //close PolyStyle
             xmlWriter.WriteEndElement();
             //close style tag
             xmlWriter.WriteEndElement();

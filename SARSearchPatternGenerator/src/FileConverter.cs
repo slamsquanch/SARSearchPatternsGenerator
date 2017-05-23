@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,6 +30,38 @@ namespace SARSearchPatternGenerator
             delimiter = '.';
             substring = name.Split(delimiter);
             return substring[0];
+        }
+
+
+        /*
+         * Returns a colour string for the corresponding pattern legs to use.
+         * @param Colour. 
+         */
+        protected String selectColour(Color c)
+        {
+            switch (c.Name)
+            {
+                case "Red":
+                    return c.Name;
+
+                case "Blue":
+                    return c.Name;
+
+                case "Yellow":
+                    return c.Name;
+
+                case "Purple":
+                    return "Magenta";
+
+                case "Green":
+                    return c.Name;
+
+                case "Cyan":
+                    return c.Name;
+
+                default:
+                    return "";
+            }
         }
     }
 }

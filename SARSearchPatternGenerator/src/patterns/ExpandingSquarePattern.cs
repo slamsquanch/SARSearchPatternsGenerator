@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,29 @@ namespace SARSearchPatternGenerator
     /// </summary>
     public class ExpandingSquarePattern : Pattern
     {
+
         public ExpandingSquarePattern() :base() {}
+
+        /*
+         *  Returns a Color class array of 6 different colours that the KML and GPX classes can iterate through
+         *   to alternate the track leg colours of the Expanding Square pattern. 
+         *   Overrides parent's method (Pattern.cs).
+         */ 
+        public override Color[] getColours()
+        {
+            //size 6
+            Color[] legColours = new Color[]
+            {
+            Color.Red,
+            Color.Blue,
+            Color.Yellow,
+            Color.Purple,
+            Color.Green, 
+            Color.Cyan
+            };
+            return legColours;
+        }
+
 
         /*
          * Generates an expanding square search starting at the datum with the
