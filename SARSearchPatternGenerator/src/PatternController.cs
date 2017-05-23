@@ -34,24 +34,28 @@ namespace SARSearchPatternGenerator
         {
             ExpandingSquareInput eei = new ExpandingSquareInput();
             display.setInputGroup(eei);
+            display.setPatternImage("img\\ExpandingSquare_SearchPattern2.jpg");
         }
 
         private void sectorSearchSetup()
         {
             SectorSearchInput ssi = new SectorSearchInput();
             display.setInputGroup(ssi);
+            display.setPatternImage("img\\SectorSearchPattern_3LegAircraft2.jpg");
         }
 
         private void parallelSearchSetup()
         {
             ParallelSearchInput pss = new ParallelSearchInput();
             display.setInputGroup(pss);
+            display.setPatternImage("img\\ParallelTrack_SearchPattern2.jpg");
         }
 
         private void pointToPointSetup()
         {
             PointToPointInput ptpi = new PointToPointInput();
             display.setInputGroup(ptpi);
+            display.setPatternImage("img\\TracklineSearch2.png");
         }
 
         public void changePattern(int index)

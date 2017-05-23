@@ -66,6 +66,7 @@ namespace SARSearchPatternGenerator
                 this.RowCount++;
                 curRow = this.RowCount;
             }
+            c.setLabel("Point " + (curRow - 1));
 
             Controls.Remove(add);
 
