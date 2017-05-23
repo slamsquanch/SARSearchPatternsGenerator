@@ -14,7 +14,7 @@ namespace SARSearchPatternGenerator
     {
         private Pattern p;
         private Boolean airMode = false;  //Flag for using "absolute" with a set altitude of 10,000m.  Off by default.  
-        private Boolean boundingBox = true; //Flag for drawing "bounding box" around pattern.  Off by default. 
+        private Boolean boundingBox = false; //Flag for drawing "bounding box" around pattern.  Off by default. 
         private double altitude = 300.0;  //default elevation for ground search mode.
 
         //Constructor takes in a pattern instance.
