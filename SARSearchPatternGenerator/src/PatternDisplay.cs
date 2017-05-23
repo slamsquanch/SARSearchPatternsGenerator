@@ -87,20 +87,13 @@ namespace SARSearchPatternGenerator
             | System.Windows.Forms.AnchorStyles.Right)));
             this.inputGroup1.AutoScroll = true;
             this.inputGroup1.AutoSize = true;
-            this.inputGroup1.ColumnCount = 2;
-            this.inputGroup1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.inputGroup1.ColumnCount = 1;
             this.inputGroup1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.inputGroup1.Location = new System.Drawing.Point(3, 3);
             this.inputGroup1.Name = "inputGroup1";
             this.inputGroup1.RowCount = 1;
 
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 68F));
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.inputGroup1.Size = new System.Drawing.Size(255, 228);
             this.inputGroup1.TabIndex = 0;
             // 
@@ -283,12 +276,12 @@ namespace SARSearchPatternGenerator
         {
             i.Anchor = inputGroup1.Anchor;
             i.ColumnCount = inputGroup1.ColumnCount;
-            i.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
-            i.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            //i.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            i.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             i.Location = inputGroup1.Location;
             i.Name = inputGroup1.Name;
             i.RowCount = inputGroup1.RowCount;
-            i.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            i.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             i.Size = inputGroup1.Size;
             i.TabIndex = inputGroup1.TabIndex;
             int col = this.tableLayoutPanel2.GetColumn(inputGroup1);

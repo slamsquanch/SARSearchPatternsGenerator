@@ -146,6 +146,10 @@ namespace SARSearchPatternGenerator
          */
         public Coordinate getDatum()
         {
+            if (this.datum == null)
+            {
+                return this.points[0];
+            }
             return this.datum;
         }
 
