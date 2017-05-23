@@ -18,11 +18,19 @@ namespace SARSearchPatternGenerator
         private string unitName;
         private DistanceUnit unit;
         private WindowController winController;
+        private String patternFileName;
 
         public PatternController()
         {
             display = new PatternDisplay();
             display.setController(this);
+        }
+
+
+        private String getTimestamp()
+        {
+            String dateTime = DateTime.Now.ToString("dd-MMM-yyyy-hh-mm");
+            return dateTime;
         }
 
         public void updateSettings()
@@ -64,15 +72,19 @@ namespace SARSearchPatternGenerator
             {
                 case 0:
                     expandingSquareSetup();
+                    patternFileName = "expanding_";
                     break;
                 case 1:
                     sectorSearchSetup();
+                    patternFileName = "sector_";
                     break;
                 case 2:
                     parallelSearchSetup();
+                    patternFileName = "parallel_";
                     break;
                 case 3:
                     pointToPointSetup();
+                    patternFileName = "ptop_";
                     break;
             }
         }
@@ -144,6 +156,8 @@ namespace SARSearchPatternGenerator
         {
             SaveFileDialog sf = new SaveFileDialog();
             sf.Filter = "GPX files(*.gpx)|*.gpx";
+            sf.FileName = patternFileName + getTimestamp();
+
 
             if (sf.ShowDialog() == DialogResult.OK)
             {
@@ -155,6 +169,7 @@ namespace SARSearchPatternGenerator
         {
             SaveFileDialog sf = new SaveFileDialog();
             sf.Filter = "KML files(*.kml)|*.kml";
+            sf.FileName = patternFileName + getTimestamp();
 
             if (sf.ShowDialog() == DialogResult.OK)
             {

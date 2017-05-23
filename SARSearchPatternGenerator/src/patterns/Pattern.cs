@@ -18,26 +18,39 @@ namespace SARSearchPatternGenerator
     [KnownType(typeof(UTMCoord))]
     public class Pattern
     {
-        public static List<Color> legColors = new List<Color>(new Color[]
-        {
-            Color.Red,
-            Color.Blue,
-            Color.Yellow,
-            Color.Purple,
-            Color.Green,
-            Color.Orange,
-            Color.Cyan
-        });
-        
+
+
         protected List<Coordinate> points;
         protected double legDistance, totalTrackLength, areaEffectivelySwept, areaCoverage, searchedArea, searchTime, probabilityOfDetection;
         protected Coordinate datum;
         protected int numLegs;
         protected bool turnRight;
 
+
         public Pattern()
         {
             points = new List<Coordinate>();
+        }
+
+
+        /*
+         *  Returns a Color class array of 6 different colours that the KML and GPX classes can iterate through
+         *   to alternate the track leg colours of the Point-to-Point track pattern.  This method is "virtual" so
+         *   that its child classes can override it to best suit their pattern's needs.
+         */
+        public virtual Color[] getColours()
+        {
+            //size 6
+            Color[] legColours = new Color[]
+            {
+                Color.Red,
+                Color.Blue,
+                Color.Yellow,
+                Color.Purple,
+                Color.Green,
+                Color.Cyan
+            };
+            return legColours;
         }
 
         /*
