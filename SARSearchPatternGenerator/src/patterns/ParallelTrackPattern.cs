@@ -30,12 +30,12 @@ namespace SARSearchPatternGenerator
             //size 12
             Color[] legColours = new Color[]
             {
-            Color.Red, Color.Red,
-            Color.Blue, Color.Blue,
-            Color.Yellow, Color.Yellow,
-            Color.Purple, Color.Purple,
-            Color.Green, Color.Green,
-            Color.Cyan, Color.Cyan
+                Color.Blue, Color.Blue,
+                Color.Red, Color.Red,
+                Color.Yellow, Color.Yellow,
+                Color.Purple, Color.Purple,
+                Color.Green, Color.Green,
+                Color.Cyan, Color.Cyan
             };
             return legColours;
         }
