@@ -18,11 +18,19 @@ namespace SARSearchPatternGenerator
         private string unitName;
         private DistanceUnit unit;
         private WindowController winController;
+        private String patternFileName;
 
         public PatternController()
         {
             display = new PatternDisplay();
             display.setController(this);
+        }
+
+
+        private String getTimestamp()
+        {
+            String dateTime = DateTime.Now.ToString("dd-MMM-yyyy-hh-mm");
+            return dateTime;
         }
 
         public void updateSettings()
@@ -34,24 +42,32 @@ namespace SARSearchPatternGenerator
         {
             ExpandingSquareInput eei = new ExpandingSquareInput();
             display.setInputGroup(eei);
+            display.setPatternImage("img\\ExpandingSquare_SearchPattern2.jpg");
+            display.setPatternText("Expanding Square");
         }
 
         private void sectorSearchSetup()
         {
             SectorSearchInput ssi = new SectorSearchInput();
             display.setInputGroup(ssi);
+            display.setPatternImage("img\\SectorSearchPattern_3LegAircraft2.jpg");
+            display.setPatternText("Sector Search");
         }
 
         private void parallelSearchSetup()
         {
             ParallelSearchInput pss = new ParallelSearchInput();
             display.setInputGroup(pss);
+            display.setPatternImage("img\\ParallelTrack_SearchPattern2.jpg");
+            display.setPatternText("Parallel Search");
         }
 
         private void pointToPointSetup()
         {
             PointToPointInput ptpi = new PointToPointInput();
             display.setInputGroup(ptpi);
+            display.setPatternImage("img\\TracklineSearch2.png");
+            display.setPatternText("Point-to-Point");
         }
 
         public void changePattern(int index)
@@ -60,15 +76,19 @@ namespace SARSearchPatternGenerator
             {
                 case 0:
                     expandingSquareSetup();
+                    patternFileName = "expanding_";
                     break;
                 case 1:
                     sectorSearchSetup();
+                    patternFileName = "sector_";
                     break;
                 case 2:
                     parallelSearchSetup();
+                    patternFileName = "parallel_";
                     break;
                 case 3:
                     pointToPointSetup();
+                    patternFileName = "ptop_";
                     break;
             }
         }
@@ -140,6 +160,8 @@ namespace SARSearchPatternGenerator
         {
             SaveFileDialog sf = new SaveFileDialog();
             sf.Filter = "GPX files(*.gpx)|*.gpx";
+            sf.FileName = patternFileName + getTimestamp();
+
 
             if (sf.ShowDialog() == DialogResult.OK)
             {
@@ -151,6 +173,7 @@ namespace SARSearchPatternGenerator
         {
             SaveFileDialog sf = new SaveFileDialog();
             sf.Filter = "KML files(*.kml)|*.kml";
+            sf.FileName = patternFileName + getTimestamp();
 
             if (sf.ShowDialog() == DialogResult.OK)
             {

@@ -9,7 +9,6 @@ namespace SARSearchPatternGenerator
 {
     class SectorSearchInput : PatternInput
     {
-        private InputDecimalDegrees datum;
         private ComboBox turnDir;
         private InputUnits orientation;
         private InputDistance flg;
@@ -20,9 +19,12 @@ namespace SARSearchPatternGenerator
         }
         private void InitializeComponent()
         {
+            InputDecimalDegrees datum = new InputDecimalDegrees();
             datum = new InputDecimalDegrees();
+            datum.setLabel("Datum Location ●");
+            datum.setColor(System.Drawing.Color.Red);
             datum.changed += this.onValueChange;
-            addInputGroupItem("Datum:", datum);
+            addCoordinateInputItem(datum);
             coordinateInputs.Add(datum);
 
             turnDir = new ComboBox();
@@ -32,7 +34,7 @@ namespace SARSearchPatternGenerator
             "Left"});
             turnDir.SelectedIndex = 0;
             turnDir.SelectedIndexChanged += this.onValueChange;
-            addInputGroupItem("First Turn:", turnDir);
+            addInputGroupItem("First Turn Direction:", turnDir);
 
             orientation = new InputUnits();
             orientation.changeUnitText("°T");
@@ -51,8 +53,10 @@ namespace SARSearchPatternGenerator
         }
         public override Pattern getPattern()
         {
+            InputCoordinate datum = coordinateInputs[0];
             SectorSearchPattern ptrn = new SectorSearchPattern();
             ptrn.generatePattern(datum.getValue(), (int)legNum.Value, orientation.value, flg.value, turnDir.SelectedIndex == 0, flg.unit);
+            ptrn.setDatum(datum.getValue());
             return ptrn;
         }
         public override Pattern getFlatPattern()
@@ -60,6 +64,7 @@ namespace SARSearchPatternGenerator
 
             SectorSearchPattern ptrn = new SectorSearchPattern();
             ptrn.generatePattern(new FlatCoordinate(0, 0), (int)legNum.Value, orientation.value, flg.value, turnDir.SelectedIndex == 0, flg.unit);
+            ptrn.setDatum(new FlatCoordinate(0, 0));
             return ptrn;
         }
     }

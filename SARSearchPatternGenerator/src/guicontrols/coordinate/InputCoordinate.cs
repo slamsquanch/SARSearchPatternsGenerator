@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.ComponentModel.Design;
 using System.ComponentModel;
+using System.Drawing;
 
 namespace SARSearchPatternGenerator
 {
@@ -24,8 +25,8 @@ namespace SARSearchPatternGenerator
             distanceInputs = new List<InputDistance>();
             InitializeComponent();
         }
-        
-        private void InitializeComponent() {}
+
+        private void InitializeComponent() { }
 
         public Coordinate getValue()
         {
@@ -66,8 +67,22 @@ namespace SARSearchPatternGenerator
             }
         }
 
-        virtual protected void repopulateFields() {}
+        virtual protected void repopulateFields() { }
 
-        virtual protected void updateValue() {}
+        virtual protected void updateValue() { }
+
+        virtual public void setLabel(string str) { }
+
+        virtual public void setColor(Color c) { }
+
+        virtual public string getLabel()
+        {
+            return "";
+        }
+
+        virtual public Color getColor()
+        {
+            return System.Drawing.Color.Black;
+        }
     }
 }

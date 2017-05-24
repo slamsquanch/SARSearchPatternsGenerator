@@ -18,8 +18,6 @@ namespace SARSearchPatternGenerator
 * Constructor for this WindowController class.  It starts running the main Window. 
 */
         public WindowController() {
-            testPattern();
-
             //This is what STARTS the main window.
             mainWindow = new Window();
             mainWindow.setController(this);
@@ -27,14 +25,7 @@ namespace SARSearchPatternGenerator
 
             Application.Run(mainWindow);
         }
-
-        private void testPattern()
-        {
-            ParallelTrackPattern testPattern = new ParallelTrackPattern();
-            testPattern.generateFromParallelTrackDatum(new DecDeg(0, 0), 6, 0, 10, 2, true, Kilometers.create());
-            Console.WriteLine(testPattern);
-        }
-
+        
         private void writeSystemText(string txt)
         {
             mainWindow.setSystemLabel(txt);

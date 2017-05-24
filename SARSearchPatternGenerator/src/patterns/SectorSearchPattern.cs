@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,30 @@ namespace SARSearchPatternGenerator
         private int numCrossings;
 
         public SectorSearchPattern() :base() {}
+
+
+        /*
+         *  Returns a Color class array of 6 different colours (each doubled) that the KML and GPX classes
+         *   can iterate through to alternate the track leg colours of the Expanding Square pattern.  This 
+         *   array contains pairs of each colour because the track "crossings" should be the same colour as 
+         *   their corresponding track "leg".
+         *   Overrides parent's method (Pattern.cs).
+         */
+        public override Color[] getColours()
+        {
+            //size 12
+            Color[] legColours = new Color[]
+            {
+            Color.Red, Color.Red,
+            Color.Blue, Color.Blue,
+            Color.Yellow, Color.Yellow,
+            Color.Purple, Color.Purple,
+            Color.Green, Color.Green,
+            Color.Cyan, Color.Cyan
+            };
+            return legColours;
+        }
+
 
         /*
          * Generates a sector search starting from the datum with the given

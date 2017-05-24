@@ -19,15 +19,18 @@ namespace SARSearchPatternGenerator
         }
         private void InitializeComponent()
         {
-            InputDecimalDegrees datum = new InputDecimalDegrees();
+            /*InputDecimalDegrees datum = new InputDecimalDegrees();
             datum.changed += this.onValueChange;
-            addInputGroupItem("Datum:", datum);
-            coordinateInputs.Add(datum);
+            addCoordinateInputItem(datum);
+            coordinateInputs.Add(datum);*/
 
             add = new Button();
             add.Text = "Add";
             add.Click += addPoint;
-            addInputGroupItem("", add);
+
+            this.Controls.Add(add, 0, 0);
+            this.Controls.Add(new Label());
+            this.RowCount++;
         }
         public override Pattern getPattern()
         {
@@ -48,38 +51,37 @@ namespace SARSearchPatternGenerator
         }
         private void addPoint(object sender, EventArgs e)
         {
-            Controls.Remove(add);
             InputDecimalDegrees c = new InputDecimalDegrees();
             c.changed += this.onValueChange;
             SuspendLayout();
+            int h = c.Height;
+            add.Anchor = System.Windows.Forms.AnchorStyles.None;
             c.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            int curRow = this.RowCount - 1;
-            if (curRow == 0)
+            int curRow = this.RowCount;
+            if (curRow <= 1)
             {
-                this.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+                this.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
                 this.RowCount++;
-                curRow = this.RowCount - 1;
+                curRow = this.RowCount;
             }
+            c.setLabel("Point " + (curRow - 1));
 
-            this.RowStyles[curRow - 1] = (new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, c.Size.Height));
-            this.RowStyles[curRow] = (new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            Label l = new Label();
-            l.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            l.AutoSize = true;
+            Controls.Remove(add);
 
-            l.Text = "";
-            l.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            coordinateInputs.Add(c);
+            this.RowStyles[curRow - 2] = (new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, h + 10));
+            this.RowStyles[curRow - 1] = (new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, add.Height + 10));
+            this.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
 
-            this.Controls.Add(l, 0, curRow - 1);
-            this.Controls.Add(c, 1, curRow - 1);
+            this.Controls.Add(c, 0, curRow - 2);
+            this.coordinateInputs.Add(c);
 
+            this.Controls.Add(add, 0, curRow - 1);
+            this.Controls.Add(new Label());
             this.RowCount++;
-
-            addInputGroupItem("", add);
-            ResumeLayout(false);
+            
+            ResumeLayout(true);
         }
     }
 }
