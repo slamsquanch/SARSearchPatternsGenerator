@@ -47,6 +47,7 @@ namespace SARSearchPatternGenerator
         public void setState(bool e)
         {
             enabled = e;
+            Text = enabled ? onText : offText;
         }
         public bool isEnabled()
         {

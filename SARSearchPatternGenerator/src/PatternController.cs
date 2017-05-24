@@ -177,7 +177,19 @@ namespace SARSearchPatternGenerator
 
             if (sf.ShowDialog() == DialogResult.OK)
             {
+                double altitude = display.getKMLAltitude();
+                int modeIndex = display.getKMLModeIndex();
                 KML kml = new KML(p);
+                switch (modeIndex)
+                {
+                    case 0:
+                        kml.airModeOff();
+                        break;
+                    case 1:
+                        kml.airModeOn();
+                        kml.setAltitude(altitude);
+                        break;
+                }
                 kml.writeFile(sf.FileName);
             }
         }
