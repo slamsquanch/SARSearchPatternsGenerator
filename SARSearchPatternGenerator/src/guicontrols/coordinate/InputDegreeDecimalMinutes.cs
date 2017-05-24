@@ -90,11 +90,11 @@ namespace SARSearchPatternGenerator
             this.buttonToggle1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.buttonToggle1.Location = new System.Drawing.Point(385, 31);
             this.buttonToggle1.Name = "buttonToggle1";
-            this.buttonToggle1.offText = "E";
-            this.buttonToggle1.onText = "W";
+            this.buttonToggle1.offText = "W";
+            this.buttonToggle1.onText = "E";
             this.buttonToggle1.Size = new System.Drawing.Size(21, 26);
             this.buttonToggle1.TabIndex = 10;
-            this.buttonToggle1.Text = "E";
+            this.buttonToggle1.Text = "W";
             // 
             // floatInput4
             // 
@@ -248,15 +248,17 @@ namespace SARSearchPatternGenerator
         }
         private void modifyComponent()
         {
-            this.updateValue();
             this.floatInput1.setValue(0);
             this.floatInput2.setValue(0);
             this.floatInput3.setValue(0);
             this.floatInput4.setValue(0);
+            this.updateValue();
             this.floatInput1.TextChanged += onChange;
             this.floatInput2.TextChanged += onChange;
             this.floatInput3.TextChanged += onChange;
             this.floatInput4.TextChanged += onChange;
+            this.buttonToggle1.Click += onChange;
+            this.buttonToggle2.Click += onChange;
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
@@ -269,7 +271,7 @@ namespace SARSearchPatternGenerator
             double lat = this.value.getLat();
             double lng = this.value.getLng();
             buttonToggle2.setState(lat < 0);
-            buttonToggle1.setState(lng < 0);
+            buttonToggle1.setState(lng > 0);
 
             this.floatInput1.TextChanged -= onChange;
             this.floatInput2.TextChanged -= onChange;
@@ -291,8 +293,8 @@ namespace SARSearchPatternGenerator
                 this.value = new DegDecMin(
                         floatInput1.getValue() * (buttonToggle2.isEnabled() ? -1 : 1),
                         floatInput3.getValue() * (buttonToggle2.isEnabled() ? -1 : 1),
-                        floatInput2.getValue() * (buttonToggle1.isEnabled() ? -1 : 1),
-                        floatInput4.getValue() * (buttonToggle1.isEnabled() ? -1 : 1)
+                        floatInput2.getValue() * (buttonToggle1.isEnabled() ? 1 : -1),
+                        floatInput4.getValue() * (buttonToggle1.isEnabled() ? 1 : -1)
                 );
             }
             catch (OutOfBoundsCoordinateException)

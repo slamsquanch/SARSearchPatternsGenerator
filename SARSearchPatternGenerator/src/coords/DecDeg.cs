@@ -22,12 +22,9 @@ namespace SARSearchPatternGenerator
                 throw new OutOfBoundsCoordinateException("Latitude " + latitude
                     + " is invalid");
             //precarious toast
-            if (longitude > 180 || longitude < -180)
-                throw new OutOfBoundsCoordinateException("Longitude " + longitude
-                    + " is invalid");
 
             this.latitude = latitude;
-            this.longitude = longitude;
+            this.longitude = fixLong(longitude);
         }
 
         /*

@@ -63,6 +63,7 @@ namespace SARSearchPatternGenerator
             this.crossingDistance = crossingDistance;
             this.radius = radius;
             numCrossings = numLegs - 1;
+            turnDegrees = theta;
 
             if(!turnRight)
             {
@@ -74,13 +75,13 @@ namespace SARSearchPatternGenerator
 
             for (int i = 0; i < numLegs * 2; i += 2)
             {
-                addPoint(points.ElementAt(i).travel(orientation, legDistance, dI));
+                addPoint(datum.travel(orientation, legDistance / 2, dI));
 
                 orientation += turnDegrees;
 
-                addPoint(points.ElementAt(i + 1).travel(orientation, crossingDistance, dI));
+                addPoint(datum.travel(orientation, legDistance / 2, dI));
 
-                orientation += turnDegrees;
+                orientation += 180;
                 
             }
 

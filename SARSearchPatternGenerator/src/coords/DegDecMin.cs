@@ -41,6 +41,10 @@ namespace SARSearchPatternGenerator
             this.lngMinutes = lngMinutes;
 
             toBase();
+
+            longitude = fixLong(longitude);
+
+            fromBase();
         }
 
         public DegDecMin(double latitude, double longitude)

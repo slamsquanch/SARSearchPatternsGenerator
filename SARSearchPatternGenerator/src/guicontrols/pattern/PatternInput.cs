@@ -15,6 +15,9 @@ namespace SARSearchPatternGenerator
     {
         protected List<InputDistance> distanceInputs;
         protected List<InputCoordinate> coordinateInputs;
+        protected string unitName = "nm";
+        protected DistanceUnit unit = NauticalMiles.create();
+        protected CoordSystem coordinateSystem = CoordSystem.DecDeg;
         public abstract Pattern getPattern();
         public abstract Pattern getFlatPattern();
         public PatternInput(): base()
@@ -43,6 +46,8 @@ namespace SARSearchPatternGenerator
             {
                 i.changeUnits(newName, unit);
             }
+            this.unit = unit;
+            this.unitName = newName;
         }
 
         /*
@@ -64,19 +69,47 @@ namespace SARSearchPatternGenerator
                 switch (system)
                 {
                     case CoordSystem.DecDeg:
-                        newVal = new DecDeg(lat, lng);
+                        try
+                        {
+                            newVal = new DecDeg(lat, lng);
+                        }
+                        catch (OutOfBoundsCoordinateException o)
+                        {
+                            newVal = new DecDeg(0, 0);
+                        }
                         nic = new InputDecimalDegrees();
                         break;
                     case CoordSystem.DegDecMin:
-                        newVal = new DegDecMin(lat, lng);
+                        try
+                        {
+                            newVal = new DegDecMin(lat, lng);
+                        }
+                        catch (OutOfBoundsCoordinateException o)
+                        {
+                            newVal = new DegDecMin(0, 0);
+                        }
                         nic = new InputDegreeDecimalMinutes();
                         break;
                     case CoordSystem.DegMinSec:
-                        newVal = new DegMinSec(lat, lng);
+                        try
+                        {
+                            newVal = new DegMinSec(lat, lng);
+                        }
+                        catch (OutOfBoundsCoordinateException o)
+                        {
+                            newVal = new DegMinSec(0, 0);
+                        }
                         nic = new InputDegreeMinutesSeconds();
                         break;
                     case CoordSystem.UTMCoord:
-                        newVal = new UTMCoord(lat, lng);
+                        try
+                        {
+                            newVal = new UTMCoord(lat, lng);
+                        }
+                        catch (OutOfBoundsCoordinateException o)
+                        {
+                            newVal = new UTMCoord(0, 0);
+                        }
                         nic = new InputUTMZoneCoord();
                         break;
                 }
@@ -93,6 +126,10 @@ namespace SARSearchPatternGenerator
                     nic.changed += this.onValueChange;
                     nic.setLabel(ic.getLabel());
                     nic.setColor(ic.getColor());
+                    if (ic.Font.Bold)
+                    {
+                        nic.makeBold();
+                    }
 
                     this.Controls.Remove(ic);
                     this.coordinateInputs.Remove(ic);
@@ -100,6 +137,7 @@ namespace SARSearchPatternGenerator
                     this.coordinateInputs.Add(nic);
                 }
             }
+            this.coordinateSystem = system;
             ResumeLayout(true);
         }
 
@@ -169,6 +207,18 @@ namespace SARSearchPatternGenerator
             this.RowCount++;
 
             ResumeLayout(true);
+        }
+        public CoordSystem getCoordSystem()
+        {
+            return coordinateSystem;
+        }
+        public string getUnitName()
+        {
+            return unitName;
+        }
+        public DistanceUnit getUnit()
+        {
+            return unit;
         }
     }
 }

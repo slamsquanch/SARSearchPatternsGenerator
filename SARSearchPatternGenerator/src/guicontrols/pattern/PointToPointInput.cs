@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SARSearchPatternGenerator.coords;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -51,7 +52,35 @@ namespace SARSearchPatternGenerator
         }
         private void addPoint(object sender, EventArgs e)
         {
-            InputDecimalDegrees c = new InputDecimalDegrees();
+            InputCoordinate c = new InputDecimalDegrees();
+            Coordinate newVal = new DecDeg(0, 0);
+            double lat = 0;
+            double lng = 0;
+            if (this.coordinateInputs.Count > 0)
+            {
+                lat = this.coordinateInputs.Last().getValue().getLat();
+                lng = this.coordinateInputs.Last().getValue().getLng();
+            }
+            switch (this.coordinateSystem)
+            {
+                case CoordSystem.DecDeg:
+                    newVal = new DecDeg(lat, lng);
+                    c = new InputDecimalDegrees();
+                    break;
+                case CoordSystem.DegDecMin:
+                    newVal = new DegDecMin(lat, lng);
+                    c = new InputDegreeDecimalMinutes();
+                    break;
+                case CoordSystem.DegMinSec:
+                    newVal = new DegMinSec(lat, lng);
+                    c = new InputDegreeMinutesSeconds();
+                    break;
+                case CoordSystem.UTMCoord:
+                    newVal = new UTMCoord(lat, lng);
+                    c = new InputUTMZoneCoord();
+                    break;
+            }
+            c.setValue(newVal);
             c.changed += this.onValueChange;
             SuspendLayout();
             int h = c.Height;
