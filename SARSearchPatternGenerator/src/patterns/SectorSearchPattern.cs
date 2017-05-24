@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,30 @@ namespace SARSearchPatternGenerator
 
         public SectorSearchPattern() :base() {}
 
+
+        /*
+         *  Returns a Color class array of 6 different colours (each doubled) that the KML and GPX classes
+         *   can iterate through to alternate the track leg colours of the Expanding Square pattern.  This 
+         *   array contains pairs of each colour because the track "crossings" should be the same colour as 
+         *   their corresponding track "leg".
+         *   Overrides parent's method (Pattern.cs).
+         */
+        public override Color[] getColours()
+        {
+            //size 12
+            Color[] legColours = new Color[]
+            {
+            Color.Red, Color.Red,
+            Color.Blue, Color.Blue,
+            Color.Yellow, Color.Yellow,
+            Color.Purple, Color.Purple,
+            Color.Green, Color.Green,
+            Color.Cyan, Color.Cyan
+            };
+            return legColours;
+        }
+
+
         /*
          * Generates a sector search starting from the datum with the given
          * number of legs of the given size. The first leg will go in the
@@ -27,7 +52,7 @@ namespace SARSearchPatternGenerator
             double radius, theta, alpha, crossingDistance, turnDegrees;
 
             radius = legDistance / 2;
-            theta = 360 / numLegs;
+            theta = 360.0 / numLegs / 2.0;
             alpha = (180 - theta) / 2;
             turnDegrees = 180 - alpha;
             crossingDistance = 2 * (radius * Math.Sin(theta * Math.PI / 180 / 2));
@@ -38,6 +63,7 @@ namespace SARSearchPatternGenerator
             this.crossingDistance = crossingDistance;
             this.radius = radius;
             numCrossings = numLegs - 1;
+            turnDegrees = theta;
 
             if(!turnRight)
             {
@@ -47,17 +73,19 @@ namespace SARSearchPatternGenerator
             Coordinate CSP = datum.travel(orientation - 180, legDistance / 2, dI);
             addPoint(CSP);
 
-            for (int i = 0; i < numLegs; i++)
+            for (int i = 0; i < numLegs * 2; i += 2)
             {
-                addPoint(points.ElementAt(i).travel(orientation, legDistance, dI));
+                addPoint(datum.travel(orientation, legDistance / 2, dI));
 
                 orientation += turnDegrees;
 
-                addPoint(points.ElementAt(i).travel(orientation, crossingDistance, dI));
+                addPoint(datum.travel(orientation, legDistance / 2, dI));
 
-                orientation += turnDegrees;
+                orientation += 180;
                 
             }
+
+            removePoint(points[numLegs * 2]);
 
             return points;
         }

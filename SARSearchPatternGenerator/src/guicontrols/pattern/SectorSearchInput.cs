@@ -7,28 +7,25 @@ using System.Windows.Forms;
 
 namespace SARSearchPatternGenerator
 {
-    /// <summary>
-    /// An input class that handles all the input for the expanding square
-    /// pattern form.
-    /// </summary>
-    class ExpandingSquareInput : PatternInput
+    class SectorSearchInput : PatternInput
     {
-        private InputDecimalDegrees datum;
         private ComboBox turnDir;
         private InputUnits orientation;
         private InputDistance flg;
         private NumericUpDown legNum;
-
-        public ExpandingSquareInput(): base()
+        public SectorSearchInput() : base()
         {
             InitializeComponent();
         }
-
         private void InitializeComponent()
         {
+            InputDecimalDegrees datum = new InputDecimalDegrees();
             datum = new InputDecimalDegrees();
+            datum.setLabel("Datum Location ●");
+            datum.setColor(System.Drawing.Color.Red);
+            datum.makeBold();
             datum.changed += this.onValueChange;
-            addInputGroupItem("Datum:", datum);
+            addCoordinateInputItem(datum);
             coordinateInputs.Add(datum);
 
             turnDir = new ComboBox();
@@ -38,41 +35,37 @@ namespace SARSearchPatternGenerator
             "Left"});
             turnDir.SelectedIndex = 0;
             turnDir.SelectedIndexChanged += this.onValueChange;
-            addInputGroupItem("First Turn:", turnDir);
+            addInputGroupItem("1st Turn Direction:", turnDir);
 
             orientation = new InputUnits();
             orientation.changeUnitText("°T");
             orientation.changed += onValueChange;
-            addInputGroupItem("Orientation:", orientation);
+            addInputGroupItem("1st Leg Orientation:", orientation);
 
             flg = new InputDistance();
             flg.changed += this.onValueChange;
             distanceInputs.Add(flg);
-            addInputGroupItem("First Leg Distance:", flg);
+            addInputGroupItem("Leg Distance:", flg);
 
             legNum = new NumericUpDown();
             legNum.Maximum = 999;
             legNum.ValueChanged += onValueChange;
             addInputGroupItem("Number of Legs:", legNum);
         }
-
-        /*
-         * Gets the coordinates for a pattern based on the information in the form.
-         */
         public override Pattern getPattern()
         {
-            ExpandingSquarePattern ptrn = new ExpandingSquarePattern();
+            InputCoordinate datum = coordinateInputs[0];
+            SectorSearchPattern ptrn = new SectorSearchPattern();
             ptrn.generatePattern(datum.getValue(), (int)legNum.Value, orientation.value, flg.value, turnDir.SelectedIndex == 0, flg.unit);
+            ptrn.setDatum(datum.getValue());
             return ptrn;
         }
-        /*
-         * Gets the coordinates for a pattern based on the information in the form
-         * that ignores the curvature of the earth, for display purposes.
-         */
         public override Pattern getFlatPattern()
         {
-            ExpandingSquarePattern ptrn = new ExpandingSquarePattern();
+
+            SectorSearchPattern ptrn = new SectorSearchPattern();
             ptrn.generatePattern(new FlatCoordinate(0, 0), (int)legNum.Value, orientation.value, flg.value, turnDir.SelectedIndex == 0, flg.unit);
+            ptrn.setDatum(new FlatCoordinate(0, 0));
             return ptrn;
         }
     }
