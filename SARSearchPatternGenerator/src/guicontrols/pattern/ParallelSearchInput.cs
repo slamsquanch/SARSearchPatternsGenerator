@@ -28,6 +28,7 @@ namespace SARSearchPatternGenerator
             InputDecimalDegrees datum = new InputDecimalDegrees();
             datum = new InputDecimalDegrees();
             datum.setLabel("Datum Location ●");
+            datum.makeBold();
             datum.setColor(System.Drawing.Color.Red);
             datum.changed += this.onValueChange;
             addCoordinateInputItem(datum);
@@ -52,12 +53,12 @@ namespace SARSearchPatternGenerator
             "Left"});
             turnDir.SelectedIndex = 0;
             turnDir.SelectedIndexChanged += this.onValueChange;
-            addInputGroupItem("First Turn Direction:", turnDir);
+            addInputGroupItem("1st Turn Direction:", turnDir);
 
             orientation = new InputUnits();
             orientation.changeUnitText("°T");
             orientation.changed += onValueChange;
-            addInputGroupItem("Orientation:", orientation);
+            addInputGroupItem("1st Leg Orientation:", orientation);
 
             flg = new InputDistance();
             flg.changed += this.onValueChange;

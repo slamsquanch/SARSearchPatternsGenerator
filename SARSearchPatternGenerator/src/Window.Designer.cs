@@ -218,7 +218,7 @@ namespace SARSearchPatternGenerator
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Window";
-            this.Text = "SAR Technology: Pattern Commander";
+            this.Text = "Pattern Commander";
             this.Load += new System.EventHandler(this.Window_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();

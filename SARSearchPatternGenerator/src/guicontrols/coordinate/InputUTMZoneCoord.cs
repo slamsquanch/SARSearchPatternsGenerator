@@ -180,6 +180,7 @@ namespace SARSearchPatternGenerator
             // 
             // textBox2
             // 
+            this.textBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.textBox2.Items.AddRange(new object[] {
             "C",
             "D",
@@ -206,7 +207,6 @@ namespace SARSearchPatternGenerator
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(46, 24);
             this.textBox2.TabIndex = 8;
-            this.textBox2.Text = "C";
             // 
             // groupBox1
             // 

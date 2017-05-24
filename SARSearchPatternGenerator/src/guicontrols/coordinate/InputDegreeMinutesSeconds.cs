@@ -275,11 +275,11 @@ namespace SARSearchPatternGenerator
             this.buttonToggle1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.buttonToggle1.Location = new System.Drawing.Point(410, 38);
             this.buttonToggle1.Name = "buttonToggle1";
-            this.buttonToggle1.offText = "E";
-            this.buttonToggle1.onText = "W";
+            this.buttonToggle1.offText = "W";
+            this.buttonToggle1.onText = "E";
             this.buttonToggle1.Size = new System.Drawing.Size(21, 22);
             this.buttonToggle1.TabIndex = 14;
-            this.buttonToggle1.Text = "E";
+            this.buttonToggle1.Text = "W";
             // 
             // groupBox1
             // 
@@ -307,11 +307,21 @@ namespace SARSearchPatternGenerator
         }
         private void modifyComponent()
         {
-            this.updateValue();
             this.floatInput1.setValue(0);
             this.floatInput2.setValue(0);
+            this.floatInput3.setValue(0);
+            this.floatInput4.setValue(0);
+            this.floatInput5.setValue(0);
+            this.floatInput6.setValue(0);
+            this.updateValue();
             this.floatInput1.TextChanged += onChange;
             this.floatInput2.TextChanged += onChange;
+            this.floatInput3.TextChanged += onChange;
+            this.floatInput4.TextChanged += onChange;
+            this.floatInput5.TextChanged += onChange;
+            this.floatInput6.TextChanged += onChange;
+            this.buttonToggle1.Click += onChange;
+            this.buttonToggle2.Click += onChange;
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
@@ -324,7 +334,7 @@ namespace SARSearchPatternGenerator
             double lat = this.value.getLat();
             double lng = this.value.getLng();
             buttonToggle2.setState(lat < 0);
-            buttonToggle1.setState(lng < 0);
+            buttonToggle1.setState(lng > 0);
             this.floatInput1.TextChanged -= onChange;
             this.floatInput2.TextChanged -= onChange;
             this.floatInput3.TextChanged -= onChange;
@@ -332,11 +342,11 @@ namespace SARSearchPatternGenerator
             this.floatInput5.TextChanged -= onChange;
             this.floatInput6.TextChanged -= onChange;
             floatInput1.setValue(((DegMinSec)this.value).getLatDeg() * (buttonToggle2.isEnabled() ? -1 : 1));
-            floatInput2.setValue(((DegMinSec)this.value).getLngDeg() * (buttonToggle1.isEnabled() ? -1 : 1));
+            floatInput2.setValue(((DegMinSec)this.value).getLngDeg() * (buttonToggle1.isEnabled() ? 1 : -1));
             floatInput3.setValue(((DegMinSec)this.value).getLatMin() * (buttonToggle2.isEnabled() ? -1 : 1));
-            floatInput4.setValue(((DegMinSec)this.value).getLngMin() * (buttonToggle1.isEnabled() ? -1 : 1));
+            floatInput4.setValue(((DegMinSec)this.value).getLngMin() * (buttonToggle1.isEnabled() ? 1 : -1));
             floatInput5.setValue(((DegMinSec)this.value).getLatSec() * (buttonToggle2.isEnabled() ? -1 : 1));
-            floatInput6.setValue(((DegMinSec)this.value).getLngSec() * (buttonToggle1.isEnabled() ? -1 : 1));
+            floatInput6.setValue(((DegMinSec)this.value).getLngSec() * (buttonToggle1.isEnabled() ? 1 :- 1));
             this.floatInput1.TextChanged += onChange;
             this.floatInput2.TextChanged += onChange;
             this.floatInput3.TextChanged += onChange;
@@ -353,9 +363,9 @@ namespace SARSearchPatternGenerator
                     floatInput1.getValue() * (buttonToggle2.isEnabled() ? -1 : 1),
                     floatInput3.getValue() * (buttonToggle2.isEnabled() ? -1 : 1),
                     floatInput5.getValue() * (buttonToggle2.isEnabled() ? -1 : 1),
-                    floatInput2.getValue() * (buttonToggle1.isEnabled() ? -1 : 1),
-                    floatInput4.getValue() * (buttonToggle1.isEnabled() ? -1 : 1),
-                    floatInput6.getValue() * (buttonToggle1.isEnabled() ? -1 : 1));
+                    floatInput2.getValue() * (buttonToggle1.isEnabled() ? 1 : -1),
+                    floatInput4.getValue() * (buttonToggle1.isEnabled() ? 1 : -1),
+                    floatInput6.getValue() * (buttonToggle1.isEnabled() ? 1 : -1));
             }
             catch (OutOfBoundsCoordinateException)
             {

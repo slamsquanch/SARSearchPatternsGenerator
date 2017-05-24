@@ -80,11 +80,11 @@ namespace SARSearchPatternGenerator
             this.buttonToggle2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.buttonToggle2.Location = new System.Drawing.Point(325, 33);
             this.buttonToggle2.Name = "buttonToggle2";
-            this.buttonToggle2.offText = "E";
-            this.buttonToggle2.onText = "W";
+            this.buttonToggle2.offText = "W";
+            this.buttonToggle2.onText = "E";
             this.buttonToggle2.Size = new System.Drawing.Size(20, 24);
             this.buttonToggle2.TabIndex = 6;
-            this.buttonToggle2.Text = "E";
+            this.buttonToggle2.Text = "W";
             // 
             // label4
             // 
@@ -193,11 +193,13 @@ namespace SARSearchPatternGenerator
 
         private void modifyComponent()
         {
-            this.updateValue();
             this.floatInput1.setValue(0);
             this.floatInput2.setValue(0);
+            this.updateValue();
             this.floatInput1.TextChanged += onChange;
             this.floatInput2.TextChanged += onChange;
+            this.buttonToggle1.Click += onChange;
+            this.buttonToggle2.Click += onChange;
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e) {}
@@ -210,7 +212,7 @@ namespace SARSearchPatternGenerator
             double lat = this.value.getLat();
             double lng = this.value.getLng();
             buttonToggle1.setState(lat < 0);
-            buttonToggle2.setState(lng < 0);
+            buttonToggle2.setState(lng > 0);
 
             this.floatInput1.TextChanged -= onChange;
             this.floatInput2.TextChanged -= onChange;
@@ -229,7 +231,7 @@ namespace SARSearchPatternGenerator
             {
                 this.value = new DecDeg(
                         floatInput1.getValue() * (buttonToggle1.isEnabled() ? -1 : 1),
-                        floatInput2.getValue() * (buttonToggle2.isEnabled() ? -1 : 1)
+                        floatInput2.getValue() * (buttonToggle2.isEnabled() ? 1 : -1)
                 );
             }
             catch (OutOfBoundsCoordinateException)
