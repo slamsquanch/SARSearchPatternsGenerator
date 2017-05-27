@@ -18,7 +18,7 @@ namespace SARSearchPatternGenerator
         private string unitName;
         private DistanceUnit unit;
         private WindowController winController;
-        private String patternFileName;
+        private String patternFileName = "expanding_";
 
         public PatternController()
         {
