@@ -44,7 +44,7 @@ namespace SARSearchPatternGenerator
             });
             datumType.SelectedIndex = 0;
             datumType.SelectedIndexChanged += this.onValueChange;
-            addInputGroupItem("Datum Type: ", datumType);
+            addInputGroupItem("Search Type: ", datumType);
 
             turnDir = new ComboBox();
             turnDir.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -68,7 +68,7 @@ namespace SARSearchPatternGenerator
             trk = new InputDistance();
             trk.changed += this.onValueChange;
             distanceInputs.Add(trk);
-            addInputGroupItem("Track Space:", trk);
+            addInputGroupItem("Track Spacing:", trk);
 
             legNum = new NumericUpDown();
             legNum.Maximum = 999;
