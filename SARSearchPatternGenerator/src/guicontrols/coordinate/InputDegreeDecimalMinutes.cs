@@ -61,7 +61,7 @@ namespace SARSearchPatternGenerator
             this.tableLayoutPanel1.ColumnCount = 6;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.9881F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.82097F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 17F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.19093F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 27F));
@@ -88,7 +88,7 @@ namespace SARSearchPatternGenerator
             // buttonToggle1
             // 
             this.buttonToggle1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.buttonToggle1.Location = new System.Drawing.Point(385, 31);
+            this.buttonToggle1.Location = new System.Drawing.Point(384, 31);
             this.buttonToggle1.Name = "buttonToggle1";
             this.buttonToggle1.offText = "W";
             this.buttonToggle1.onText = "E";
@@ -101,10 +101,10 @@ namespace SARSearchPatternGenerator
             this.floatInput4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.floatInput4.Location = new System.Drawing.Point(182, 31);
+            this.floatInput4.Location = new System.Drawing.Point(192, 31);
             this.floatInput4.Name = "floatInput4";
             this.floatInput4.precision = 6;
-            this.floatInput4.Size = new System.Drawing.Size(158, 22);
+            this.floatInput4.Size = new System.Drawing.Size(147, 22);
             this.floatInput4.TabIndex = 1;
             this.floatInput4.Text = "0";
             // 
@@ -113,10 +113,10 @@ namespace SARSearchPatternGenerator
             this.floatInput3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.floatInput3.Location = new System.Drawing.Point(182, 3);
+            this.floatInput3.Location = new System.Drawing.Point(192, 3);
             this.floatInput3.Name = "floatInput3";
             this.floatInput3.precision = 6;
-            this.floatInput3.Size = new System.Drawing.Size(158, 22);
+            this.floatInput3.Size = new System.Drawing.Size(147, 22);
             this.floatInput3.TabIndex = 1;
             this.floatInput3.Text = "0";
             // 
@@ -124,7 +124,7 @@ namespace SARSearchPatternGenerator
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(346, 35);
+            this.label6.Location = new System.Drawing.Point(345, 35);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(30, 17);
             this.label6.TabIndex = 8;
@@ -135,11 +135,11 @@ namespace SARSearchPatternGenerator
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(165, 35);
+            this.label4.Location = new System.Drawing.Point(154, 35);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(11, 17);
+            this.label4.Size = new System.Drawing.Size(32, 17);
             this.label4.TabIndex = 4;
-            this.label4.Text = "°";
+            this.label4.Text = "deg";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // floatInput1
@@ -147,10 +147,10 @@ namespace SARSearchPatternGenerator
             this.floatInput1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.floatInput1.Location = new System.Drawing.Point(84, 3);
+            this.floatInput1.Location = new System.Drawing.Point(79, 3);
             this.floatInput1.Name = "floatInput1";
             this.floatInput1.precision = 3;
-            this.floatInput1.Size = new System.Drawing.Size(75, 22);
+            this.floatInput1.Size = new System.Drawing.Size(69, 22);
             this.floatInput1.TabIndex = 0;
             this.floatInput1.Text = "0";
             // 
@@ -159,10 +159,10 @@ namespace SARSearchPatternGenerator
             this.floatInput2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.floatInput2.Location = new System.Drawing.Point(84, 31);
+            this.floatInput2.Location = new System.Drawing.Point(79, 31);
             this.floatInput2.Name = "floatInput2";
             this.floatInput2.precision = 3;
-            this.floatInput2.Size = new System.Drawing.Size(75, 22);
+            this.floatInput2.Size = new System.Drawing.Size(69, 22);
             this.floatInput2.TabIndex = 0;
             this.floatInput2.Text = "0";
             // 
@@ -181,9 +181,9 @@ namespace SARSearchPatternGenerator
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 35);
+            this.label2.Location = new System.Drawing.Point(3, 28);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 17);
+            this.label2.Size = new System.Drawing.Size(63, 32);
             this.label2.TabIndex = 2;
             this.label2.Text = "Longitude:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -192,18 +192,18 @@ namespace SARSearchPatternGenerator
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(165, 5);
+            this.label3.Location = new System.Drawing.Point(154, 5);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(11, 17);
+            this.label3.Size = new System.Drawing.Size(32, 17);
             this.label3.TabIndex = 3;
-            this.label3.Text = "°";
+            this.label3.Text = "deg";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label5
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(346, 5);
+            this.label5.Location = new System.Drawing.Point(345, 5);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(30, 17);
             this.label5.TabIndex = 7;
@@ -213,7 +213,7 @@ namespace SARSearchPatternGenerator
             // buttonToggle2
             // 
             this.buttonToggle2.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.buttonToggle2.Location = new System.Drawing.Point(385, 3);
+            this.buttonToggle2.Location = new System.Drawing.Point(384, 3);
             this.buttonToggle2.Name = "buttonToggle2";
             this.buttonToggle2.offText = "N";
             this.buttonToggle2.onText = "S";
