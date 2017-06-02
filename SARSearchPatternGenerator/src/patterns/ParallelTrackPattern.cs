@@ -30,12 +30,12 @@ namespace SARSearchPatternGenerator
             //size 12
             Color[] legColours = new Color[]
             {
-                Color.Blue, Color.Blue,
-                Color.Red, Color.Red,
-                Color.Yellow, Color.Yellow,
-                Color.Purple, Color.Purple,
-                Color.Green, Color.Green,
-                Color.Cyan, Color.Cyan
+            Color.Red, Color.Red,
+            Color.Blue, Color.Blue,
+            Color.Yellow, Color.Yellow,
+            Color.Purple, Color.Purple,
+            Color.Green, Color.Green,
+            Color.Cyan, Color.Cyan
             };
             return legColours;
         }
@@ -136,6 +136,7 @@ namespace SARSearchPatternGenerator
             this.legDistance = legDistance;
             this.numLegs = numLegs;
             this.turnRight = firstTurnRight;
+            this.orientation = orientation;
             crossingDistance = trackSpacing;
             numCrossings = numLegs - 1;
 
@@ -172,6 +173,11 @@ namespace SARSearchPatternGenerator
             areaEffectivelySwept = totalTrackLength / sweepWidth;
             areaCoverage = areaEffectivelySwept / searchedArea;
             probabilityOfDetection = (1 - Math.Exp(-areaCoverage)) * 100;
+        }
+
+        public double getCrossingDistance()
+        {
+            return crossingDistance;
         }
     }
 }

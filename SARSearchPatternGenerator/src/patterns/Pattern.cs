@@ -18,10 +18,8 @@ namespace SARSearchPatternGenerator
     [KnownType(typeof(UTMCoord))]
     public class Pattern
     {
-
-
         protected List<Coordinate> points;
-        protected double legDistance, totalTrackLength, areaEffectivelySwept, areaCoverage, searchedArea, searchTime, probabilityOfDetection;
+        protected double orientation, legDistance, totalTrackLength, areaEffectivelySwept, areaCoverage, searchedArea, searchTime, probabilityOfDetection;
         protected Coordinate datum;
         protected int numLegs;
         protected bool turnRight;
@@ -31,7 +29,6 @@ namespace SARSearchPatternGenerator
         {
             points = new List<Coordinate>();
         }
-
 
         /*
          *  Returns a Color class array of 6 different colours that the KML and GPX classes can iterate through
@@ -43,8 +40,8 @@ namespace SARSearchPatternGenerator
             //size 6
             Color[] legColours = new Color[]
             {
-                Color.Blue,
                 Color.Red,
+                Color.Blue,
                 Color.Yellow,
                 Color.Purple,
                 Color.Green,
@@ -161,11 +158,63 @@ namespace SARSearchPatternGenerator
         {
             if (this.datum == null)
             {
-                return this.points[0];
+                if (this.points.Count > 0)
+                {
+                    return this.points[0];
+                }
+                else
+                {
+                    return null;
+                }
             }
             return this.datum;
         }
 
         public virtual void calculatePatternInfo(double searchSpeed, double sweepWidth) {}
+
+        public double getSearchTime()
+        {
+            return searchTime;
+        }
+
+        public double getAreaEffectivelySwept()
+        {
+            return areaEffectivelySwept;
+        }
+
+        public double getAreaCoverage()
+        {
+            return areaCoverage;
+        }
+
+        public double getProbabilityOfDetection()
+        {
+            return probabilityOfDetection;
+        }
+
+        public bool turnsRight()
+        {
+            return turnRight;
+        }
+
+        public double getOrientation()
+        {
+            return orientation;
+        }
+
+        public double getLegDistance()
+        {
+            return legDistance;
+        }
+
+        public int getNumLegs()
+        {
+            return numLegs;
+        }
+
+        public int getNumPoints()
+        {
+            return points.Count;
+        }
     }
 }

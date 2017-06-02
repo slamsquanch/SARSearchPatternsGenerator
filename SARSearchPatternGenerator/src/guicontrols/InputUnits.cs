@@ -68,6 +68,7 @@ namespace SARSearchPatternGenerator
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox1.Location = new System.Drawing.Point(3, 3);
             this.textBox1.Name = "textBox1";
+            this.textBox1.precision = 3;
             this.textBox1.Size = new System.Drawing.Size(133, 22);
             this.textBox1.TabIndex = 4;
             // 

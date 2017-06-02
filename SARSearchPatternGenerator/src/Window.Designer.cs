@@ -210,7 +210,6 @@ namespace SARSearchPatternGenerator
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Window";
             this.Text = "Pattern Commander";
-            this.Load += new System.EventHandler(this.Window_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.toolStrip2.ResumeLayout(false);
