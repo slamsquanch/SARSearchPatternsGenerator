@@ -25,15 +25,15 @@ namespace SARSearchPatternGenerator
             //size 6
             Color[] legColours = new Color[]
             {
-                Color.Blue,
-                Color.Red,
-                Color.Yellow,
-                Color.Purple,
-                Color.Green, 
-                Color.Cyan
+            Color.Red,
+            Color.Blue,
+            Color.Yellow,
+            Color.Purple,
+            Color.Green, 
+            Color.Cyan
             };
             return legColours;
-         }
+        }
 
 
         /*
@@ -51,6 +51,7 @@ namespace SARSearchPatternGenerator
             this.legDistance = firstLegDistance;
             this.numLegs = numLegs;
             this.turnRight = turnRight;
+            this.orientation = orientation;
             totalTrackLength = 0;
             searchedArea = 1;
 

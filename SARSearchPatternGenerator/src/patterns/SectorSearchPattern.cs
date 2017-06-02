@@ -30,12 +30,12 @@ namespace SARSearchPatternGenerator
             //size 12
             Color[] legColours = new Color[]
             {
-                Color.Blue, Color.Blue,
-                Color.Red, Color.Red,
-                Color.Yellow, Color.Yellow,
-                Color.Purple, Color.Purple,
-                Color.Green, Color.Green,
-                Color.Cyan, Color.Cyan
+            Color.Red, Color.Red,
+            Color.Blue, Color.Blue,
+            Color.Yellow, Color.Yellow,
+            Color.Purple, Color.Purple,
+            Color.Green, Color.Green,
+            Color.Cyan, Color.Cyan
             };
             return legColours;
         }
@@ -62,6 +62,7 @@ namespace SARSearchPatternGenerator
             this.turnRight = turnRight;
             this.crossingDistance = crossingDistance;
             this.radius = radius;
+            this.orientation = orientation;
             numCrossings = numLegs - 1;
 
             if(!turnRight)

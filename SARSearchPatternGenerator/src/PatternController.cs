@@ -18,7 +18,8 @@ namespace SARSearchPatternGenerator
         private string unitName;
         private DistanceUnit unit;
         private WindowController winController;
-        private String patternFileName = "expanding_";
+        private String patternFileName = "parallel_";
+        private Pattern pattern;
 
         public PatternController()
         {
@@ -33,6 +34,33 @@ namespace SARSearchPatternGenerator
             return dateTime;
         }
 
+        public void setPattern(Pattern p)
+        {
+            pattern = p;
+        }
+
+        public void createFromPattern(Pattern p)
+        {
+            setPattern(p);
+            Console.WriteLine(p.GetType().ToString());
+            switch(p.GetType().ToString())
+            {
+                case "ExpandingSquarePattern":
+                    expandingSquareSetup();
+                    break;
+                case "ParallelTrackPattern":
+                    parallelSearchSetup();
+                    break;
+                case "SectorSearchPattern":
+                    sectorSearchSetup();
+                    break;
+                case "Pattern":
+                    pointToPointSetup();
+                    break;
+            }
+            display.updateFieldsFromPattern(p);
+        }
+
         public void updateSettings()
         {
             expandingSquareSetup();
@@ -42,36 +70,41 @@ namespace SARSearchPatternGenerator
         {
             ExpandingSquareInput eei = new ExpandingSquareInput();
             display.setInputGroup(eei);
-            display.setPatternImage("img\\ExpandingSquare_SearchPattern2.jpg");
+            display.setPatternImage("ExpandingSquare_SearchPattern2");
             display.setPatternText("Expanding Square");
+            setPattern(eei.getPattern());
         }
 
         private void sectorSearchSetup()
         {
             SectorSearchInput ssi = new SectorSearchInput();
             display.setInputGroup(ssi);
-            display.setPatternImage("img\\SectorSearchPattern_3LegAircraft2.jpg");
+            display.setPatternImage("SectorSearchPattern_3LegAircraft2");
             display.setPatternText("Sector Search");
+            setPattern(ssi.getPattern());
         }
 
         private void parallelSearchSetup()
         {
             ParallelSearchInput pss = new ParallelSearchInput();
             display.setInputGroup(pss);
-            display.setPatternImage("img\\ParallelTrack_SearchPattern2.jpg");
+            display.setPatternImage("ParallelTrack_SearchPattern2");
             display.setPatternText("Parallel Search");
+            setPattern(pss.getPattern());
         }
 
         private void pointToPointSetup()
         {
             PointToPointInput ptpi = new PointToPointInput();
             display.setInputGroup(ptpi);
-            display.setPatternImage("img\\TracklineSearch2.png");
+            display.setPatternImage("TracklineSearch2");
             display.setPatternText("Point-to-Point");
+            setPattern(ptpi.getPattern());
         }
 
         public void changePattern(int index)
         {
+            Pattern p = display.getInputGroup().getPattern();
             switch(index)
             {
                 case 0:
@@ -91,6 +124,7 @@ namespace SARSearchPatternGenerator
                     patternFileName = "ptop_";
                     break;
             }
+            display.updateFieldsFromPattern(p);
         }
 
         public override void onUnitChange(int index)
@@ -120,6 +154,12 @@ namespace SARSearchPatternGenerator
             {
                 display.changeUnitSystem(unitName, unit);
             }
+        }
+
+        public void recalcInfo(double searchSpeed, double sweepWidth)
+        {
+            pattern.calculatePatternInfo(searchSpeed, sweepWidth);
+            display.updatePatternInfo(pattern);
         }
 
         public string getUnitName()
@@ -192,6 +232,15 @@ namespace SARSearchPatternGenerator
                 }
                 kml.writeFile(sf.FileName);
             }
+        }
+        public override Pattern getPattern()
+        {
+            return this.pattern;
+        }
+
+        public override string getComment()
+        {
+            return this.display.getComment();
         }
     }
 }

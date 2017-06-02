@@ -103,5 +103,21 @@ namespace SARSearchPatternGenerator
             ptrn.setDatum(new FlatCoordinate(0, 0));
             return ptrn;
         }
+        public override void updateFieldsFromPattern(Pattern p)
+        {
+            if (p != null)
+            {
+                coordinateInputs[0].setValue(p.getDatum());
+                turnDir.SelectedIndex = p.turnsRight() ? 0 : 1;
+                orientation.setValue(p.getOrientation());
+                flg.setValue(p.getLegDistance());
+                legNum.Value = p.getNumLegs();
+                if (p.GetType() == typeof(ParallelTrackPattern))
+                {
+                    ParallelTrackPattern ptp = (ParallelTrackPattern)p;
+                    trk.setValue(ptp.getCrossingDistance());
+                }
+            }
+        }
     }
 }

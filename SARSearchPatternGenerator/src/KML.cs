@@ -13,7 +13,7 @@ namespace SARSearchPatternGenerator
     class KML : FileConverter
     {
         private Pattern p;
-        private Boolean airMode = true;  //Flag for using "absolute" with a set altitude of 10,000m.  Off by default.  
+        private Boolean airMode = false;  //Flag for using "absolute" with a set altitude of 10,000m.  Off by default.  
         private Boolean boundingBox = false; //Flag for drawing "bounding box" around pattern.  Off by default. 
         private double altitude = 300.0;  //default elevation for ground search mode.
 
@@ -98,11 +98,11 @@ namespace SARSearchPatternGenerator
 
             //Styles: colours of lines etc.
             setupStyles(xmlWriter);
+           
 
-
-            for (int i = 1; i < points.Count; i++)
+            for (int i = 1; i < points.Count;  i++)
             {
-
+   
                 //open Placemark
                 xmlWriter.WriteStartElement("Placemark");
                     //open name
@@ -112,23 +112,31 @@ namespace SARSearchPatternGenerator
                 xmlWriter.WriteEndElement();
                     //open stylUrl
                 xmlWriter.WriteStartElement("styleUrl");
-                xmlWriter.WriteString(selectColour(colours[(i - 1) % colours.Length]));
+                    xmlWriter.WriteString(selectColour(colours[(i - 1) % colours.Length]));
                     //close stylUrl
                 xmlWriter.WriteEndElement();
                     //open LineString
                 xmlWriter.WriteStartElement("LineString");
+                        //open extrude
+                xmlWriter.WriteStartElement("extrude");
+                xmlWriter.WriteString("1");
+                        //close extrude
+                xmlWriter.WriteEndElement();
+                        //open tessellate
+                xmlWriter.WriteStartElement("tesselate");
+                xmlWriter.WriteString("1");
+                        //close tessellate
+                xmlWriter.WriteEndElement();
                         //open altitudeMode
                 xmlWriter.WriteStartElement("altitudeMode");
                 if (!airMode)
-                {
-                    xmlWriter.WriteString("clampToGround");
-                    setAltitude(0);
-                }
+                    xmlWriter.WriteString("relativeToGround");
                 else
                 {
                     xmlWriter.WriteString("absolute");
+                    setAltitude(10000.0);
                 }
-                //close altitudeMode
+                         //close altitudeMode
                 xmlWriter.WriteEndElement();
                         //open coordinates
                 xmlWriter.WriteStartElement("coordinates");
@@ -163,21 +171,13 @@ namespace SARSearchPatternGenerator
             XmlWriter xmlWriter = startKMLFile(filePath + "_wpt.kml", points);
             Coordinate datum = p.getDatum();
 
-            //Setup the styles for marker icons.
-            setupWptStyles(xmlWriter);
-
              //START POINT BELOW 
-             //Open Placemark
+            //Open Placemark
             xmlWriter.WriteStartElement("Placemark");
                 //Open name
             xmlWriter.WriteStartElement("name");
             xmlWriter.WriteString("Start");
                 //Close name
-            xmlWriter.WriteEndElement();
-                //Open styleUrl
-            xmlWriter.WriteStartElement("styleUrl");
-            xmlWriter.WriteString("#msn_blu-blank");
-                //Close styleUrl
             xmlWriter.WriteEndElement();
                 //Open Point
             xmlWriter.WriteStartElement("Point");
@@ -189,18 +189,15 @@ namespace SARSearchPatternGenerator
                 System.Convert.ToString(getAltitude()));
                     //Close coordinates
             xmlWriter.WriteEndElement();
-                    //Open altitudeMode
+            //Open altitudeMode
             xmlWriter.WriteStartElement("altitudeMode");
-            if (!airMode)
-            {
-                xmlWriter.WriteString("clampToGround");
-                setAltitude(0);
-            }
-            else
-            {
-                xmlWriter.WriteString("absolute");
-            }
+            xmlWriter.WriteString("relativeToGround");
                     //Close altitudeMode
+            xmlWriter.WriteEndElement();
+                    //Open extrude
+            xmlWriter.WriteStartElement("extrude");
+            xmlWriter.WriteString("1");
+                    //Close extrude
             xmlWriter.WriteEndElement();
                 //Close Point
             xmlWriter.WriteEndElement();
@@ -215,12 +212,7 @@ namespace SARSearchPatternGenerator
             xmlWriter.WriteString("Datum");
                 //Close name
             xmlWriter.WriteEndElement();
-                //Open styleUrl
-            xmlWriter.WriteStartElement("styleUrl");
-            xmlWriter.WriteString("#msn_D");
-                //Close styleUrl
-            xmlWriter.WriteEndElement();
-                //Open Point
+            //Open Point
             xmlWriter.WriteStartElement("Point");
                     //Open coordinates
             xmlWriter.WriteStartElement("coordinates");
@@ -232,10 +224,15 @@ namespace SARSearchPatternGenerator
             xmlWriter.WriteEndElement();
                     //Open altitudeMode
             xmlWriter.WriteStartElement("altitudeMode");
-            xmlWriter.WriteString("absolute");
+            xmlWriter.WriteString("relativeToGround");
                     //Close altitudeMode
             xmlWriter.WriteEndElement();
-                //Close Point
+                    //Open extrude
+            xmlWriter.WriteStartElement("extrude");
+            xmlWriter.WriteString("1");
+                    //Close extrude
+            xmlWriter.WriteEndElement();
+                    //Close Point
             xmlWriter.WriteEndElement();
             //Close Placemark
             xmlWriter.WriteEndElement();
@@ -385,8 +382,6 @@ namespace SARSearchPatternGenerator
          */
         private void setupStyles(XmlWriter xmlWriter)
         {
-            //Bounding Box style below.
-
             //open Style tag
             xmlWriter.WriteStartElement("Style");
             xmlWriter.WriteAttributeString("id", "boundingBoxStyle");
@@ -416,7 +411,6 @@ namespace SARSearchPatternGenerator
             //close style tag
             xmlWriter.WriteEndElement();
 
-            //LINE COLOURS BELOW.
 
             //open Style tag
             xmlWriter.WriteStartElement("Style");
@@ -425,7 +419,7 @@ namespace SARSearchPatternGenerator
             xmlWriter.WriteStartElement("LineStyle");
                     //open color
             xmlWriter.WriteStartElement("color");
-            xmlWriter.WriteString("FF1400E6");
+            xmlWriter.WriteString("641400E6");
                     //close color
             xmlWriter.WriteEndElement();
                     //open width
@@ -439,7 +433,7 @@ namespace SARSearchPatternGenerator
             xmlWriter.WriteStartElement("PolyStyle");
                     //open color
             xmlWriter.WriteStartElement("color");
-            xmlWriter.WriteString("00FFFFF");
+            xmlWriter.WriteString("4b1400E6");
                     //close color
             xmlWriter.WriteEndElement();
                 //close PolyStyle
@@ -455,7 +449,7 @@ namespace SARSearchPatternGenerator
             xmlWriter.WriteStartElement("LineStyle");
             //open color
             xmlWriter.WriteStartElement("color");
-            xmlWriter.WriteString("FFF00014");
+            xmlWriter.WriteString("64F00014");
             //close color
             xmlWriter.WriteEndElement();
             //open width
@@ -469,7 +463,7 @@ namespace SARSearchPatternGenerator
             xmlWriter.WriteStartElement("PolyStyle");
             //open color
             xmlWriter.WriteStartElement("color");
-            xmlWriter.WriteString("00FFFFF");
+            xmlWriter.WriteString("4bF00014");
             //close color
             xmlWriter.WriteEndElement();
             //close PolyStyle
@@ -485,7 +479,7 @@ namespace SARSearchPatternGenerator
             xmlWriter.WriteStartElement("LineStyle");
             //open color
             xmlWriter.WriteStartElement("color");
-            xmlWriter.WriteString("FF14E7FF");
+            xmlWriter.WriteString("6414E7FF");
             //close color
             xmlWriter.WriteEndElement();
             //open width
@@ -499,7 +493,7 @@ namespace SARSearchPatternGenerator
             xmlWriter.WriteStartElement("PolyStyle");
             //open color
             xmlWriter.WriteStartElement("color");
-            xmlWriter.WriteString("00FFFFF");
+            xmlWriter.WriteString("4b14E7FF");
             //close color
             xmlWriter.WriteEndElement();
             //close PolyStyle
@@ -515,7 +509,7 @@ namespace SARSearchPatternGenerator
             xmlWriter.WriteStartElement("LineStyle");
             //open color
             xmlWriter.WriteStartElement("color");
-            xmlWriter.WriteString("FFFF78B4");
+            xmlWriter.WriteString("64FF78B4");
             //close color
             xmlWriter.WriteEndElement();
             //open width
@@ -529,7 +523,7 @@ namespace SARSearchPatternGenerator
             xmlWriter.WriteStartElement("PolyStyle");
             //open color
             xmlWriter.WriteStartElement("color");
-            xmlWriter.WriteString("00FFFFF");
+            xmlWriter.WriteString("4bFF78B4");
             //close color
             xmlWriter.WriteEndElement();
             //close PolyStyle
@@ -544,7 +538,7 @@ namespace SARSearchPatternGenerator
             xmlWriter.WriteStartElement("LineStyle");
             //open color
             xmlWriter.WriteStartElement("color");
-            xmlWriter.WriteString("FF009614");
+            xmlWriter.WriteString("64009614");
             //close color
             xmlWriter.WriteEndElement();
             //open width
@@ -558,7 +552,7 @@ namespace SARSearchPatternGenerator
             xmlWriter.WriteStartElement("PolyStyle");
             //open color
             xmlWriter.WriteStartElement("color");
-            xmlWriter.WriteString("00FFFFF");
+            xmlWriter.WriteString("4b009614");
             //close color
             xmlWriter.WriteEndElement();
             //close PolyStyle
@@ -574,7 +568,7 @@ namespace SARSearchPatternGenerator
             xmlWriter.WriteStartElement("LineStyle");
             //open color
             xmlWriter.WriteStartElement("color");
-            xmlWriter.WriteString("FFF0DC14");
+            xmlWriter.WriteString("64F0DC14");
             //close color
             xmlWriter.WriteEndElement();
             //open width
@@ -588,282 +582,12 @@ namespace SARSearchPatternGenerator
             xmlWriter.WriteStartElement("PolyStyle");
             //open color
             xmlWriter.WriteStartElement("color");
-            xmlWriter.WriteString("00FFFFF");
+            xmlWriter.WriteString("4bF0DC14");
             //close color
             xmlWriter.WriteEndElement();
             //close PolyStyle
             xmlWriter.WriteEndElement();
             //close style tag
-            xmlWriter.WriteEndElement();
-        }
-
-
-
-
-        /*
-        * Sets up the Start and Datum marker icons that will be used in the wpt file export.
-        */
-        private void setupWptStyles(XmlWriter xmlWriter)
-        {
-            //DATUM icon - "D" (red) -Scale 1.3
-            //open Style tag
-            xmlWriter.WriteStartElement("Style");
-            xmlWriter.WriteAttributeString("id", "sn_D");
-                //open IconStyle tag
-            xmlWriter.WriteStartElement("IconStyle");
-                    //open scale tag
-            xmlWriter.WriteStartElement("scale");
-            xmlWriter.WriteString("1.3");
-                    //close scale tag
-            xmlWriter.WriteEndElement();
-                    //open Icon tag
-            xmlWriter.WriteStartElement("Icon");
-                        //open href tag
-            xmlWriter.WriteStartElement("href");
-            xmlWriter.WriteString("http://maps.google.com/mapfiles/kml/paddle/D.png");
-                        //close href tag
-            xmlWriter.WriteEndElement();
-                    //close Icon tag
-            xmlWriter.WriteEndElement();
-                    //open hotSpot tag
-            xmlWriter.WriteStartElement("hotSpot");
-            xmlWriter.WriteAttributeString("x", "32");
-            xmlWriter.WriteAttributeString("y", "1");
-            xmlWriter.WriteAttributeString("xunits", "pixels");
-            xmlWriter.WriteAttributeString("yunits", "pixels");
-                    //close hotSpot tag
-            xmlWriter.WriteEndElement();
-                //close IconStyle tag
-            xmlWriter.WriteEndElement();
-                //open ListStyle tag
-            xmlWriter.WriteStartElement("ListStyle");
-                    //open ItemIcon tag
-            xmlWriter.WriteStartElement("ItemIcon");
-                        //open href tag
-            xmlWriter.WriteStartElement("href");
-            xmlWriter.WriteString("http://maps.google.com/mapfiles/kml/paddle/D-lv.png");
-                        //close href tag
-            xmlWriter.WriteEndElement();
-                    //close ItemIcon tag
-            xmlWriter.WriteEndElement();
-                //close ListStyle tag
-            xmlWriter.WriteEndElement();
-            //close style tag
-            xmlWriter.WriteEndElement();
-
-
-            //DATUM icon - "D" (red) -Scale 1.1
-            //open Style tag
-            xmlWriter.WriteStartElement("Style");
-            xmlWriter.WriteAttributeString("id", "sn_D");
-            //open IconStyle tag
-            xmlWriter.WriteStartElement("IconStyle");
-            //open scale tag
-            xmlWriter.WriteStartElement("scale");
-            xmlWriter.WriteString("1.1");
-            //close scale tag
-            xmlWriter.WriteEndElement();
-            //open Icon tag
-            xmlWriter.WriteStartElement("Icon");
-            //open href tag
-            xmlWriter.WriteStartElement("href");
-            xmlWriter.WriteString("http://maps.google.com/mapfiles/kml/paddle/D.png");
-            //close href tag
-            xmlWriter.WriteEndElement();
-            //close Icon tag
-            xmlWriter.WriteEndElement();
-            //open hotSpot tag
-            xmlWriter.WriteStartElement("hotSpot");
-            xmlWriter.WriteAttributeString("x", "32");
-            xmlWriter.WriteAttributeString("y", "1");
-            xmlWriter.WriteAttributeString("xunits", "pixels");
-            xmlWriter.WriteAttributeString("yunits", "pixels");
-            //close hotSpot tag
-            xmlWriter.WriteEndElement();
-            //close IconStyle tag
-            xmlWriter.WriteEndElement();
-            //open ListStyle tag
-            xmlWriter.WriteStartElement("ListStyle");
-            //open ItemIcon tag
-            xmlWriter.WriteStartElement("ItemIcon");
-            //open href tag
-            xmlWriter.WriteStartElement("href");
-            xmlWriter.WriteString("http://maps.google.com/mapfiles/kml/paddle/D-lv.png");
-            //close href tag
-            xmlWriter.WriteEndElement();
-            //close ItemIcon tag
-            xmlWriter.WriteEndElement();
-            //close ListStyle tag
-            xmlWriter.WriteEndElement();
-            //close style tag
-            xmlWriter.WriteEndElement();
-
-
-
-
-            //START icon (blue) -Scale 1.1
-            //open Style tag
-            xmlWriter.WriteStartElement("Style");
-            xmlWriter.WriteAttributeString("id", "sn_blu-blank");
-            //open IconStyle tag
-            xmlWriter.WriteStartElement("IconStyle");
-            //open scale tag
-            xmlWriter.WriteStartElement("scale");
-            xmlWriter.WriteString("1.1");
-            //close scale tag
-            xmlWriter.WriteEndElement();
-            //open Icon tag
-            xmlWriter.WriteStartElement("Icon");
-            //open href tag
-            xmlWriter.WriteStartElement("href");
-            xmlWriter.WriteString("http://maps.google.com/mapfiles/kml/paddle/blu-blank.png");
-            //close href tag
-            xmlWriter.WriteEndElement();
-            //close Icon tag
-            xmlWriter.WriteEndElement();
-            //open hotSpot tag
-            xmlWriter.WriteStartElement("hotSpot");
-            xmlWriter.WriteAttributeString("x", "32");
-            xmlWriter.WriteAttributeString("y", "1");
-            xmlWriter.WriteAttributeString("xunits", "pixels");
-            xmlWriter.WriteAttributeString("yunits", "pixels");
-            //close hotSpot tag
-            xmlWriter.WriteEndElement();
-            //close IconStyle tag
-            xmlWriter.WriteEndElement();
-            //open ListStyle tag
-            xmlWriter.WriteStartElement("ListStyle");
-            //open ItemIcon tag
-            xmlWriter.WriteStartElement("ItemIcon");
-            //open href tag
-            xmlWriter.WriteStartElement("href");
-            xmlWriter.WriteString("http://maps.google.com/mapfiles/kml/paddle/blu-blank-lv.png");
-            //close href tag
-            xmlWriter.WriteEndElement();
-            //close ItemIcon tag
-            xmlWriter.WriteEndElement();
-            //close ListStyle tag
-            xmlWriter.WriteEndElement();
-            //close style tag
-            xmlWriter.WriteEndElement();
-
-
-            //START icon (blue) -Scale 1.3
-            //open Style tag
-            xmlWriter.WriteStartElement("Style");
-            xmlWriter.WriteAttributeString("id", "sn_blu-blank");
-            //open IconStyle tag
-            xmlWriter.WriteStartElement("IconStyle");
-            //open scale tag
-            xmlWriter.WriteStartElement("scale");
-            xmlWriter.WriteString("1.3");
-            //close scale tag
-            xmlWriter.WriteEndElement();
-            //open Icon tag
-            xmlWriter.WriteStartElement("Icon");
-            //open href tag
-            xmlWriter.WriteStartElement("href");
-            xmlWriter.WriteString("http://maps.google.com/mapfiles/kml/paddle/blu-blank.png");
-            //close href tag
-            xmlWriter.WriteEndElement();
-            //close Icon tag
-            xmlWriter.WriteEndElement();
-            //open hotSpot tag
-            xmlWriter.WriteStartElement("hotSpot");
-            xmlWriter.WriteAttributeString("x", "32");
-            xmlWriter.WriteAttributeString("y", "1");
-            xmlWriter.WriteAttributeString("xunits", "pixels");
-            xmlWriter.WriteAttributeString("yunits", "pixels");
-            //close hotSpot tag
-            xmlWriter.WriteEndElement();
-            //close IconStyle tag
-            xmlWriter.WriteEndElement();
-            //open ListStyle tag
-            xmlWriter.WriteStartElement("ListStyle");
-            //open ItemIcon tag
-            xmlWriter.WriteStartElement("ItemIcon");
-            //open href tag
-            xmlWriter.WriteStartElement("href");
-            xmlWriter.WriteString("http://maps.google.com/mapfiles/kml/paddle/blu-blank-lv.png");
-            //close href tag
-            xmlWriter.WriteEndElement();
-            //close ItemIcon tag
-            xmlWriter.WriteEndElement();
-            //close ListStyle tag
-            xmlWriter.WriteEndElement();
-            //close style tag
-            xmlWriter.WriteEndElement();
-
-
-            //STYLE MAP for blue start
-            //open StyleMap tag
-            xmlWriter.WriteStartElement("StyleMap");
-            xmlWriter.WriteAttributeString("id", "msn_blu-blank");
-                //open Pair tag
-            xmlWriter.WriteStartElement("Pair");
-                    //open key tag
-            xmlWriter.WriteStartElement("key");
-            xmlWriter.WriteString("normal");
-                    //close key tag
-            xmlWriter.WriteEndElement();
-                    //open styleUrl tag
-            xmlWriter.WriteStartElement("styleUrl");
-            xmlWriter.WriteString("#sn_blu-blank");
-                    //close styleUrl tag
-            xmlWriter.WriteEndElement();
-                //close Pair tag
-            xmlWriter.WriteEndElement();
-                //open Pair tag
-            xmlWriter.WriteStartElement("Pair");
-                    //open key tag
-            xmlWriter.WriteStartElement("key");
-            xmlWriter.WriteString("highlight");
-                    //close key tag
-            xmlWriter.WriteEndElement();
-                    //open styleUrl tag
-            xmlWriter.WriteStartElement("styleUrl");
-            xmlWriter.WriteString("#sh_blu-blank");
-                    //close styleUrl tag
-            xmlWriter.WriteEndElement();
-                //close Pair tag
-            xmlWriter.WriteEndElement();
-            //close StyleMap tag
-            xmlWriter.WriteEndElement();
-
-
-            //STYLE MAP for red Datum "D"
-            //open StyleMap tag
-            xmlWriter.WriteStartElement("StyleMap");
-            xmlWriter.WriteAttributeString("id", "msn_D");
-            //open Pair tag
-            xmlWriter.WriteStartElement("Pair");
-            //open key tag
-            xmlWriter.WriteStartElement("key");
-            xmlWriter.WriteString("normal");
-            //close key tag
-            xmlWriter.WriteEndElement();
-            //open styleUrl tag
-            xmlWriter.WriteStartElement("styleUrl");
-            xmlWriter.WriteString("#sn_D");
-            //close styleUrl tag
-            xmlWriter.WriteEndElement();
-            //close Pair tag
-            xmlWriter.WriteEndElement();
-            //open Pair tag
-            xmlWriter.WriteStartElement("Pair");
-            //open key tag
-            xmlWriter.WriteStartElement("key");
-            xmlWriter.WriteString("highlight");
-            //close key tag
-            xmlWriter.WriteEndElement();
-            //open styleUrl tag
-            xmlWriter.WriteStartElement("styleUrl");
-            xmlWriter.WriteString("#sh_D");
-            //close styleUrl tag
-            xmlWriter.WriteEndElement();
-            //close Pair tag
-            xmlWriter.WriteEndElement();
-            //close StyleMap tag
             xmlWriter.WriteEndElement();
 
         }
