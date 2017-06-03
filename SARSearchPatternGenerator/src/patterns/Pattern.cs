@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SARSearchPatternsGenerator.src;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -18,16 +19,24 @@ namespace SARSearchPatternGenerator
     [KnownType(typeof(UTMCoord))]
     public class Pattern
     {
+        [DataMember]
         protected List<Coordinate> points;
+        [DataMember]
         protected double orientation, legDistance, totalTrackLength, areaEffectivelySwept, areaCoverage, searchedArea, searchTime, probabilityOfDetection;
+        [DataMember]
         protected Coordinate datum;
+        [DataMember]
         protected int numLegs;
+        [DataMember]
         protected bool turnRight;
+        [DataMember]
+        public string comment;
 
 
         public Pattern()
         {
             points = new List<Coordinate>();
+            comment = (string)DefaultComments.ResourceManager.GetObject("PointToPointComment");
         }
 
         /*
@@ -158,7 +167,7 @@ namespace SARSearchPatternGenerator
         {
             if (this.datum == null)
             {
-                if (this.points.Count > 0)
+                if (this.points != null && this.points.Count > 0)
                 {
                     return this.points[0];
                 }

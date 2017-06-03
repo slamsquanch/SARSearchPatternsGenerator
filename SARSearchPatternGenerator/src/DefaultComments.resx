@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ExpandingSquareComment" xml:space="preserve">
+    <value>This procedure is referred to as an expanding square search as it begins at the
+reported position or most probable location and expands outwards in concentric
+squares. It is a very precise pattern and requires accurate navigation.
+To minimise navigational errors, the first leg is usually oriented directly into the wind.
+ 
+The square search pattern is used when the target is known to be in a relatively
+small area, no more than 15-20 NM from the start point.
+ 
+The first two legs are travelled to a distance equal to the track spacing (S) and every
+succeeding two legs are increased by another track spacing length. Turns may be to
+the left or right, depending upon the observer positions.
+ 
+For successive searches, the direction of the search legs should be rotated by
+45 degrees. The final track should be the same as the initial search track from
+the start point. The number of search legs may be 5, or, increasing by
+increments of 4, 9, 13, 17 etc.
+ 
+Scanning should start at a distance of one track spacing (S) before reaching the most probable
+position to avoid leaving an area not scanned near the start point. Observers
+should be briefed to pay particular attention to the areas outwards of each turn
+to avoid leaving areas not scanned.
+ 
+The search should be planned so that, whenever possible, the approach to the
+most probable position, and the first leg, is made into wind.</value>
+  </data>
+  <data name="ParallelTrackComment" xml:space="preserve">
+    <value>Parallel track patterns are normally used when:
+        a) The search area is large and the terrain is relatively level, e.g. desert and maritime areas;
+        b) Uniform coverage is required; and
+        c) The location of the target is not known with any precision.
+ 
+Search legs are aligned parallel to the long axis of the individual search area.
+The pattern is best used in rectangular or square areas. It is a very suitable
+pattern for a search conducted over water. The search aircraft proceeds from
+one corner of the search area maintaining parallel tracks, the first of which is at
+a distance equal to one-half the track spacing from a side of the area.
+Successive tracks are maintained parallel to each other and one track spacing (S)
+apart. This type of search may be carried out by one aircraft or by several
+aircraft following parallel tracks or each searching smaller rectangular areas
+separately.
+ 
+When aircraft search hours and adjacent traffic permits, turns will be conducted
+outside the search area boundaries. This allows observer
+rest and crew position changes.</value>
+  </data>
+  <data name="PointToPointComment" xml:space="preserve">
+    <value>The track line search is normally employed when an aircraft or vessel has disappeared
+without a trace. It is based on the assumption that the target has crashed,
+made a forced landing or ditched on or near the intended route (track) and will be easily
+seen, or that there are survivors capable of signalling their position by a flashing
+lamp or other means.
+ 
+The track line search consists of a rapid and reasonably thorough search on
+either side of the intended route of the target, normally at a height of 1000 to
+2000 ft during day or at 2000 to 3000 ft at night. A track line pattern is often
+used as an initial reaction to a distress situation, the second, intensive phase
+being introduced on the failure of the track line search.
+ 
+ Aircraft and ships following the same route as that of the missing aircraft or ship
+should be asked if they are available to divert to assist in the search for the
+target. For ships, this will mean diverting to intercept the most probable track
+line of the target. For aircraft, this type of search should be regarded as
+additional to searches by SAR units, as an enroute aircraft may not be entirely
+suitable as a search platform due to its performance, configuration, endurance,
+navigational capabilities or lack of observers.</value>
+  </data>
+  <data name="SectorSearchComment" xml:space="preserve">
+    <value>This procedure is used when the position is know or the searh area is not extensive.
+The sector search pattern is simple to execute wit haccurate navigational equipment.
+A high Probability of Detection (POD) is obtained near the target center.
+A floating datum marker will automatically follow the water current when searching over water.</value>
+  </data>
+</root>

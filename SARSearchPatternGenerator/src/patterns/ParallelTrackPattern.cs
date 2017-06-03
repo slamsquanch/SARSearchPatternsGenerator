@@ -3,6 +3,8 @@ using System.Drawing;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Runtime.Serialization;
+using SARSearchPatternsGenerator.src;
 
 namespace SARSearchPatternGenerator
 {
@@ -12,10 +14,15 @@ namespace SARSearchPatternGenerator
     /// </summary>
     public class ParallelTrackPattern : Pattern
     {
-        private double crossingDistance, parallelTrackSize;
+        [DataMember]
+        private double crossingDistance;
+        private double parallelTrackSize;
         private int numCrossings;
 
-        public ParallelTrackPattern() : base() {}
+        public ParallelTrackPattern() : base()
+        {
+            comment = (string)DefaultComments.ResourceManager.GetObject("ParallelTrackComment");
+        }
 
 
         /*
@@ -170,7 +177,7 @@ namespace SARSearchPatternGenerator
             parallelTrackSize = legDistance + crossingDistance * numCrossings;
             searchedArea = (legDistance + crossingDistance / 2 + crossingDistance / 2) * (numCrossings + crossingDistance / 2 + crossingDistance / 2);
             searchTime = totalTrackLength / searchSpeed;
-            areaEffectivelySwept = totalTrackLength / sweepWidth;
+            areaEffectivelySwept = totalTrackLength * sweepWidth;
             areaCoverage = areaEffectivelySwept / searchedArea;
             probabilityOfDetection = (1 - Math.Exp(-areaCoverage)) * 100;
         }
