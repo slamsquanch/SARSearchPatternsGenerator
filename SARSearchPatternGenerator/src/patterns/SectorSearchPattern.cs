@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SARSearchPatternsGenerator.src;
 
 namespace SARSearchPatternGenerator
 {
@@ -15,7 +16,10 @@ namespace SARSearchPatternGenerator
         private double crossingDistance, radius;
         private int numCrossings;
 
-        public SectorSearchPattern() :base() {}
+        public SectorSearchPattern() :base()
+        {
+            comment = (string)DefaultComments.ResourceManager.GetObject("SectorSearchComment");
+        }
 
 
         /*
@@ -95,7 +99,7 @@ namespace SARSearchPatternGenerator
             totalTrackLength = crossingDistance * numCrossings + legDistance * numLegs;
             searchedArea = Math.PI * radius * radius;
             searchTime = totalTrackLength / searchSpeed;
-            areaEffectivelySwept = totalTrackLength / sweepWidth;
+            areaEffectivelySwept = totalTrackLength * sweepWidth;
             areaCoverage = areaEffectivelySwept / searchedArea;
             probabilityOfDetection = (1 - Math.Exp(-areaCoverage)) * 100;
         }

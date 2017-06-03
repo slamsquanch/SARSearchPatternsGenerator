@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace SARSearchPatternGenerator
 {
@@ -73,7 +74,8 @@ namespace SARSearchPatternGenerator
                     }
                 }
             }
-            Properties.Settings.Default.comment = this.mainWindow.getDisplay().getComment();
+            Properties.Settings.Default["comment"] = this.mainWindow.getDisplay().getComment();
+            Console.WriteLine(Properties.Settings.Default["comment"]);
             Console.WriteLine("Program closed");
         }
         public void onProgramStart()
@@ -83,7 +85,7 @@ namespace SARSearchPatternGenerator
             {
                 DataContractSerializer dcs = new DataContractSerializer(typeof(Pattern));
                 fStream = new FileStream(".\\pattern.xml", FileMode.Open);
-                Pattern p = (Pattern)dcs.ReadObject(fStream);
+                Pattern p = (Pattern)dcs.ReadObject(XmlReader.Create(fStream), false);
                 createFromPattern(p);
             }
             catch (FileNotFoundException)
