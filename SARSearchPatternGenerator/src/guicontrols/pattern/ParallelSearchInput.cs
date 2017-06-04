@@ -44,7 +44,7 @@ namespace SARSearchPatternGenerator
             });
             datumType.SelectedIndex = 0;
             datumType.SelectedIndexChanged += this.onValueChange;
-            addInputGroupItem("Search Type: ", datumType);
+            addInputGroupItem("Datum Type: ", datumType);
 
             turnDir = new ComboBox();
             turnDir.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -68,7 +68,7 @@ namespace SARSearchPatternGenerator
             trk = new InputDistance();
             trk.changed += this.onValueChange;
             distanceInputs.Add(trk);
-            addInputGroupItem("Track Spacing:", trk);
+            addInputGroupItem("Track Space:", trk);
 
             legNum = new NumericUpDown();
             legNum.Maximum = 999;
@@ -102,22 +102,6 @@ namespace SARSearchPatternGenerator
             ptrn.generatePattern(new FlatCoordinate(0, 0), (int)legNum.Value, orientation.value, flg.value, trk.value, turnDir.SelectedIndex == 0, flg.unit);
             ptrn.setDatum(new FlatCoordinate(0, 0));
             return ptrn;
-        }
-        public override void updateFieldsFromPattern(Pattern p)
-        {
-            if (p != null)
-            {
-                coordinateInputs[0].setValue(p.getDatum());
-                turnDir.SelectedIndex = p.turnsRight() ? 0 : 1;
-                orientation.setValue(p.getOrientation());
-                flg.setValue(p.getLegDistance());
-                legNum.Value = p.getNumLegs();
-                if (p.GetType() == typeof(ParallelTrackPattern))
-                {
-                    ParallelTrackPattern ptp = (ParallelTrackPattern)p;
-                    trk.setValue(ptp.getCrossingDistance());
-                }
-            }
         }
     }
 }

@@ -26,6 +26,10 @@ namespace SARSearchPatternGenerator
             ModifyComponent();
         }
 
+        private void Window_Load(object sender, EventArgs e)
+        {
+        }
+
         public void setDisplay(DisplayController dc)
         {
             System.Drawing.Point loc = this.display.Location;
@@ -50,11 +54,6 @@ namespace SARSearchPatternGenerator
             this.PerformLayout();
         }
 
-        public DisplayController getDisplay()
-        {
-            return currentDisplay;
-        }
-
         private void ModifyComponent()
         {
             this.toolStripComboBox1.SelectedIndexChanged -= toolStripComboBox1_selectedIndexChanged;
@@ -63,7 +62,6 @@ namespace SARSearchPatternGenerator
             this.toolStripComboBox2.SelectedIndex = 0;
             this.toolStripComboBox1.SelectedIndexChanged += toolStripComboBox1_selectedIndexChanged;
             this.toolStripComboBox2.SelectedIndexChanged += toolStripComboBox2_selectedIndexChanged;
-            this.FormClosed += this.windowClosed;
         }
 
         public void setController(WindowController wc)
@@ -245,18 +243,6 @@ namespace SARSearchPatternGenerator
             {
                 currentDisplay.onCoordSystemChange(toolStripComboBox2.SelectedIndex);
             }
-        }
-        public Pattern getCurrentPattern()
-        {
-            if (currentDisplay != null)
-            {
-                return currentDisplay.getPattern();
-            }
-            return null;
-        }
-        private void windowClosed(object sender, EventArgs e)
-        {
-            this.controller.onClose();
         }
     }
 }

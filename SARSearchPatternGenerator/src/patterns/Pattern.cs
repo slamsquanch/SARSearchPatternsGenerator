@@ -1,5 +1,4 @@
-﻿using SARSearchPatternsGenerator.src;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -19,25 +18,20 @@ namespace SARSearchPatternGenerator
     [KnownType(typeof(UTMCoord))]
     public class Pattern
     {
-        [DataMember]
+
+
         protected List<Coordinate> points;
-        [DataMember]
-        protected double orientation, legDistance, totalTrackLength, areaEffectivelySwept, areaCoverage, searchedArea, searchTime, probabilityOfDetection;
-        [DataMember]
+        protected double legDistance, totalTrackLength, areaEffectivelySwept, areaCoverage, searchedArea, searchTime, probabilityOfDetection;
         protected Coordinate datum;
-        [DataMember]
         protected int numLegs;
-        [DataMember]
         protected bool turnRight;
-        [DataMember]
-        public string comment;
 
 
         public Pattern()
         {
             points = new List<Coordinate>();
-            comment = (string)DefaultComments.ResourceManager.GetObject("PointToPointComment");
         }
+
 
         /*
          *  Returns a Color class array of 6 different colours that the KML and GPX classes can iterate through
@@ -49,8 +43,8 @@ namespace SARSearchPatternGenerator
             //size 6
             Color[] legColours = new Color[]
             {
-                Color.Red,
                 Color.Blue,
+                Color.Red,
                 Color.Yellow,
                 Color.Purple,
                 Color.Green,
@@ -167,63 +161,11 @@ namespace SARSearchPatternGenerator
         {
             if (this.datum == null)
             {
-                if (this.points != null && this.points.Count > 0)
-                {
-                    return this.points[0];
-                }
-                else
-                {
-                    return null;
-                }
+                return this.points[0];
             }
             return this.datum;
         }
 
         public virtual void calculatePatternInfo(double searchSpeed, double sweepWidth) {}
-
-        public double getSearchTime()
-        {
-            return searchTime;
-        }
-
-        public double getAreaEffectivelySwept()
-        {
-            return areaEffectivelySwept;
-        }
-
-        public double getAreaCoverage()
-        {
-            return areaCoverage;
-        }
-
-        public double getProbabilityOfDetection()
-        {
-            return probabilityOfDetection;
-        }
-
-        public bool turnsRight()
-        {
-            return turnRight;
-        }
-
-        public double getOrientation()
-        {
-            return orientation;
-        }
-
-        public double getLegDistance()
-        {
-            return legDistance;
-        }
-
-        public int getNumLegs()
-        {
-            return numLegs;
-        }
-
-        public int getNumPoints()
-        {
-            return points.Count;
-        }
     }
 }

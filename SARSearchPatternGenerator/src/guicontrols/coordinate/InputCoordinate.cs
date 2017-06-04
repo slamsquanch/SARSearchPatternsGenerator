@@ -35,7 +35,7 @@ namespace SARSearchPatternGenerator
 
         public void setValue(Coordinate c)
         {
-            if (value == null || c == null)
+            if (value == null)
             {
                 return;
             }

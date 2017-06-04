@@ -3,7 +3,6 @@ using System.Drawing;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SARSearchPatternsGenerator.src;
 
 namespace SARSearchPatternGenerator
 {
@@ -16,10 +15,7 @@ namespace SARSearchPatternGenerator
         private double crossingDistance, radius;
         private int numCrossings;
 
-        public SectorSearchPattern() :base()
-        {
-            comment = (string)DefaultComments.ResourceManager.GetObject("SectorSearchComment");
-        }
+        public SectorSearchPattern() :base() {}
 
 
         /*
@@ -34,12 +30,12 @@ namespace SARSearchPatternGenerator
             //size 12
             Color[] legColours = new Color[]
             {
-            Color.Red, Color.Red,
-            Color.Blue, Color.Blue,
-            Color.Yellow, Color.Yellow,
-            Color.Purple, Color.Purple,
-            Color.Green, Color.Green,
-            Color.Cyan, Color.Cyan
+                Color.Blue, Color.Blue,
+                Color.Red, Color.Red,
+                Color.Yellow, Color.Yellow,
+                Color.Purple, Color.Purple,
+                Color.Green, Color.Green,
+                Color.Cyan, Color.Cyan
             };
             return legColours;
         }
@@ -66,8 +62,8 @@ namespace SARSearchPatternGenerator
             this.turnRight = turnRight;
             this.crossingDistance = crossingDistance;
             this.radius = radius;
-            this.orientation = orientation;
             numCrossings = numLegs - 1;
+            turnDegrees = theta;
 
             if(!turnRight)
             {
@@ -79,13 +75,13 @@ namespace SARSearchPatternGenerator
 
             for (int i = 0; i < numLegs * 2; i += 2)
             {
-                addPoint(points.ElementAt(i).travel(orientation, legDistance, dI));
+                addPoint(datum.travel(orientation, legDistance / 2, dI));
 
                 orientation += turnDegrees;
 
-                addPoint(points.ElementAt(i + 1).travel(orientation, crossingDistance, dI));
+                addPoint(datum.travel(orientation, legDistance / 2, dI));
 
-                orientation += turnDegrees;
+                orientation += 180;
                 
             }
 
@@ -99,7 +95,7 @@ namespace SARSearchPatternGenerator
             totalTrackLength = crossingDistance * numCrossings + legDistance * numLegs;
             searchedArea = Math.PI * radius * radius;
             searchTime = totalTrackLength / searchSpeed;
-            areaEffectivelySwept = totalTrackLength * sweepWidth;
+            areaEffectivelySwept = totalTrackLength / sweepWidth;
             areaCoverage = areaEffectivelySwept / searchedArea;
             probabilityOfDetection = (1 - Math.Exp(-areaCoverage)) * 100;
         }

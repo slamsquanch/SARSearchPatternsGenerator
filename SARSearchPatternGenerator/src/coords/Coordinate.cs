@@ -114,6 +114,21 @@ namespace SARSearchPatternGenerator
         }
 
         /*
+         * If the longitude is out of bounds, this will put it back in bounds.
+         */
+        public static double fixLong(double lng)
+        {
+            double adjusted = lng;
+
+            while (adjusted > 180)
+                adjusted -= 360;
+            while (adjusted < -180)
+                adjusted += 360;
+
+            return adjusted;
+        }
+
+        /*
          * If the latitude and longitude are equal, then this coordinate is equal
          * to coord.
          */

@@ -3,7 +3,6 @@ using System.Drawing;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SARSearchPatternsGenerator.src;
 
 namespace SARSearchPatternGenerator
 {
@@ -14,30 +13,27 @@ namespace SARSearchPatternGenerator
     public class ExpandingSquarePattern : Pattern
     {
 
-        public ExpandingSquarePattern() :base()
-        {
-            comment = (string)DefaultComments.ResourceManager.GetObject("ExpandingSquareComment");
-        }
+        public ExpandingSquarePattern() :base() {}
 
         /*
          *  Returns a Color class array of 6 different colours that the KML and GPX classes can iterate through
          *   to alternate the track leg colours of the Expanding Square pattern. 
          *   Overrides parent's method (Pattern.cs).
-         */
+         */ 
         public override Color[] getColours()
         {
             //size 6
             Color[] legColours = new Color[]
             {
-            Color.Red,
-            Color.Blue,
-            Color.Yellow,
-            Color.Purple,
-            Color.Green, 
-            Color.Cyan
+                Color.Blue,
+                Color.Red,
+                Color.Yellow,
+                Color.Purple,
+                Color.Green, 
+                Color.Cyan
             };
             return legColours;
-        }
+         }
 
 
         /*
@@ -55,7 +51,6 @@ namespace SARSearchPatternGenerator
             this.legDistance = firstLegDistance;
             this.numLegs = numLegs;
             this.turnRight = turnRight;
-            this.orientation = orientation;
             totalTrackLength = 0;
             searchedArea = 1;
 
@@ -81,8 +76,6 @@ namespace SARSearchPatternGenerator
                 //Turn orientation for next leg
                 orientation += turnDegrees;
 
-                totalTrackLength += legDistance;
-
                 if (secondLeg)
                 {
                     //Increase legDistance
@@ -90,6 +83,7 @@ namespace SARSearchPatternGenerator
                 }
 
                 secondLeg = !secondLeg;
+                totalTrackLength += legDistance;
 
                 if(i >= numLegs - 2)
                 {
@@ -103,7 +97,7 @@ namespace SARSearchPatternGenerator
         public override void calculatePatternInfo(double searchSpeed, double sweepWidth)
         {
             searchTime = totalTrackLength / searchSpeed;
-            areaEffectivelySwept = totalTrackLength * sweepWidth;
+            areaEffectivelySwept = totalTrackLength / sweepWidth;
             areaCoverage = areaEffectivelySwept / searchedArea;
             probabilityOfDetection = (1 - Math.Exp(-areaCoverage)) * 100;
         }

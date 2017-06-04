@@ -3,8 +3,6 @@ using System.Drawing;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Runtime.Serialization;
-using SARSearchPatternsGenerator.src;
 
 namespace SARSearchPatternGenerator
 {
@@ -14,15 +12,10 @@ namespace SARSearchPatternGenerator
     /// </summary>
     public class ParallelTrackPattern : Pattern
     {
-        [DataMember]
-        private double crossingDistance;
-        private double parallelTrackSize;
+        private double crossingDistance, parallelTrackSize;
         private int numCrossings;
 
-        public ParallelTrackPattern() : base()
-        {
-            comment = (string)DefaultComments.ResourceManager.GetObject("ParallelTrackComment");
-        }
+        public ParallelTrackPattern() : base() {}
 
 
         /*
@@ -37,12 +30,12 @@ namespace SARSearchPatternGenerator
             //size 12
             Color[] legColours = new Color[]
             {
-            Color.Red, Color.Red,
-            Color.Blue, Color.Blue,
-            Color.Yellow, Color.Yellow,
-            Color.Purple, Color.Purple,
-            Color.Green, Color.Green,
-            Color.Cyan, Color.Cyan
+                Color.Blue, Color.Blue,
+                Color.Red, Color.Red,
+                Color.Yellow, Color.Yellow,
+                Color.Purple, Color.Purple,
+                Color.Green, Color.Green,
+                Color.Cyan, Color.Cyan
             };
             return legColours;
         }
@@ -143,7 +136,6 @@ namespace SARSearchPatternGenerator
             this.legDistance = legDistance;
             this.numLegs = numLegs;
             this.turnRight = firstTurnRight;
-            this.orientation = orientation;
             crossingDistance = trackSpacing;
             numCrossings = numLegs - 1;
 
@@ -177,14 +169,9 @@ namespace SARSearchPatternGenerator
             parallelTrackSize = legDistance + crossingDistance * numCrossings;
             searchedArea = (legDistance + crossingDistance / 2 + crossingDistance / 2) * (numCrossings + crossingDistance / 2 + crossingDistance / 2);
             searchTime = totalTrackLength / searchSpeed;
-            areaEffectivelySwept = totalTrackLength * sweepWidth;
+            areaEffectivelySwept = totalTrackLength / sweepWidth;
             areaCoverage = areaEffectivelySwept / searchedArea;
             probabilityOfDetection = (1 - Math.Exp(-areaCoverage)) * 100;
-        }
-
-        public double getCrossingDistance()
-        {
-            return crossingDistance;
         }
     }
 }

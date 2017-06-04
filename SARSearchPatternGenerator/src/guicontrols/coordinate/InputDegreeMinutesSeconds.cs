@@ -69,9 +69,9 @@ namespace SARSearchPatternGenerator
             this.tableLayoutPanel1.ColumnCount = 8;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.47761F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.79104F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 18F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.07692F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.76923F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 26F));
@@ -126,10 +126,10 @@ namespace SARSearchPatternGenerator
             this.floatInput4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.floatInput4.Location = new System.Drawing.Point(177, 36);
+            this.floatInput4.Location = new System.Drawing.Point(167, 36);
             this.floatInput4.Name = "floatInput4";
             this.floatInput4.precision = 3;
-            this.floatInput4.Size = new System.Drawing.Size(62, 22);
+            this.floatInput4.Size = new System.Drawing.Size(67, 22);
             this.floatInput4.TabIndex = 1;
             this.floatInput4.Text = "0";
             // 
@@ -138,10 +138,10 @@ namespace SARSearchPatternGenerator
             this.floatInput3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.floatInput3.Location = new System.Drawing.Point(177, 3);
+            this.floatInput3.Location = new System.Drawing.Point(167, 3);
             this.floatInput3.Name = "floatInput3";
             this.floatInput3.precision = 3;
-            this.floatInput3.Size = new System.Drawing.Size(62, 22);
+            this.floatInput3.Size = new System.Drawing.Size(67, 22);
             this.floatInput3.TabIndex = 1;
             this.floatInput3.Text = "0";
             // 
@@ -149,7 +149,7 @@ namespace SARSearchPatternGenerator
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(245, 41);
+            this.label6.Location = new System.Drawing.Point(240, 41);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(30, 17);
             this.label6.TabIndex = 8;
@@ -160,11 +160,11 @@ namespace SARSearchPatternGenerator
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(139, 41);
+            this.label4.Location = new System.Drawing.Point(149, 41);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(32, 17);
+            this.label4.Size = new System.Drawing.Size(12, 17);
             this.label4.TabIndex = 4;
-            this.label4.Text = "deg";
+            this.label4.Text = "°";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // floatInput1
@@ -172,10 +172,10 @@ namespace SARSearchPatternGenerator
             this.floatInput1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.floatInput1.Location = new System.Drawing.Point(90, 3);
+            this.floatInput1.Location = new System.Drawing.Point(96, 3);
             this.floatInput1.Name = "floatInput1";
             this.floatInput1.precision = 3;
-            this.floatInput1.Size = new System.Drawing.Size(43, 22);
+            this.floatInput1.Size = new System.Drawing.Size(47, 22);
             this.floatInput1.TabIndex = 0;
             this.floatInput1.Text = "0";
             // 
@@ -184,10 +184,10 @@ namespace SARSearchPatternGenerator
             this.floatInput2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.floatInput2.Location = new System.Drawing.Point(90, 36);
+            this.floatInput2.Location = new System.Drawing.Point(96, 36);
             this.floatInput2.Name = "floatInput2";
             this.floatInput2.precision = 3;
-            this.floatInput2.Size = new System.Drawing.Size(43, 22);
+            this.floatInput2.Size = new System.Drawing.Size(47, 22);
             this.floatInput2.TabIndex = 0;
             this.floatInput2.Text = "0";
             // 
@@ -217,18 +217,18 @@ namespace SARSearchPatternGenerator
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(139, 8);
+            this.label3.Location = new System.Drawing.Point(149, 8);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(32, 17);
+            this.label3.Size = new System.Drawing.Size(12, 17);
             this.label3.TabIndex = 3;
-            this.label3.Text = "deg";
+            this.label3.Text = "°";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label5
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(245, 8);
+            this.label5.Location = new System.Drawing.Point(240, 8);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(30, 17);
             this.label5.TabIndex = 7;
@@ -240,10 +240,10 @@ namespace SARSearchPatternGenerator
             this.floatInput5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.floatInput5.Location = new System.Drawing.Point(283, 3);
+            this.floatInput5.Location = new System.Drawing.Point(276, 3);
             this.floatInput5.Name = "floatInput5";
             this.floatInput5.precision = 4;
-            this.floatInput5.Size = new System.Drawing.Size(85, 22);
+            this.floatInput5.Size = new System.Drawing.Size(92, 22);
             this.floatInput5.TabIndex = 9;
             this.floatInput5.Text = "0";
             // 
@@ -252,10 +252,10 @@ namespace SARSearchPatternGenerator
             this.floatInput6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.floatInput6.Location = new System.Drawing.Point(283, 36);
+            this.floatInput6.Location = new System.Drawing.Point(276, 36);
             this.floatInput6.Name = "floatInput6";
             this.floatInput6.precision = 4;
-            this.floatInput6.Size = new System.Drawing.Size(85, 22);
+            this.floatInput6.Size = new System.Drawing.Size(92, 22);
             this.floatInput6.TabIndex = 10;
             this.floatInput6.Text = "0";
             // 

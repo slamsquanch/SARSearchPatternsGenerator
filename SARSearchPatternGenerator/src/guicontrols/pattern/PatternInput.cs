@@ -20,7 +20,6 @@ namespace SARSearchPatternGenerator
         protected CoordSystem coordinateSystem = CoordSystem.DecDeg;
         public abstract Pattern getPattern();
         public abstract Pattern getFlatPattern();
-        public abstract void updateFieldsFromPattern(Pattern p);
         public PatternInput(): base()
         {
             distanceInputs = new List<InputDistance>();

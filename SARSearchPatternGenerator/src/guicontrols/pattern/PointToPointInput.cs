@@ -27,7 +27,7 @@ namespace SARSearchPatternGenerator
 
             add = new Button();
             add.Text = "Add";
-            add.Click += onAddPoint;
+            add.Click += addPoint;
 
             this.Controls.Add(add, 0, 0);
             this.Controls.Add(new Label());
@@ -50,13 +50,10 @@ namespace SARSearchPatternGenerator
              */
             return getPattern();
         }
-        private void onAddPoint(object sender, EventArgs e)
-        {
-            this.addPoint(new DecDeg(0, 0));
-        }
-        private void addPoint(Coordinate newVal)
+        private void addPoint(object sender, EventArgs e)
         {
             InputCoordinate c = new InputDecimalDegrees();
+            Coordinate newVal = new DecDeg(0, 0);
             double lat = 0;
             double lng = 0;
             if (this.coordinateInputs.Count > 0)
@@ -112,19 +109,8 @@ namespace SARSearchPatternGenerator
             this.Controls.Add(add, 0, curRow - 1);
             this.Controls.Add(new Label());
             this.RowCount++;
-
+            
             ResumeLayout(true);
-        }
-        public override void updateFieldsFromPattern(Pattern p)
-        {
-            if (p != null)
-            {
-                for (int i = 0; i < p.getNumPoints(); i++)
-                {
-                    Coordinate c = p.getPoint(i);
-                    this.addPoint(c);
-                }
-            }
         }
     }
 }

@@ -60,7 +60,7 @@ namespace SARSearchPatternGenerator
             this.toolStripDropDownButton4});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1284, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1006, 27);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -78,7 +78,7 @@ namespace SARSearchPatternGenerator
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(114, 26);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
@@ -140,7 +140,7 @@ namespace SARSearchPatternGenerator
             this.systemLabel.AutoEllipsis = true;
             this.systemLabel.AutoSize = true;
             this.systemLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.systemLabel.Location = new System.Drawing.Point(15, 493);
+            this.systemLabel.Location = new System.Drawing.Point(15, 462);
             this.systemLabel.Name = "systemLabel";
             this.systemLabel.Size = new System.Drawing.Size(85, 17);
             this.systemLabel.TabIndex = 3;
@@ -154,7 +154,7 @@ namespace SARSearchPatternGenerator
             | System.Windows.Forms.AnchorStyles.Right)));
             this.display.Location = new System.Drawing.Point(12, 58);
             this.display.Name = "display";
-            this.display.Size = new System.Drawing.Size(1260, 432);
+            this.display.Size = new System.Drawing.Size(982, 401);
             this.display.TabIndex = 4;
             // 
             // toolStrip2
@@ -165,7 +165,7 @@ namespace SARSearchPatternGenerator
             this.toolStripComboBox2});
             this.toolStrip2.Location = new System.Drawing.Point(0, 27);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(1284, 28);
+            this.toolStrip2.Size = new System.Drawing.Size(1006, 28);
             this.toolStrip2.TabIndex = 5;
             this.toolStrip2.Text = "toolStrip2";
             this.toolStrip2.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip2_ItemClicked);
@@ -201,7 +201,7 @@ namespace SARSearchPatternGenerator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1284, 515);
+            this.ClientSize = new System.Drawing.Size(1006, 484);
             this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.display);
             this.Controls.Add(this.systemLabel);
@@ -210,6 +210,7 @@ namespace SARSearchPatternGenerator
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Window";
             this.Text = "Pattern Commander";
+            this.Load += new System.EventHandler(this.Window_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.toolStrip2.ResumeLayout(false);
